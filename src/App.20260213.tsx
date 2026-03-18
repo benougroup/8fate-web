@@ -26,8 +26,11 @@ export default function App20260213() {
     };
   }, []);
 
+  // Support subdirectory deployment (e.g. GitHub Pages at /8fate-web/)
+  const basename = import.meta.env.VITE_BASE_PATH || '/';
+
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <ServicesProvider>
         <RevampRoutes />
       </ServicesProvider>

@@ -1,0 +1,682 @@
+{
+  "common": {
+    "loading": "載入中…",
+    "errorPrefix": "無法載入",
+    "unknownError": "未知錯誤",
+    "unableToLoad": "無法載入{resource}。{detail}",
+    "errorUnknownDetail": "請稍後再試。",
+    "errorTimeout": "請求逾時，請稍後再試。",
+    "errorNetwork": "網路錯誤，請檢查連線。",
+    "errorBadResponse": "收到非預期的回應。",
+    "retry": "重試",
+    "labelValue": "{label}：{value}",
+    "open_info": "開啟資訊",
+    "close": "關閉"
+  },
+  "revamp": {
+    "overlay": {
+      "close": "關閉",
+      "dismiss": "關閉遮罩"
+    },
+    "alertDialog": {
+      "ok": "確定",
+      "yes": "是",
+      "no": "否",
+      "proceed": "繼續",
+      "discard": "捨棄"
+    },
+    "infoPopover": {
+      "label": "更多資訊"
+    }
+  },
+  "home": {
+    "header": {
+      "title": "首頁",
+      "subtitle": "這是改版的啟動骨架。接下來的 PR 會快速逐檔演進。",
+      "dateLabel": "今天 · {date}",
+      "dailyAdviceFallback": "今日提醒"
+    },
+    "greeting": {
+      "title": "嗨 {name}",
+      "titleAnonymous": "嗨",
+      "subtitle": "這是你今天的指引。"
+    },
+    "sections": {
+      "today": "今日",
+      "luck": "幸運",
+      "luckAvoid": "幸運 / 避免",
+      "avoid": "避免",
+      "protection": "保護",
+      "upcoming": "即將到來"
+    },
+    "section": {
+      "today": "今日",
+      "luck": "幸運 / 避免",
+      "avoid": "避免",
+      "protection": "保護",
+      "upcoming": "即將到來"
+    },
+    "help": {
+      "today": {
+        "title": "今日指引",
+        "body": "查看今日的重點、行動與避開建議。"
+      },
+      "luck": {
+        "title": "幸運與避開",
+        "body": "對照幸運與避開細節，協助平衡今日節奏。"
+      },
+      "protection": {
+        "title": "保護",
+        "body": "查看保護短語以保持穩定。"
+      },
+      "upcoming": {
+        "title": "即將到來",
+        "body": "預覽本週稍後的變化。"
+      }
+    },
+    "daily": {
+      "luckLevel": {
+        "strong": "大吉",
+        "good": "吉",
+        "steady": "平",
+        "caution": "小心",
+        "low": "凶"
+      },
+      "labels": {
+        "dailyReading": "每日指引"
+      }
+    },
+    "luckAvoid": {
+      "labels": {
+        "score": "幸運數",
+        "color": "幸運色",
+        "zodiacElement": "有利生肖",
+        "direction": "幸運方位"
+      }
+    },
+    "protection": {
+      "labels": {
+        "title": "保護"
+      }
+    },
+    "upcoming": {
+      "labels": {
+        "title": "即將到來"
+      }
+    },
+    "card": {
+      "action": "行動",
+      "avoid": "避免",
+      "luckMaterials": "幸運要素",
+      "unluckyMaterials": "不幸要素",
+      "premiumOnly": "僅限 Premium",
+      "premiumBadge": "Premium",
+      "flipLabel": "翻轉{section}",
+      "flipHint": "點擊卡片翻轉",
+      "unlockCta": "解鎖 Premium"
+    },
+    "zodiacElement": {
+      "format": "{zodiac}{element}"
+    },
+    "elements": {
+      "water": "水",
+      "wood": "木",
+      "fire": "火",
+      "earth": "土",
+      "metal": "金"
+    },
+    "zodiac": {
+      "mouse": "鼠",
+      "ox": "牛",
+      "tiger": "虎",
+      "rabbit": "兔",
+      "dragon": "龍",
+      "snake": "蛇",
+      "horse": "馬",
+      "sheep": "羊",
+      "monkey": "猴",
+      "rooster": "雞",
+      "dog": "狗",
+      "pig": "豬"
+    },
+    "luck": {
+      "title": "幸運",
+      "number": "數字",
+      "color": "顏色",
+      "zodiacElement": "生肖要素"
+    },
+    "avoid": {
+      "title": "避免",
+      "number": "數字",
+      "color": "顏色",
+      "zodiacElement": "生肖要素"
+    },
+    "user": {
+      "guest": "訪客",
+      "previewName": "小明"
+    },
+    "content": {
+      "placeholder": "內容即將推出。",
+      "emptySection": "暫無指引。"
+    },
+    "luckStatus": {
+      "upup": "大幅上升",
+      "up": "上升",
+      "middle": "平穩",
+      "down": "下降",
+      "downdown": "大幅下降"
+    },
+    "cta": {
+      "dashboard": "前往 /dashboard",
+      "backToDashboard": "回到儀表板",
+      "returnToDashboard": "返回舊版儀表板"
+    }
+  },
+  "brand": {
+    "geonLogoAlt": "久運"
+  },
+  "dashboard": {
+    "header": {
+      "title": "儀表板"
+    },
+    "body": {
+      "placeholder": "尚未建置，稍後回來。"
+    },
+    "cta": {
+      "back": "回到首頁"
+    }
+  },
+  "notFound": {
+    "header": {
+      "title": "找不到頁面"
+    },
+    "body": {
+      "placeholder": "您請求的頁面尚不可用。"
+    },
+    "cta": {
+      "back": "回到首頁"
+    }
+  },
+  "placeholder": {
+    "monthly": {
+      "title": "每月",
+      "body": "每月指引即將推出。"
+    },
+    "portfolio": {
+      "title": "作品集",
+      "body": "作品集體驗即將推出。"
+    },
+    "yearly": {
+      "title": "每年",
+      "body": "每年指引即將推出。"
+    },
+    "settings": {
+      "title": "設定",
+      "body": "設定功能即將在此提供。"
+    },
+    "chat": {
+      "title": "聊天",
+      "body": "聊天功能正在準備中，敬請期待。"
+    },
+    "cta": {
+      "backToHome": "回到首頁"
+    }
+  },
+  "theme": {
+    "toggleToYin": "切換到 Yin",
+    "toggleToYang": "切換到 Yang"
+  },
+  "notifications": {
+    "label": "通知",
+    "title": "通知",
+    "unreadCount": "{count} 則未讀",
+    "emptyTitle": "沒有新通知",
+    "emptyBody": "目前沒有新的通知。",
+    "open": "開啟",
+    "none": "無",
+    "unread": "未讀"
+  },
+  "announcements": {
+    "title": "公告",
+    "open": "查看公告",
+    "learnMore": "了解更多",
+    "viewDetails": "查看詳情",
+    "cardTitle": "公告 · {id}",
+    "cardBody": "最新活動、更新與限定內容會出現在這裡。",
+    "carouselLabel": "前往公告 {index}",
+    "emptyBody": "目前沒有公告。",
+    "detailTitle": "公告詳情",
+    "detailBody": "閱讀完整公告並探索更新內容。",
+    "missingTitle": "找不到公告",
+    "missingBody": "我們找不到該公告。",
+    "backToHome": "回到首頁",
+    "faqLink": "前往 FAQ"
+  },
+  "faq": {
+    "title": "常見問題",
+    "subtitle": "常見問題快速解答。",
+    "back": "返回",
+    "sections": {
+      "gettingStarted": {
+        "title": "開始使用",
+        "body": "瀏覽每日指引卡片並點擊區塊查看詳細內容。"
+      },
+      "notifications": {
+        "title": "通知",
+        "body": "新提醒會出現在通知面板，未讀項目會顯示紅點。"
+      },
+      "privacy": {
+        "title": "隱私",
+        "body": "你的資料會被安全保存，只用於個人化解讀。"
+      },
+      "contact": {
+        "title": "聯絡我們",
+        "body": "需要更多協助？隨時與我們聯繫。"
+      }
+    }
+  },
+  "help": {
+    "aboutThisScreen": "關於此畫面"
+  },
+  "preview": {
+    "banner": {
+      "title": "預覽模式",
+      "home": "預覽首頁",
+      "profile": "預覽個人檔案",
+      "components": "元件預覽"
+    },
+    "nav": {
+      "open": "開啟導覽",
+      "close": "關閉導覽",
+      "day": "今日",
+      "monthly": "每月",
+      "year": "年度",
+      "luckTrend": "運勢趨勢",
+      "portfolio": "作品集",
+      "settings": "設定",
+      "chat": "對話"
+    },
+    "components": {
+      "title": "元件預覽",
+      "subtitle": "基礎元件展示。",
+      "dividerTitle": "頁面分隔線",
+      "dividerBody": "細緻分隔線，適用 Yin 與 Yang 主題。",
+      "sheetTitle": "底部彈窗",
+      "sheetBody": "具遮罩、ESC 關閉與鎖定捲動的新選擇模式。",
+      "sheetCta": "開啟 BottomSheet",
+      "sheetDialogTitle": "選擇時段",
+      "sheetSelection": "已選擇：{selection}",
+      "scrollWindowTitle": "捲動視窗",
+      "scrollWindowBody": "玻璃感長文閱讀容器。",
+      "scrollWindowCta": "開啟 ScrollWindow",
+      "scrollWindowDialogTitle": "條款與細節",
+      "scrollWindowDialogBody": "這個可捲動的玻璃面板適合放置長文內容。",
+      "scrollWindowDialogBodyAlt": "可用於條款、FAQ 或需要集中閱讀的段落。",
+      "alertDialogTitle": "提醒對話框",
+      "alertDialogBody": "在聚焦的對話框中提供清晰的操作選項。",
+      "alertDialogCtaOk": "開啟 OK 對話框",
+      "alertDialogCtaYesNo": "開啟 Yes/No 對話框",
+      "alertDialogCtaProceedDiscard": "開啟 Proceed/Discard 對話框",
+      "alertDialogPromptTitle": "確認更新",
+      "alertDialogPromptMessage": "要立即套用此變更嗎？",
+      "infoPopoverTitle": "資訊提示",
+      "infoPopoverBody": "貼近內容的小提示視窗。",
+      "infoPopoverContent": "在不打斷流程的情況下補充說明。",
+      "radioTitle": "單選按鈕",
+      "radioBody": "支援陰陽風格的單選控制。",
+      "radioDescription": "點擊即可選擇",
+      "cardFlipTitle": "翻轉卡片",
+      "cardFlipBody": "點擊卡片或按鈕即可翻面。",
+      "cardFlipFront": "為今天準備的一段穩定提示。",
+      "cardFlipBack": "背面呈現更柔和的延伸說明。",
+      "cardFlipCta": "翻轉卡片",
+      "cardFlipLabel": "翻轉以查看更多細節",
+      "railTitle": "水平卡片軌",
+      "railBody": "外層玻璃感，內層實心卡片滑動其上。",
+      "buttonsTitle": "按鈕",
+      "buttonsBody": "可重用的操作按鈕，支援大小與樣式。",
+      "buttonsPrimary": "主要",
+      "buttonsSecondary": "次要",
+      "buttonsGhost": "透明",
+      "buttonsContrast": "高對比",
+      "buttonsSmall": "小尺寸",
+      "buttonsLarge": "大尺寸",
+      "buttonsPill": "膠囊",
+      "railItems": {
+        "focus": {
+          "title": "專注時段",
+          "body": "溫柔的焦點區塊讓節奏更穩。"
+        },
+        "anchor": {
+          "title": "錨定儀式",
+          "body": "一個固定動作，安住動能。"
+        },
+        "momentum": {
+          "title": "動能提示",
+          "body": "小幅加速，持續向前。"
+        },
+        "alignment": {
+          "title": "對齊檢視",
+          "body": "用輕鬆步調確認下一步。"
+        },
+        "simplicity": {
+          "title": "簡化",
+          "body": "去除雜訊，路徑更清晰。"
+        },
+        "radiance": {
+          "title": "光感",
+          "body": "讓平靜的光引導注意力。"
+        }
+      },
+      "back": "回到預覽首頁",
+      "options": {
+        "morning": "早晨",
+        "afternoon": "下午",
+        "evening": "傍晚",
+        "night": "夜晚"
+      }
+    },
+    "cta": {
+      "home": "預覽新版首頁"
+    }
+  },
+  "legacy": {
+    "notFound": {
+      "title": "找不到頁面",
+      "body": "找不到您要前往的頁面。",
+      "goToDashboard": "前往儀表板",
+      "goBack": "返回",
+      "openDiagnostics": "開啟診斷"
+    }
+  },
+  "register": {
+    "title": "歡迎，{name}",
+    "subtitle": "你的帳號已成功建立。",
+    "body": "為了揭示命盤與幸運要素，我們需要先對應你的出生資訊。",
+    "cta": "開始旅程",
+    "back": "返回登入",
+    "nameLabel": "姓名",
+    "namePlaceholder": "輸入姓名",
+    "fallbackName": "旅人",
+    "fallbackEmail": "Test_email@gmail.com",
+    "iconAlt": "開始"
+  },
+  "timeMatch": {
+    "title": "尋找你的出生時辰",
+    "subtitle": "選擇最符合你個性的描述。",
+    "upgradePrompt": "升級即可查看所有選項。",
+    "back": "返回",
+    "confirm": "確認並繼續",
+    "saving": "儲存中...",
+    "lockedTitle": "Premium 選項",
+    "lockedBody": "升級 Premium 以解鎖此時辰。",
+    "lockedCta": "升級"
+  },
+  "premiumRegister": {
+    "headerLabel": "解鎖命運",
+    "title": "升級至 Premium",
+    "subtitle": "獲得更深入的洞察、未來趨勢與不限次 AI 指引。",
+    "bestValue": "最佳方案",
+    "startMonthly": "開始月費方案",
+    "startYearly": "開始年費方案",
+    "month": "月",
+    "year": "年",
+    "restore": "恢復購買",
+    "restoreAlert": "已觸發恢復購買（模擬）",
+    "exitTitle": "等等！命運正在召喚你。",
+    "exitMessage": "確定要離開嗎？",
+    "exitStay": "留下升級",
+    "exitLeave": "仍然離開",
+    "confirmTitle": "確認方案",
+    "confirmMessage": "購買 {plan}，價格 ${price}？",
+    "confirmAction": "確認購買",
+    "processing": "處理中...",
+    "cancel": "取消",
+    "purchaseError": "購買驗證失敗。",
+    "successTitle": "歡迎加入 Premium！",
+    "successMessage": "購買完成，Premium 權限已啟用。",
+    "successAction": "前往首頁"
+  },
+  "premiumPayment": {
+    "title": "方案與付款",
+    "subtitle": "查看目前方案或改選新方案。",
+    "activePlan": "目前方案",
+    "changePlan": "變更方案",
+    "cancelPlan": "取消訂閱",
+    "managePlan": "管理方案",
+    "viewOptions": "查看方案選項",
+    "cancelTitle": "取消訂閱？",
+    "cancelMessage": "你仍可使用 Premium 至本期結束。",
+    "cancelKeep": "保留 Premium",
+    "cancelConfirm": "取消訂閱",
+    "cancelledTitle": "訂閱已取消",
+    "cancelledMessage": "Premium 權益將持續至本期結束。",
+    "cancelledAction": "知道了"
+  },
+  "profile": {
+    "fields": {
+      "name": "姓名",
+      "dateOfBirth": "出生日期",
+      "placeOfBirth": "出生地",
+      "level": "程度"
+    },
+    "levels": {
+      "beginner": "初階",
+      "intermediate": "中階",
+      "advanced": "進階"
+    },
+    "errors": {
+      "invalidDate": "請輸入 YYYY-MM-DD 格式的日期。",
+      "nameRequired": "請先輸入姓名再儲存。"
+    },
+    "preview": {
+      "title": "個人檔案（預覽）",
+      "load": "載入",
+      "save": "儲存",
+      "updatedAt": "已儲存於 {updatedAt}",
+      "backToHome": "回到預覽首頁"
+    }
+  },
+  "splash": {
+    "status": "正在載入體驗…"
+  },
+  "auth": {
+    "login": {
+      "title": "歡迎回來",
+      "subtitle": "請選擇登入方式。",
+      "google": "使用 Google 登入",
+      "dev": "繼續（開發）",
+      "loading": "正在登入…",
+      "legal": "繼續即表示你同意",
+      "legalLink": "條款與隱私"
+    }
+  },
+  "terms": {
+    "title": "條款與細則",
+    "body": "繼續代表你同意 8Fate 最新條款。請先仔細閱讀。",
+    "version": "版本 {{version}}",
+    "agreeLabel": "我同意條款與細則（{{version}}）。",
+    "agree": "同意並繼續",
+    "close": "關閉"
+  },
+  "timeFinder": {
+    "title": "時辰搜尋",
+    "subtitle": "找出最符合你個性的出生時段。",
+    "helper": "選擇最能描述你個性的選項。Premium 可解鎖完整時段。",
+    "skip": "先跳過",
+    "dateLabel": "出生日期",
+    "timeRangeLabel": "時間範圍",
+    "timezoneLabel": "時區",
+    "search": "搜尋時段",
+    "resultsTitle": "建議時段",
+    "finish": "完成註冊",
+    "lockedTitle": "Premium 選項",
+    "lockedBody": "升級以解鎖此時段。",
+    "lockedCta": "解鎖 Premium",
+    "successTitle": "註冊完成",
+    "successMessage": "都準備好了，前往每日體驗。",
+    "successAction": "前往每日",
+    "options": {
+      "dawn": {
+        "title": "05:00 - 07:00 · 清晨",
+        "body": "溫和而穩定的能量，步調沉穩。",
+        "tags": ["沉穩", "耐心"]
+      },
+      "midday": {
+        "title": "11:00 - 13:00 · 正午",
+        "body": "明亮而外向的能量，方向清晰。",
+        "tags": ["樂觀", "表達", "專注"]
+      },
+      "dusk": {
+        "title": "17:00 - 19:00 · 黃昏",
+        "body": "平衡的動能，思考周全。",
+        "tags": ["平衡", "觀察"]
+      },
+      "night": {
+        "title": "21:00 - 23:00 · 夜晚",
+        "body": "安靜直覺與深層創意。",
+        "tags": ["直覺", "創意"]
+      },
+      "midnight": {
+        "title": "23:00 - 01:00 · 午夜",
+        "body": "轉化與願景能量，內在驅動強烈。",
+        "tags": ["願景", "獨立", "韌性"]
+      }
+    },
+    "range": {
+      "morning": "06:00 - 12:00",
+      "afternoon": "12:00 - 18:00",
+      "evening": "18:00 - 24:00",
+      "night": "00:00 - 06:00"
+    }
+  },
+  "premium": {
+    "title": "進階版",
+    "subtitle": "解鎖更深入的洞察、個人化指引與進階聊天。",
+    "cta": "查看購買方案",
+    "active": "進階版已啟用",
+    "inactive": "尚未啟用進階版",
+    "statusActive": "進階版已啟用",
+    "statusInactive": "尚未啟用進階版",
+    "planName": "Premium 權限",
+    "planDescription": "完整 Premium 洞察、每日指引與不限次聊天。",
+    "features": [
+      "解鎖幸運與避開資訊",
+      "時辰搜尋 Premium 時段",
+      "不限次 AI 指引"
+    ]
+  },
+  "purchase": {
+    "title": "購買",
+    "headline": "升級至 Premium",
+    "subtitle": "完成進階版升級。",
+    "confirm": "確認購買",
+    "confirmTitle": "確認方案",
+    "confirmMessage": "購買 {plan}，價格 ${price}？",
+    "processing": "處理中…",
+    "cancel": "取消",
+    "selectPlan": "選擇 {plan}",
+    "restore": "恢復購買",
+    "success": "購買成功",
+    "successTitle": "歡迎加入 Premium",
+    "successMessage": "購買完成，Premium 權限已啟用。",
+    "successAction": "前往 Premium",
+    "failure": "購買失敗",
+    "plans": {
+      "monthly": {
+        "title": "月費方案",
+        "interval": "月",
+        "features": [
+          "每日幸運與避開洞察",
+          "時辰搜尋 Premium 時段",
+          "不限次 AI 聊天"
+        ]
+      },
+      "yearly": {
+        "title": "年費方案",
+        "interval": "年",
+        "badge": "最佳方案",
+        "features": [
+          "年費方案更省",
+          "完整 Premium 洞察",
+          "優先聊天指引"
+        ]
+      }
+    }
+  },
+  "monthly": {
+    "header": {
+      "subtitle": "日主 {dayMaster} · {interaction}"
+    },
+    "overview": {
+      "title": "流月總覽"
+    },
+    "luckAvoid": {
+      "title": "吉與避"
+    },
+    "luck": {
+      "title": "吉"
+    },
+    "avoid": {
+      "title": "避"
+    },
+    "fortune": {
+      "title": "運勢提示",
+      "luckyColor": "幸運色",
+      "luckyNumber": "幸運數",
+      "activeElement": "旺元素",
+      "weakElement": "弱元素"
+    },
+    "domains": {
+      "title": "生活領域",
+      "locked": "需進階版才能查看此洞察。",
+      "unlockCta": "解鎖進階版"
+    },
+    "domain": {
+      "work": "工作",
+      "wealth": "財富",
+      "relationship": "感情",
+      "health": "健康",
+      "study": "學習",
+      "family": "家庭",
+      "talent": "才華"
+    },
+    "interaction": {
+      "title": "日主 × 月令互動"
+    },
+    "protection": {
+      "title": "守護",
+      "focusLabel": "重點"
+    },
+    "upcoming": {
+      "title": "即將推出",
+      "disabledCta": "尚未開放"
+    }
+  },
+  "settings": {
+    "title": "設定",
+    "subtitle": "管理帳戶、語言與主題偏好。",
+    "profileSection": "個人資料",
+    "preferencesSection": "偏好設定",
+    "accountSection": "帳戶",
+    "languageLabel": "語言",
+    "skinLabel": "主題",
+    "termsLink": "查看條款",
+    "logout": "登出",
+    "userId": "使用者 ID",
+    "email": "電子郵件",
+    "languageOptions": {
+      "en": "英文",
+      "zhHant": "繁體中文"
+    },
+    "skinOptions": {
+      "yang": "陽",
+      "yin": "陰"
+    }
+  },
+  "chat": {
+    "title": "聊天",
+    "inputPlaceholder": "輸入訊息",
+    "send": "送出"
+  }
+}

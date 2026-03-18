@@ -1,0 +1,136 @@
+:root {
+  /* Theme: Yang (default) */
+  /* NOTE: --c-bg is applied only to html/body for a solid page background. */
+  --c-bg: #f6f4ef;
+  --c-bg-glow: rgba(255, 255, 255, 0.6);
+  --c-window-wash: rgba(255, 255, 255, 0.2);
+  --c-bg-gradient: radial-gradient(
+    circle at top,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(246, 244, 239, 1) 60%,
+    rgba(242, 239, 233, 1) 100%
+  );
+  /* NOTE: --c-card is applied only to .revamp-card (PageCard glass surface). */
+  --c-card: rgba(255, 255, 255, 0.04);
+  --c-surface: #f5f5f5;
+  --c-surface-2: #e8e8e8;
+  --c-surface-solid: #ffffff;
+  --c-text: #1c1c1c;
+  --c-text-muted: #5a5a5a;
+  --c-ink: #111111;
+  --c-border: rgba(17, 17, 17, 0.16);
+  --c-border-strong: rgba(17, 17, 17, 0.26);
+  --c-card-glass-start: rgba(255, 255, 255, 0.03);
+  --c-card-glass-end: rgba(255, 255, 255, 0.12);
+  --c-glass-bg: rgba(255, 255, 255, 0.04);
+  --c-glass-border: rgba(255, 255, 255, 0.28);
+  --c-glass-shadow: 0 14px 36px rgba(0, 0, 0, 0.08);
+  --c-glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  --c-glass-title: rgba(0, 0, 0, 0.92);
+  --c-glass-body: rgba(0, 0, 0, 0.72);
+  --c-glass-blur: 28px;
+  --c-fab: #ececef;
+  --shadow-fab: 0 14px 28px rgba(17, 17, 17, 0.18);
+  --shadow-fab-hover: 0 18px 34px rgba(17, 17, 17, 0.22);
+
+  --c-accent: #3f5d73;
+  --c-quote-accent: #51677b;
+  --c-quote: #6b5bd6;
+  /* --c-accent-alt: #c9a44c; */
+
+  /* Semantic palette (reserved for future use) */
+  --c-red: #9c2f2f;
+  --c-orange: #c46a2f;
+  --c-yellow: #c9a44c;
+  --c-green: #4f6f5b;
+  --c-purple: #5b4b8a;
+
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-glass: 14px;
+
+  --shadow-sm: 0 8px 20px rgba(28, 28, 28, 0.08);
+  --shadow-card: 0 18px 40px rgba(28, 28, 28, 0.14);
+  --shadow-md: 0 14px 32px rgba(28, 28, 28, 0.12);
+  --shadow-float: 0 12px 28px rgba(28, 28, 28, 0.18);
+  --shadow-card-subtle: 0 8px 18px rgba(28, 28, 28, 0.1);
+
+  --c-contrast-surface: #111111;
+  --c-contrast-text: #ffffff;
+
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+
+  --fs-sm: 12px;
+  --fs-md: 16px;
+  --fs-lg: 20px;
+  --fs-xl: 28px;
+
+  --container-max: 420px;
+  --content-max: 65ch;
+  --page-padding: var(--s-6);
+  --page-padding-mobile: var(--s-5);
+
+  /* Layer scale: keep overlays consistent across menu, popups, dialogs, and loading. */
+  --z-page: 0;
+  --z-dropdown: 200;
+  --z-overlay: 900;
+  --z-menu-overlay: 1150;
+  --z-modal-overlay: 1000;
+  --z-modal-surface: 1100;
+  --z-floating-menu: 1200;
+  --z-toast: 1300;
+  --z-loading: 1400;
+}
+
+[data-theme="yin"] {
+  --c-bg: #0f0f10;
+  --c-bg-glow: rgba(255, 255, 255, 0.08);
+  --c-window-wash: rgba(0, 0, 0, 0.22);
+  --c-bg-gradient: radial-gradient(
+    circle at top,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(18, 18, 18, 1) 55%,
+    rgba(14, 14, 14, 1) 100%
+  );
+  --c-card: rgba(15, 15, 15, 0.08);
+  --c-surface: #191919;
+  --c-surface-2: #202020;
+  --c-surface-solid: #262626;
+  --c-text: #edebe6;
+  --c-text-muted: rgba(237, 235, 230, 0.7);
+  --c-ink: #f7f4ee;
+  --c-border: rgba(237, 235, 230, 0.2);
+  --c-border-strong: rgba(237, 235, 230, 0.32);
+  --c-card-glass-start: rgba(255, 255, 255, 0.02);
+  --c-card-glass-end: rgba(10, 10, 10, 0.16);
+  --c-glass-bg: rgba(255, 255, 255, 0.02);
+  --c-glass-border: rgba(255, 255, 255, 0.08);
+  --c-glass-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+  --c-glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --c-glass-title: rgba(255, 255, 255, 0.92);
+  --c-glass-body: rgba(255, 255, 255, 0.78);
+  --c-glass-blur: 28px;
+  --c-fab: #ececef;
+  --shadow-fab: 0 16px 30px rgba(0, 0, 0, 0.55);
+  --shadow-fab-hover: 0 20px 36px rgba(0, 0, 0, 0.62);
+
+  --c-accent: #3f5d73;
+  --c-quote-accent: #b7c3d1;
+  --c-quote: #b9b2ff;
+  /* --c-accent-alt: #c9a44c; */
+
+  --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 18px 46px rgba(0, 0, 0, 0.62);
+  --shadow-md: 0 14px 32px rgba(0, 0, 0, 0.55);
+  --shadow-float: 0 16px 30px rgba(0, 0, 0, 0.7);
+  --shadow-card-subtle: 0 8px 18px rgba(0, 0, 0, 0.45);
+
+  --c-contrast-surface: #f7f4ee;
+  --c-contrast-text: #101010;
+}

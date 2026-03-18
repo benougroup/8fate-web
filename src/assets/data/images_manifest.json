@@ -1,0 +1,219 @@
+{
+  "$schema": "https://json.schemastore.org/json",
+  "version": 1,
+  "updatedAt": "2025-08-21T00:00:00Z",
+  "notes": "Manifest of logical asset keys to actual file names or CDN URLs.",
+  "categories": {
+    "zodiac": {
+      "rat": "zodiac/rat.png",
+      "ox": "zodiac/ox.png",
+      "tiger": "zodiac/tiger.png",
+      "rabbit": "zodiac/rabbit.png",
+      "dragon": "zodiac/dragon.png",
+      "snake": "zodiac/snake.png",
+      "horse": "zodiac/horse.png",
+      "goat": "zodiac/goat.png",
+      "monkey": "zodiac/monkey.png",
+      "dog": "zodiac/dog.png",
+      "pig": "zodiac/pig.png",
+      "chicken": "zodiac/chicken.png"
+    },
+    "elements": {
+      "wood": "elements/wood.png",
+      "fire": "elements/fire.png",
+      "earth": "elements/earth.png",
+      "water": "elements/water.png",
+      "gold": "elements/gold.png"
+    },
+    "yin_yang": {
+      "yin": "yin_yang/yin.png",
+      "yang": "yin_yang/yang.png"
+    },
+    "badges": {
+      "premium": "badges/premium.png"
+    },
+    "ui": {
+      "logo": "ui/logo.png",
+      "splash": "ui/splash.png",
+      "background": "ui/background.png",
+      "background001": "ui/background_001.png",
+      "background_001": "ui/background_001.png",
+      "background002": "ui/background_002.png",
+      "background_002": "ui/background_002.png",
+      "icon_help": "ui/icon_help.png",
+      "menu_moon": "menu/dark/dark_moon.png",
+      "nav": {
+        "home": {
+          "active": "general icons/home_icon.png",
+          "inactive": "general icons/home_grey_icon.png"
+        },
+        "portfolio": {
+          "active": "general icons/start_icon.png",
+          "inactive": "general icons/star_grey_icon.png"
+        },
+        "chat": {
+          "active": "general icons/chat_icon.png",
+          "inactive": "general icons/chat_grey_icon.png"
+        },
+        "plans": {
+          "active": "general icons/lock_icon.png",
+          "inactive": "general icons/lock_grey_icon.png"
+        },
+        "settings": {
+          "active": "general icons/profile_icon.png",
+          "inactive": "general icons/profile_grey_icon.png"
+        }
+      }
+    },
+    "bazi_core_sections": {
+      "day_master": {
+        "light": "icons/light/light_daymaster.png",
+        "dark": "icons/dark/dark_daymaster.png"
+      },
+      "heavenly_stems": {
+        "light": "icons/light/light_heavenlystem.png",
+        "dark": "icons/dark/dark_heavenlystem.png"
+      },
+      "ten_stars": {
+        "light": "icons/light/light_tengods.png",
+        "dark": "icons/dark/dark_tengods.png"
+      },
+      "major_cycle": {
+        "light": "icons/light/light_majorcycle.png",
+        "dark": "icons/dark/dark_majorcycle.png"
+      }
+    },
+    "time_flow": {
+      "annual_flow": {
+        "light": "icons/light/light_annualflow.png",
+        "dark": "icons/dark/dark_annualflow.png"
+      },
+      "monthly_flow": {
+        "light": "icons/light/light_monthlyflow.png",
+        "dark": "icons/dark/dark_monthlyflow.png"
+      },
+      "daily_flow": {
+        "light": "icons/light/light_dailyflow.png",
+        "dark": "icons/dark/dark_dailyflow.png"
+      }
+    },
+    "special_influences": {
+      "special_influences": {
+        "light": "icons/light/light_specialinfluence.png",
+        "dark": "icons/dark/dark_specialinfluence.png"
+      },
+      "romance_star": {
+        "light": "icons/light/light_romancestar.png",
+        "dark": "icons/dark/dark_romancestar.png"
+      },
+      "wisdom_star": {
+        "light": "icons/light/light_wisdomstar.png",
+        "dark": "icons/dark/dark_wisdomstar.png"
+      }
+    },
+    "life_domains": {
+      "family": {
+        "light": "destiny icons/light/light_destiny_family.png",
+        "dark": "destiny icons/dark/dark_destiny_family.png"
+      },
+      "relationship": {
+        "light": "destiny icons/light/light_destiny_relationship.png",
+        "dark": "destiny icons/dark/dark_destiny_relationship.png"
+      },
+      "work": {
+        "light": "destiny icons/light/light_destiny_work.png",
+        "dark": "destiny icons/dark/dark_destiny_work.png"
+      },
+      "talent": {
+        "light": "destiny icons/light/light_destiny_talent.png",
+        "dark": "destiny icons/dark/dark_destiny_talent.png"
+      },
+      "wealth": {
+        "light": "destiny icons/light/light_destiny_wealth.png",
+        "dark": "destiny icons/dark/dark_destiny_wealth.png"
+      },
+      "health": {
+        "light": "destiny icons/light/light_destiny_health.png",
+        "dark": "destiny icons/dark/dark_destiny_health.png"
+      },
+      "study": {
+        "light": "destiny icons/light/light_destiny_study.png",
+        "dark": "destiny icons/dark/dark_destiny_study.png"
+      }
+    },
+    "ten_stars_variants": {
+      "friend": {
+        "light": "ten_stars/light/light_tengods_friend.png",
+        "dark": "ten_stars/dark/dark_tengods_friend.png",
+        "gold_light": "ten_stars/light/light_tengods_friend_gold.png",
+        "gold_dark": "ten_stars/dark/dark_tengods_friend_gold.png"
+      },
+      "robwealth": {
+        "light": "ten_stars/light/light_tengods_robwealth.png",
+        "dark": "ten_stars/dark/dark_tengods_robwealth.png",
+        "gold_light": "ten_stars/light/light_tengods_robwealth_gold.png",
+        "gold_dark": "ten_stars/dark/dark_tengods_robwealth_gold.png"
+      },
+      "eatinggod": {
+        "light": "ten_stars/light/light_tengods_eatinggod.png",
+        "dark": "ten_stars/dark/dark_tengods_eatinggod.png",
+        "gold_light": "ten_stars/light/light_tengods_eatinggod_gold.png",
+        "gold_dark": "ten_stars/dark/dark_tengods_eatinggod_gold.png"
+      },
+      "hurtingofficer": {
+        "light": "ten_stars/light/light_tengods_hurtingofficer.png",
+        "dark": "ten_stars/dark/dark_tengods_hurtingofficer.png",
+        "gold_light": "ten_stars/light/light_tengods_hurtingofficer_gold.png",
+        "gold_dark": "ten_stars/dark/dark_tengods_hurtingofficer_gold.png"
+      },
+      "directwealth": {
+        "light": "ten_stars/light/light_tengods_directwealth.png",
+        "dark": "ten_stars/dark/dark_tengods_directwealth.png",
+        "gold_light": "ten_stars/light/light_tengods_directwealth_gold.png",
+        "gold_dark": "ten_stars/dark/dark_tengods_directwealth_gold.png"
+      },
+      "indirectofficer": {
+        "light": "ten_stars/light/light_tengods_indirectofficer.png",
+        "dark": "ten_stars/dark/dark_tengods_indirectofficer.png",
+        "gold_light": "ten_stars/light/light_tengods_indirectofficer_gold.png",
+        "gold_dark": "ten_stars/dark/dark_tengods_indirectofficer_gold.png"
+      },
+      "directofficer": {
+        "light": "ten_stars/light/light_tengods_directofficer.png",
+        "dark": "ten_stars/dark/dark_tengods_directofficer.png",
+        "gold_light": "ten_stars/light/light_tengods_directofficer_gold.png",
+        "gold_dark": "ten_stars/dark/dark_tengods_directofficer_gold.png"
+      },
+      "sevenkillings": {
+        "light": "ten_stars/light/light_tengods_sevenkillings.png",
+        "dark": "ten_stars/dark/dark_tengods_sevenkillings.png",
+        "gold_light": "ten_stars/light/light_tengods_sevenkillings_gold.png",
+        "gold_dark": "ten_stars/dark/dark_tengods_sevenkillings_gold.png"
+      },
+      "directresource": {
+        "light": "ten_stars/light/light_tengods_directresource.png",
+        "dark": "ten_stars/dark/dark_tengods_directresource.png",
+        "gold_light": "ten_stars/light/light_tengods_directresource_gold.png",
+        "gold_dark": "ten_stars/dark/dark_tengods_directresource_gold.png"
+      },
+      "indirectresource": {
+        "light": "ten_stars/light/light_tengods_indirectresource.png",
+        "dark": "ten_stars/dark/dark_tengods_indirectresource.png",
+        "gold_light": "ten_stars/light/light_tengods_indirectresource_gold.png",
+        "gold_dark": "ten_stars/dark/dark_tengods_indirectresource_gold.png"
+      }
+    }
+  },
+  "ten_gods_alias": {
+    "bijian": "friend",
+    "jiecai": "robwealth",
+    "shishen": "eatinggod",
+    "shangguan": "hurtingofficer",
+    "zhengcai": "directwealth",
+    "piancai": "indirectofficer",
+    "zhengguan": "directofficer",
+    "qisha": "sevenkillings",
+    "zhengyin": "directresource",
+    "pianyin": "indirectresource"
+  }
+}

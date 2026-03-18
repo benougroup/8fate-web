@@ -1,0 +1,706 @@
+{
+  "common": {
+    "loading": "Loading…",
+    "errorPrefix": "Unable to load",
+    "unknownError": "Unknown error",
+    "unableToLoad": "Unable to load {resource}. {detail}",
+    "errorUnknownDetail": "Please try again.",
+    "errorTimeout": "Request timed out. Please try again.",
+    "errorNetwork": "Network error. Please check your connection.",
+    "errorBadResponse": "We received an unexpected response.",
+    "retry": "Retry",
+    "labelValue": "{label}: {value}",
+    "open_info": "Open info",
+    "close": "Close"
+  },
+  "revamp": {
+    "overlay": {
+      "close": "Close",
+      "dismiss": "Close overlay"
+    },
+    "alertDialog": {
+      "ok": "OK",
+      "yes": "Yes",
+      "no": "No",
+      "proceed": "Proceed",
+      "discard": "Discard"
+    },
+    "infoPopover": {
+      "label": "More info"
+    }
+  },
+  "home": {
+    "header": {
+      "title": "Home",
+      "subtitle": "This is the boot scaffold for the revamp. Expect rapid, file-by-file evolution in the next PRs.",
+      "dateLabel": "Today · {date}",
+      "dailyAdviceFallback": "Today’s advice"
+    },
+    "greeting": {
+      "title": "Hi {name}",
+      "titleAnonymous": "Hi",
+      "subtitle": "Here’s your guidance for today."
+    },
+    "sections": {
+      "today": "Today",
+      "luck": "Luck",
+      "luckAvoid": "Luck & Avoid",
+      "avoid": "Avoid",
+      "protection": "Protection",
+      "upcoming": "Upcoming"
+    },
+    "section": {
+      "today": "Today",
+      "luck": "Luck & Avoid",
+      "avoid": "Avoid",
+      "protection": "Protection",
+      "upcoming": "Upcoming"
+    },
+    "help": {
+      "today": {
+        "title": "Today’s reading",
+        "body": "See today’s focus, action, and avoid guidance."
+      },
+      "luck": {
+        "title": "Luck & avoid",
+        "body": "Compare luck and avoid details to balance your day."
+      },
+      "protection": {
+        "title": "Protection",
+        "body": "Review the protection phrase for grounding."
+      },
+      "upcoming": {
+        "title": "Upcoming",
+        "body": "Preview what’s ahead later this week."
+      }
+    },
+    "daily": {
+      "luckLevel": {
+        "strong": "Strong Luck",
+        "good": "Lucky",
+        "steady": "Steady",
+        "caution": "Be Careful",
+        "low": "Misfortune"
+      },
+      "labels": {
+        "dailyReading": "Daily Reading"
+      }
+    },
+    "luckAvoid": {
+      "labels": {
+        "score": "Luck Number",
+        "color": "Lucky Color",
+        "zodiacElement": "Favorable Zodiac",
+        "direction": "Lucky Direction"
+      }
+    },
+    "protection": {
+      "labels": {
+        "title": "Protection"
+      }
+    },
+    "upcoming": {
+      "labels": {
+        "title": "Upcoming"
+      }
+    },
+    "card": {
+      "action": "Action",
+      "avoid": "Avoid",
+      "luckMaterials": "Luck materials",
+      "unluckyMaterials": "Unlucky materials",
+      "premiumOnly": "Premium only",
+      "premiumBadge": "Premium",
+      "flipLabel": "Flip {section}",
+      "flipHint": "Tap to flip the card",
+      "unlockCta": "Unlock premium"
+    },
+    "zodiacElement": {
+      "format": "{element} {zodiac}"
+    },
+    "elements": {
+      "water": "Water",
+      "wood": "Wood",
+      "fire": "Fire",
+      "earth": "Earth",
+      "metal": "Metal"
+    },
+    "zodiac": {
+      "mouse": "Mouse",
+      "ox": "Ox",
+      "tiger": "Tiger",
+      "rabbit": "Rabbit",
+      "dragon": "Dragon",
+      "snake": "Snake",
+      "horse": "Horse",
+      "sheep": "Sheep",
+      "monkey": "Monkey",
+      "rooster": "Rooster",
+      "dog": "Dog",
+      "pig": "Pig"
+    },
+    "luck": {
+      "title": "Luck",
+      "number": "Number",
+      "color": "Color",
+      "zodiacElement": "Zodiac element"
+    },
+    "avoid": {
+      "title": "Avoid",
+      "number": "Number",
+      "color": "Color",
+      "zodiacElement": "Zodiac element"
+    },
+    "user": {
+      "guest": "Guest",
+      "previewName": "MMM"
+    },
+    "content": {
+      "placeholder": "Content coming soon.",
+      "emptySection": "No guidance yet."
+    },
+    "luckStatus": {
+      "upup": "Surging",
+      "up": "Rising",
+      "middle": "Steady",
+      "down": "Dipping",
+      "downdown": "Sinking"
+    },
+    "cta": {
+      "dashboard": "Visit /dashboard",
+      "backToDashboard": "Back to dashboard",
+      "returnToDashboard": "Return to legacy dashboard"
+    }
+  },
+  "brand": {
+    "geonLogoAlt": "Geon"
+  },
+  "icons": {
+    "brandAlt": "Geon logo",
+    "previewHome": "Preview home",
+    "previewProfile": "Preview profile",
+    "previewComponents": "Preview components"
+  },
+  "dashboard": {
+    "header": {
+      "title": "Dashboard"
+    },
+    "body": {
+      "placeholder": "Not built yet. Returning soon."
+    },
+    "cta": {
+      "back": "Back to home"
+    }
+  },
+  "notFound": {
+    "header": {
+      "title": "Page not found"
+    },
+    "body": {
+      "placeholder": "The page you requested is not available yet."
+    },
+    "cta": {
+      "back": "Back to home"
+    }
+  },
+  "placeholder": {
+    "monthly": {
+      "title": "Monthly",
+      "body": "Monthly guidance is coming soon."
+    },
+    "portfolio": {
+      "title": "Portfolio",
+      "body": "Your portfolio experience is coming soon."
+    },
+    "yearly": {
+      "title": "Yearly",
+      "body": "Yearly guidance is coming soon."
+    },
+    "settings": {
+      "title": "Settings",
+      "body": "Settings will be available here soon."
+    },
+    "chat": {
+      "title": "Chat",
+      "body": "Chat is on the way. Check back soon."
+    },
+    "cta": {
+      "backToHome": "Back to home"
+    }
+  },
+  "theme": {
+    "toggleToYin": "Switch to Yin",
+    "toggleToYang": "Switch to Yang"
+  },
+  "notifications": {
+    "label": "Notifications",
+    "title": "Notifications",
+    "unreadCount": "{count} unread",
+    "emptyTitle": "You're all caught up",
+    "emptyBody": "No new notifications yet.",
+    "open": "Open",
+    "none": "None",
+    "unread": "Unread"
+  },
+  "announcements": {
+    "title": "Announcements",
+    "open": "Open announcements",
+    "learnMore": "Learn more",
+    "viewDetails": "View details",
+    "cardTitle": "Announcement · {id}",
+    "cardBody": "New promos, updates, and limited-time guidance live here.",
+    "carouselLabel": "Go to announcement {index}",
+    "emptyBody": "No announcements available right now.",
+    "detailTitle": "Announcement detail",
+    "detailBody": "Read the full announcement details and explore the update.",
+    "missingTitle": "Announcement not found",
+    "missingBody": "We couldn't locate that announcement.",
+    "backToHome": "Back to home",
+    "faqLink": "Visit FAQ"
+  },
+  "faq": {
+    "title": "FAQ",
+    "subtitle": "Quick answers for common questions.",
+    "back": "Back",
+    "sections": {
+      "gettingStarted": {
+        "title": "Getting started",
+        "body": "Explore the daily guidance cards and tap any section for more detail."
+      },
+      "notifications": {
+        "title": "Notifications",
+        "body": "New alerts appear in your notifications panel. Unread items show a red dot."
+      },
+      "privacy": {
+        "title": "Privacy",
+        "body": "Your profile data is stored securely and only used to personalize your reading."
+      },
+      "contact": {
+        "title": "Contact",
+        "body": "Still need help? Reach out any time."
+      }
+    }
+  },
+  "help": {
+    "aboutThisScreen": "About this screen"
+  },
+  "preview": {
+    "banner": {
+      "title": "Preview mode",
+      "home": "Preview home",
+      "profile": "Preview profile",
+      "components": "Components preview"
+    },
+    "nav": {
+      "open": "Open navigation",
+      "close": "Close navigation",
+      "day": "Day",
+      "monthly": "Monthly",
+      "year": "Year",
+      "luckTrend": "Luck Trend",
+      "portfolio": "Portfolio",
+      "settings": "Settings",
+      "chat": "Chat"
+    },
+    "components": {
+      "title": "Components preview",
+      "subtitle": "Foundational primitives in isolation.",
+      "dividerTitle": "Page divider",
+      "dividerBody": "Subtle separators that work in Yin and Yang themes.",
+      "sheetTitle": "Bottom sheet",
+      "sheetBody": "New selection pattern with backdrop, ESC, and scroll lock.",
+      "sheetCta": "Open BottomSheet",
+      "sheetDialogTitle": "Choose a time of day",
+      "sheetSelection": "Selected: {selection}",
+      "scrollWindowTitle": "Scroll window",
+      "scrollWindowBody": "Glass panels for longer reading flows.",
+      "scrollWindowCta": "Open ScrollWindow",
+      "scrollWindowDialogTitle": "Terms & details",
+      "scrollWindowDialogBody": "This scrollable glass panel supports long-form content without leaving the page.",
+      "scrollWindowDialogBodyAlt": "Use it for terms, FAQs, or any section that benefits from focused reading.",
+      "alertDialogTitle": "Alert dialog",
+      "alertDialogBody": "Focused decisions with clear call-to-action choices.",
+      "alertDialogCtaOk": "Open OK dialog",
+      "alertDialogCtaYesNo": "Open Yes/No dialog",
+      "alertDialogCtaProceedDiscard": "Open Proceed/Discard dialog",
+      "alertDialogPromptTitle": "Confirm update",
+      "alertDialogPromptMessage": "Would you like to apply this change now?",
+      "infoPopoverTitle": "Info popover",
+      "infoPopoverBody": "Small inline explanations that stay close to the content.",
+      "infoPopoverContent": "Short notes can live here without disrupting the main flow.",
+      "radioTitle": "Radio buttons",
+      "radioBody": "Exclusive selection controls with Yin/Yang styling.",
+      "radioDescription": "Tap to select",
+      "cardFlipTitle": "Card flip",
+      "cardFlipBody": "Flip the card with motion or the control below.",
+      "cardFlipFront": "A grounded snapshot for the day ahead.",
+      "cardFlipBackTitle": "More details",
+      "cardFlipBack": "More details and a softer explanation appear on the reverse.",
+      "cardFlipCta": "Flip card",
+      "cardFlipHint": "Tap to flip",
+      "cardFlipLabel": "Flip to reveal more details",
+      "railTitle": "Horizontal card rail",
+      "railBody": "Glass on the outside, solid cards that glide on top.",
+      "chartsTitle": "Charts",
+      "chartsBody": "Reusable radar and rounded bar visuals styled for Yin and Yang.",
+      "charts": {
+        "labels": {
+          "wood": "Wood",
+          "fire": "Fire",
+          "earth": "Earth",
+          "metal": "Metal",
+          "water": "Water"
+        },
+        "bars": {
+          "focus": "Focus",
+          "rest": "Rest",
+          "flow": "Flow"
+        }
+      },
+      "buttonsTitle": "Buttons",
+      "buttonsBody": "Reusable actions with size and variant controls.",
+      "buttonsPrimary": "Primary",
+      "buttonsSecondary": "Secondary",
+      "buttonsGhost": "Ghost",
+      "buttonsContrast": "Contrast",
+      "buttonsSmall": "Small",
+      "buttonsLarge": "Large",
+      "buttonsPill": "Pill",
+      "railItems": {
+        "focus": {
+          "title": "Focus window",
+          "body": "A gentle focus block to keep the day steady."
+        },
+        "anchor": {
+          "title": "Anchor ritual",
+          "body": "One consistent action to ground your momentum."
+        },
+        "momentum": {
+          "title": "Momentum cue",
+          "body": "A small lift to keep you moving forward."
+        },
+        "alignment": {
+          "title": "Alignment check",
+          "body": "Sense-check your next choice with ease."
+        },
+        "simplicity": {
+          "title": "Simplicity",
+          "body": "Clear the noise and keep the path open."
+        },
+        "radiance": {
+          "title": "Radiance",
+          "body": "Let calm light guide your attention."
+        }
+      },
+      "back": "Back to preview home",
+      "options": {
+        "morning": "Morning",
+        "afternoon": "Afternoon",
+        "evening": "Evening",
+        "night": "Night"
+      }
+    },
+    "cta": {
+      "home": "Preview new home"
+    }
+  },
+  "legacy": {
+    "notFound": {
+      "title": "Page not found",
+      "body": "We couldn't find the page you were looking for.",
+      "goToDashboard": "Go to Dashboard",
+      "goBack": "Go Back",
+      "openDiagnostics": "Open Diagnostics"
+    }
+  },
+  "register": {
+    "title": "Welcome, {name}",
+    "subtitle": "Your account has been successfully created.",
+    "body": "To reveal your destiny chart and lucky elements, we need to map your birth details.",
+    "cta": "Begin Your Journey",
+    "back": "Back to login",
+    "nameLabel": "Name",
+    "namePlaceholder": "Enter your name",
+    "fallbackName": "Traveler",
+    "fallbackEmail": "Test_email@gmail.com",
+    "iconAlt": "Start"
+  },
+  "timeMatch": {
+    "title": "Find Your Birth Time",
+    "subtitle": "Select the profile that best describes your personality.",
+    "upgradePrompt": "Upgrade to see all options.",
+    "back": "Back",
+    "confirm": "Confirm & Continue",
+    "saving": "Saving...",
+    "lockedTitle": "Premium Option",
+    "lockedBody": "Unlock this time window with Premium.",
+    "lockedCta": "Upgrade"
+  },
+  "premiumRegister": {
+    "headerLabel": "Unlock Destiny",
+    "title": "Upgrade to Premium",
+    "subtitle": "Get detailed insights, future forecasts, and unlimited AI guidance.",
+    "bestValue": "BEST VALUE",
+    "startMonthly": "Start Monthly Plan",
+    "startYearly": "Start Yearly Plan",
+    "month": "mo",
+    "year": "year",
+    "restore": "Restore Purchases",
+    "restoreAlert": "Restore Purchase Mock Triggered",
+    "exitTitle": "Wait! Your destiny awaits.",
+    "exitMessage": "Are you sure you want to leave?",
+    "exitStay": "Stay & Upgrade",
+    "exitLeave": "Leave Anyway",
+    "confirmTitle": "Confirm your plan",
+    "confirmMessage": "Buy {plan} for ${price}?",
+    "confirmAction": "Confirm purchase",
+    "processing": "Processing...",
+    "cancel": "Cancel",
+    "purchaseError": "Purchase validation failed.",
+    "successTitle": "Welcome to Premium!",
+    "successMessage": "Your purchase is complete and your premium access is now active.",
+    "successAction": "Go to dashboard"
+  },
+  "premiumPayment": {
+    "title": "Plans & Billing",
+    "subtitle": "Review your active plan or choose a new one.",
+    "activePlan": "Current Plan",
+    "changePlan": "Change Plan",
+    "cancelPlan": "Cancel Subscription",
+    "managePlan": "Manage Plan",
+    "viewOptions": "View Plan Options",
+    "cancelTitle": "Cancel your subscription?",
+    "cancelMessage": "You will keep premium access until the end of the billing period.",
+    "cancelKeep": "Keep Premium",
+    "cancelConfirm": "Cancel Subscription",
+    "cancelledTitle": "Subscription cancelled",
+    "cancelledMessage": "Your premium benefits remain active until the current period ends.",
+    "cancelledAction": "Got it"
+  },
+  "profile": {
+    "fields": {
+      "name": "Name",
+      "dateOfBirth": "Date of birth",
+      "placeOfBirth": "Place of birth",
+      "level": "Level"
+    },
+    "levels": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced"
+    },
+    "errors": {
+      "invalidDate": "Enter a date in YYYY-MM-DD format.",
+      "nameRequired": "Enter a name before saving."
+    },
+    "preview": {
+      "title": "Profile (Preview)",
+      "load": "Load",
+      "save": "Save",
+      "updatedAt": "Saved at {updatedAt}",
+      "backToHome": "Back to preview home"
+    }
+  },
+  "splash": {
+    "status": "Loading your experience…"
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Continue with your preferred sign-in method.",
+      "google": "Continue with Google",
+      "dev": "Continue (Dev)",
+      "loading": "Signing you in…",
+      "legal": "By continuing you agree to the",
+      "legalLink": "Terms & Privacy"
+    }
+  },
+  "terms": {
+    "title": "Terms & Conditions",
+    "body": "By continuing, you agree to the latest terms for 8Fate. Please review them carefully before proceeding.",
+    "version": "Version {{version}}",
+    "agreeLabel": "I agree to the Terms & Conditions ({{version}}).",
+    "agree": "Agree and continue",
+    "close": "Close"
+  },
+  "timeFinder": {
+    "title": "Time Finder",
+    "subtitle": "Find the birth-time window that feels most like you.",
+    "helper": "Choose the profile that best describes your personality. Premium unlocks full access.",
+    "skip": "Skip for now",
+    "dateLabel": "Date of birth",
+    "timeRangeLabel": "Time range",
+    "timezoneLabel": "Timezone",
+    "search": "Search windows",
+    "resultsTitle": "Suggested windows",
+    "finish": "Finish registration",
+    "lockedTitle": "Premium option",
+    "lockedBody": "Upgrade to unlock this time window.",
+    "lockedCta": "Unlock premium",
+    "successTitle": "Registration complete",
+    "successMessage": "You're all set. Let's head to your daily experience.",
+    "successAction": "Go to Daily",
+    "options": {
+      "dawn": {
+        "title": "05:00 - 07:00 · Dawn",
+        "body": "Gentle, reflective energy with a steady pace through the day.",
+        "tags": ["Grounded", "Patient"]
+      },
+      "midday": {
+        "title": "11:00 - 13:00 · Midday",
+        "body": "Bright, social energy with a focus on clear direction.",
+        "tags": ["Optimistic", "Expressive", "Focused"]
+      },
+      "dusk": {
+        "title": "17:00 - 19:00 · Dusk",
+        "body": "Balanced momentum with thoughtful decision-making.",
+        "tags": ["Balanced", "Observant"]
+      },
+      "night": {
+        "title": "21:00 - 23:00 · Night",
+        "body": "Quiet intuition and deep creativity beneath the surface.",
+        "tags": ["Intuitive", "Creative"]
+      },
+      "midnight": {
+        "title": "23:00 - 01:00 · Midnight",
+        "body": "Transformative, visionary energy with strong inner drive.",
+        "tags": ["Visionary", "Independent", "Resilient"]
+      }
+    },
+    "range": {
+      "morning": "06:00 - 12:00",
+      "afternoon": "12:00 - 18:00",
+      "evening": "18:00 - 24:00",
+      "night": "00:00 - 06:00"
+    }
+  },
+  "premium": {
+    "title": "Premium",
+    "subtitle": "Unlock deeper insights, personalized guidance, and premium chat.",
+    "cta": "View purchase options",
+    "active": "Premium is active",
+    "inactive": "Premium is not active",
+    "statusActive": "Premium active",
+    "statusInactive": "Premium inactive",
+    "planName": "Premium access",
+    "planDescription": "All premium insights, daily guidance, and unlimited chat.",
+    "features": [
+      "Unlock luck & avoid insights",
+      "Access time finder premium windows",
+      "Unlimited AI guidance sessions"
+    ]
+  },
+  "purchase": {
+    "title": "Purchase",
+    "headline": "Upgrade to Premium",
+    "subtitle": "Complete your upgrade to premium.",
+    "confirm": "Confirm purchase",
+    "confirmTitle": "Confirm your plan",
+    "confirmMessage": "Purchase {plan} for ${price}?",
+    "processing": "Processing…",
+    "cancel": "Cancel",
+    "selectPlan": "Choose {plan}",
+    "restore": "Restore purchase",
+    "success": "Purchase successful",
+    "successTitle": "Welcome to Premium",
+    "successMessage": "Your purchase is complete and premium access is now active.",
+    "successAction": "Go to Premium",
+    "failure": "Purchase failed",
+    "plans": {
+      "monthly": {
+        "title": "Monthly plan",
+        "interval": "mo",
+        "features": [
+          "Daily luck & avoid insights",
+          "Premium time finder windows",
+          "Unlimited AI chat"
+        ]
+      },
+      "yearly": {
+        "title": "Yearly plan",
+        "interval": "yr",
+        "badge": "Best value",
+        "features": [
+          "Save with an annual subscription",
+          "All premium insights unlocked",
+          "Priority chat guidance"
+        ]
+      }
+    }
+  },
+  "monthly": {
+    "header": {
+      "subtitle": "Day Master {dayMaster} · {interaction}"
+    },
+    "overview": {
+      "title": "Monthly overview"
+    },
+    "luckAvoid": {
+      "title": "Luck & avoid"
+    },
+    "luck": {
+      "title": "Luck"
+    },
+    "avoid": {
+      "title": "Avoid"
+    },
+    "fortune": {
+      "title": "Fortune hints",
+      "luckyColor": "Lucky color",
+      "luckyNumber": "Lucky number",
+      "activeElement": "Active element",
+      "weakElement": "Weak element"
+    },
+    "domains": {
+      "title": "Life domains",
+      "locked": "Premium required to reveal this insight.",
+      "unlockCta": "Unlock premium"
+    },
+    "domain": {
+      "work": "Work",
+      "wealth": "Wealth",
+      "relationship": "Relationship",
+      "health": "Health",
+      "study": "Study",
+      "family": "Family",
+      "talent": "Talent"
+    },
+    "interaction": {
+      "title": "Day Master × Month interaction"
+    },
+    "protection": {
+      "title": "Protection",
+      "focusLabel": "Focus"
+    },
+    "upcoming": {
+      "title": "Upcoming",
+      "disabledCta": "Not available yet"
+    }
+  },
+  "settings": {
+    "title": "Profile settings",
+    "subtitle": "Manage your account, language, and skin preferences.",
+    "profileSection": "Profile details",
+    "preferencesSection": "Preferences",
+    "accountSection": "Account",
+    "languageLabel": "Language",
+    "skinLabel": "Skin",
+    "termsLink": "View Terms",
+    "logout": "Log out",
+    "userId": "User ID",
+    "email": "Email",
+    "languageOptions": {
+      "en": "English",
+      "zhHant": "Traditional Chinese"
+    },
+    "skinOptions": {
+      "yang": "Yang",
+      "yin": "Yin"
+    }
+  },
+  "chat": {
+    "title": "Chat",
+    "inputPlaceholder": "Type your message",
+    "send": "Send"
+  }
+}

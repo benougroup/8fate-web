@@ -1,0 +1,14 @@
+[
+  {
+    "id": "lunar-horizon",
+    "image": "lunar-horizon",
+    "url": "https://example.com/promo/lunar-horizon",
+    "languages": ["en", "zh-Hant"]
+  },
+  {
+    "id": "starlight-ritual",
+    "image": "starlight-ritual",
+    "url": "https://example.com/promo/starlight-ritual",
+    "languages": ["en"]
+  }
+]

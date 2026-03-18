@@ -1,0 +1,30 @@
+html,
+body {
+  margin: 0;
+  overflow: hidden;
+  touch-action: none;
+}
+
+canvas {
+  touch-action: none;
+}
+
+/* Typographic helpers */
+.title { font-weight: 700; line-height: 1.2; }
+.subtitle { color: #666; line-height: 1.4; }
+
+
+/* Icon sizes used across pages */
+.icon-sm { width: 16px; height: 16px; }
+.icon-md { width: 24px; height: 24px; }
+.icon-lg { width: 64px; height: 64px; }
+
+
+/* Splash image helper */
+.splash-bg { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Screen-reader only helper */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); border: 0;
+}

@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "scenes": [
+    {
+      "id": "demo_guard_default",
+      "nodes": [
+        {
+          "id": "start",
+          "text": "The guard watches the square.",
+          "choices": [
+            {
+              "id": "be-respectful",
+              "text": "Offer a respectful greeting.",
+              "effects": [{ "op": "npc.trust.delta", "npcId": "npc_guard", "value": 5 }]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "demo_guard_night_block",
+      "nodes": [{ "id": "start", "text": "The guard asks you to keep to the lit streets tonight." }]
+    },
+    {
+      "id": "demo_guard_night_allow",
+      "nodes": [{ "id": "start", "text": "The guard nods and allows you through." }]
+    },
+    {
+      "id": "demo_apprentice",
+      "nodes": [{ "id": "start", "text": "The apprentice is sorting lantern oil." }]
+    }
+  ]
+}

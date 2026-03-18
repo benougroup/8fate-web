@@ -1,0 +1,972 @@
+{
+  "common": {
+    "loading": "Loading…",
+    "errorPrefix": "Unable to load",
+    "unknownError": "Unknown error",
+    "unableToLoad": "Unable to load {resource}. {detail}",
+    "errorUnknownDetail": "Please try again.",
+    "errorTimeout": "Request timed out. Please try again.",
+    "errorNetwork": "Network error. Please check your connection.",
+    "errorBadResponse": "We received an unexpected response.",
+    "retry": "Retry",
+    "backToHome": "Back to home",
+    "labelValue": "{label}: {value}",
+    "open_info": "Open info",
+    "close": "Close",
+    "premiumRequired": "Premium required"
+  },
+  "revamp": {
+    "overlay": {
+      "close": "Close",
+      "dismiss": "Close overlay"
+    },
+    "alertDialog": {
+      "ok": "OK",
+      "yes": "Yes",
+      "no": "No",
+      "proceed": "Proceed",
+      "discard": "Discard"
+    },
+    "infoPopover": {
+      "label": "More info"
+    }
+  },
+  "home": {
+    "header": {
+      "title": "Home",
+      "subtitle": "This is the boot scaffold for the revamp. Expect rapid, file-by-file evolution in the next PRs.",
+      "dateLabel": "Today · {date}",
+      "dailyAdviceFallback": "Today’s advice"
+    },
+    "greeting": {
+      "title": "Hi {name}",
+      "titleAnonymous": "Hi",
+      "subtitle": "Here’s your guidance for today."
+    },
+    "sections": {
+      "today": "Today",
+      "luck": "Luck",
+      "luckAvoid": "Luck & Avoid",
+      "avoid": "Avoid",
+      "protection": "Protection",
+      "upcoming": "Upcoming"
+    },
+    "section": {
+      "today": "Today",
+      "luck": "Luck & Avoid",
+      "avoid": "Avoid",
+      "protection": "Protection",
+      "upcoming": "Upcoming"
+    },
+    "help": {
+      "today": {
+        "title": "Today’s reading",
+        "body": "See today’s focus, action, and avoid guidance."
+      },
+      "luck": {
+        "title": "Luck & avoid",
+        "body": "Compare luck and avoid details to balance your day."
+      },
+      "protection": {
+        "title": "Protection",
+        "body": "Review the protection phrase for grounding."
+      },
+      "upcoming": {
+        "title": "Upcoming",
+        "body": "Preview what’s ahead later this week."
+      }
+    },
+    "daily": {
+      "luckLevel": {
+        "strong": "Strong Luck",
+        "good": "Lucky",
+        "steady": "Steady",
+        "caution": "Be Careful",
+        "low": "Misfortune"
+      },
+      "labels": {
+        "dailyReading": "Daily Reading"
+      }
+    },
+    "luckAvoid": {
+      "labels": {
+        "score": "Luck Number",
+        "color": "Lucky Color",
+        "zodiacElement": "Favorable Zodiac",
+        "direction": "Lucky Direction"
+      }
+    },
+    "protection": {
+      "labels": {
+        "title": "Protection"
+      }
+    },
+    "upcoming": {
+      "labels": {
+        "title": "Upcoming"
+      }
+    },
+    "card": {
+      "action": "Action",
+      "avoid": "Avoid",
+      "luckMaterials": "Luck materials",
+      "unluckyMaterials": "Unlucky materials",
+      "premiumOnly": "Premium only",
+      "premiumBadge": "Premium",
+      "flipLabel": "Flip {section}",
+      "flipHint": "Tap to flip the card",
+      "unlockCta": "Unlock premium"
+    },
+    "zodiacElement": {
+      "format": "{element} {zodiac}"
+    },
+    "elements": {
+      "water": "Water",
+      "wood": "Wood",
+      "fire": "Fire",
+      "earth": "Earth",
+      "metal": "Metal"
+    },
+    "zodiac": {
+      "mouse": "Mouse",
+      "ox": "Ox",
+      "tiger": "Tiger",
+      "rabbit": "Rabbit",
+      "dragon": "Dragon",
+      "snake": "Snake",
+      "horse": "Horse",
+      "sheep": "Sheep",
+      "monkey": "Monkey",
+      "rooster": "Rooster",
+      "dog": "Dog",
+      "pig": "Pig"
+    },
+    "luck": {
+      "title": "Luck",
+      "number": "Number",
+      "color": "Color",
+      "zodiacElement": "Zodiac element"
+    },
+    "avoid": {
+      "title": "Avoid",
+      "number": "Number",
+      "color": "Color",
+      "zodiacElement": "Zodiac element"
+    },
+    "user": {
+      "guest": "Guest",
+      "previewName": "MMM"
+    },
+    "content": {
+      "placeholder": "Content coming soon.",
+      "emptySection": "No guidance yet."
+    },
+    "luckStatus": {
+      "upup": "Surging",
+      "up": "Rising",
+      "middle": "Steady",
+      "down": "Dipping",
+      "downdown": "Sinking"
+    },
+    "cta": {
+      "dashboard": "Visit /dashboard",
+      "backToDashboard": "Back to dashboard",
+      "returnToDashboard": "Return to legacy dashboard"
+    }
+  },
+  "login": {
+    "googleSignIn": "Sign in with Google",
+    "signingIn": "Signing in…",
+    "terms": "Terms",
+    "privacy": "Privacy",
+    "errorGeneric": "Sign-in failed. Please try again."
+  },
+  "brand": {
+    "geonLogoAlt": "Geon"
+  },
+  "icons": {
+    "brandAlt": "Geon logo",
+    "previewHome": "Preview home",
+    "previewProfile": "Preview profile",
+    "previewComponents": "Preview components"
+  },
+  "dashboard": {
+    "header": {
+      "title": "Dashboard"
+    },
+    "body": {
+      "placeholder": "Not built yet. Returning soon."
+    },
+    "cta": {
+      "back": "Back to home"
+    }
+  },
+  "notFound": {
+    "header": {
+      "title": "Page not found"
+    },
+    "body": {
+      "placeholder": "The page you requested is not available yet."
+    },
+    "cta": {
+      "back": "Back to home"
+    }
+  },
+  "placeholder": {
+    "monthly": {
+      "title": "Monthly",
+      "body": "Monthly guidance is coming soon."
+    },
+    "portfolio": {
+      "title": "Portfolio",
+      "body": "Your portfolio experience is coming soon."
+    },
+    "yearly": {
+      "title": "Yearly",
+      "body": "Yearly guidance is coming soon."
+    },
+    "settings": {
+      "title": "Settings",
+      "body": "Settings will be available here soon."
+    },
+    "chat": {
+      "title": "Chat",
+      "body": "Chat is on the way. Check back soon."
+    },
+    "cta": {
+      "backToHome": "Back to home"
+    }
+  },
+  "theme": {
+    "toggleToYin": "Switch to Yin",
+    "toggleToYang": "Switch to Yang"
+  },
+  "notifications": {
+    "label": "Notifications",
+    "title": "Notifications",
+    "unreadCount": "{count} unread",
+    "emptyTitle": "You're all caught up",
+    "emptyBody": "No new notifications yet.",
+    "open": "Open",
+    "none": "None",
+    "unread": "Unread"
+  },
+  "announcements": {
+    "title": "Announcements",
+    "open": "Open announcements",
+    "learnMore": "Learn more",
+    "viewDetails": "View details",
+    "cardTitle": "Announcement · {id}",
+    "cardBody": "New promos, updates, and limited-time guidance live here.",
+    "carouselLabel": "Go to announcement {index}",
+    "emptyBody": "No announcements available right now.",
+    "detailTitle": "Announcement detail",
+    "detailBody": "Read the full announcement details and explore the update.",
+    "missingTitle": "Announcement not found",
+    "missingBody": "We couldn't locate that announcement.",
+    "backToHome": "Back to home",
+    "faqLink": "Visit FAQ"
+  },
+  "faq": {
+    "title": "FAQ",
+    "subtitle": "Quick answers for common questions.",
+    "back": "Back",
+    "sections": {
+      "gettingStarted": {
+        "title": "Getting started",
+        "body": "Explore the daily guidance cards and tap any section for more detail."
+      },
+      "notifications": {
+        "title": "Notifications",
+        "body": "New alerts appear in your notifications panel. Unread items show a red dot."
+      },
+      "privacy": {
+        "title": "Privacy",
+        "body": "Your profile data is stored securely and only used to personalize your reading."
+      },
+      "contact": {
+        "title": "Contact",
+        "body": "Still need help? Reach out any time."
+      }
+    }
+  },
+  "help": {
+    "aboutThisScreen": "About this screen"
+  },
+  "preview": {
+    "banner": {
+      "title": "Preview mode",
+      "home": "Preview home",
+      "profile": "Preview profile",
+      "components": "Components preview"
+    },
+    "nav": {
+      "open": "Open navigation",
+      "close": "Close navigation",
+      "day": "Day",
+      "monthly": "Monthly",
+      "year": "Year",
+      "luckTrend": "Luck Trend",
+      "portfolio": "Portfolio",
+      "settings": "Settings",
+      "chat": "Chat",
+      "calendar": "Calendar"
+    },
+    "components": {
+      "title": "Components preview",
+      "subtitle": "Foundational primitives in isolation.",
+      "dividerTitle": "Page divider",
+      "dividerBody": "Subtle separators that work in Yin and Yang themes.",
+      "sheetTitle": "Bottom sheet",
+      "sheetBody": "New selection pattern with backdrop, ESC, and scroll lock.",
+      "sheetCta": "Open BottomSheet",
+      "sheetDialogTitle": "Choose a time of day",
+      "sheetSelection": "Selected: {selection}",
+      "scrollWindowTitle": "Scroll window",
+      "scrollWindowBody": "Glass panels for longer reading flows.",
+      "scrollWindowCta": "Open ScrollWindow",
+      "scrollWindowDialogTitle": "Terms & details",
+      "scrollWindowDialogBody": "This scrollable glass panel supports long-form content without leaving the page.",
+      "scrollWindowDialogBodyAlt": "Use it for terms, FAQs, or any section that benefits from focused reading.",
+      "alertDialogTitle": "Alert dialog",
+      "alertDialogBody": "Focused decisions with clear call-to-action choices.",
+      "alertDialogCtaOk": "Open OK dialog",
+      "alertDialogCtaYesNo": "Open Yes/No dialog",
+      "alertDialogCtaProceedDiscard": "Open Proceed/Discard dialog",
+      "alertDialogPromptTitle": "Confirm update",
+      "alertDialogPromptMessage": "Would you like to apply this change now?",
+      "infoPopoverTitle": "Info popover",
+      "infoPopoverBody": "Small inline explanations that stay close to the content.",
+      "infoPopoverContent": "Short notes can live here without disrupting the main flow.",
+      "radioTitle": "Radio buttons",
+      "radioBody": "Exclusive selection controls with Yin/Yang styling.",
+      "radioDescription": "Tap to select",
+      "cardFlipTitle": "Card flip",
+      "cardFlipBody": "Flip the card with motion or the control below.",
+      "cardFlipFront": "A grounded snapshot for the day ahead.",
+      "cardFlipBackTitle": "More details",
+      "cardFlipBack": "More details and a softer explanation appear on the reverse.",
+      "cardFlipCta": "Flip card",
+      "cardFlipHint": "Tap to flip",
+      "cardFlipLabel": "Flip to reveal more details",
+      "railTitle": "Horizontal card rail",
+      "railBody": "Glass on the outside, solid cards that glide on top.",
+      "chartsTitle": "Charts",
+      "chartsBody": "Reusable radar and rounded bar visuals styled for Yin and Yang.",
+      "charts": {
+        "labels": {
+          "wood": "Wood",
+          "fire": "Fire",
+          "earth": "Earth",
+          "metal": "Metal",
+          "water": "Water"
+        },
+        "bars": {
+          "focus": "Focus",
+          "rest": "Rest",
+          "flow": "Flow"
+        }
+      },
+      "buttonsTitle": "Buttons",
+      "buttonsBody": "Reusable actions with size and variant controls.",
+      "buttonsPrimary": "Primary",
+      "buttonsSecondary": "Secondary",
+      "buttonsGhost": "Ghost",
+      "buttonsContrast": "Contrast",
+      "buttonsSmall": "Small",
+      "buttonsLarge": "Large",
+      "buttonsPill": "Pill",
+      "railItems": {
+        "focus": {
+          "title": "Focus window",
+          "body": "A gentle focus block to keep the day steady."
+        },
+        "anchor": {
+          "title": "Anchor ritual",
+          "body": "One consistent action to ground your momentum."
+        },
+        "momentum": {
+          "title": "Momentum cue",
+          "body": "A small lift to keep you moving forward."
+        },
+        "alignment": {
+          "title": "Alignment check",
+          "body": "Sense-check your next choice with ease."
+        },
+        "simplicity": {
+          "title": "Simplicity",
+          "body": "Clear the noise and keep the path open."
+        },
+        "radiance": {
+          "title": "Radiance",
+          "body": "Let calm light guide your attention."
+        }
+      },
+      "back": "Back to preview home",
+      "options": {
+        "morning": "Morning",
+        "afternoon": "Afternoon",
+        "evening": "Evening",
+        "night": "Night"
+      }
+    },
+    "cta": {
+      "home": "Preview new home"
+    }
+  },
+  "legacy": {
+    "notFound": {
+      "title": "Page not found",
+      "body": "We couldn't find the page you were looking for.",
+      "goToDashboard": "Go to Dashboard",
+      "goBack": "Go Back",
+      "openDiagnostics": "Open Diagnostics"
+    }
+  },
+  "register": {
+    "title": "Welcome, {name}",
+    "subtitle": "Your account has been successfully created.",
+    "body": "To reveal your destiny chart and lucky elements, we need to map your birth details.",
+    "cta": "Begin Your Journey",
+    "back": "Back to login",
+    "nameLabel": "Name",
+    "namePlaceholder": "Enter your name",
+    "fallbackName": "Traveler",
+    "fallbackEmail": "Test_email@gmail.com",
+    "iconAlt": "Start"
+  },
+  "timeMatch": {
+    "title": "Find Your Birth Time",
+    "subtitle": "Select the profile that best describes your personality.",
+    "upgradePrompt": "Upgrade to see all options.",
+    "back": "Back",
+    "confirm": "Confirm & Continue",
+    "saving": "Saving...",
+    "lockedTitle": "Premium Option",
+    "lockedBody": "Unlock this time window with Premium.",
+    "lockedCta": "Upgrade"
+  },
+  "premiumRegister": {
+    "headerLabel": "Unlock Destiny",
+    "title": "Upgrade to Premium",
+    "subtitle": "Get detailed insights, future forecasts, and unlimited AI guidance.",
+    "bestValue": "BEST VALUE",
+    "startMonthly": "Start Monthly Plan",
+    "startYearly": "Start Yearly Plan",
+    "month": "mo",
+    "year": "year",
+    "restore": "Restore Purchases",
+    "restoreAlert": "Restore Purchase Mock Triggered",
+    "exitTitle": "Wait! Your destiny awaits.",
+    "exitMessage": "Are you sure you want to leave?",
+    "exitStay": "Stay & Upgrade",
+    "exitLeave": "Leave Anyway",
+    "confirmTitle": "Confirm your plan",
+    "confirmMessage": "Buy {plan} for ${price}?",
+    "confirmAction": "Confirm purchase",
+    "processing": "Processing...",
+    "cancel": "Cancel",
+    "purchaseError": "Purchase validation failed.",
+    "successTitle": "Welcome to Premium!",
+    "successMessage": "Your purchase is complete and your premium access is now active.",
+    "successAction": "Go to dashboard"
+  },
+  "premiumPayment": {
+    "title": "Plans & Billing",
+    "subtitle": "Review your active plan or choose a new one.",
+    "activePlan": "Current Plan",
+    "changePlan": "Change Plan",
+    "cancelPlan": "Cancel Subscription",
+    "managePlan": "Manage Plan",
+    "viewOptions": "View Plan Options",
+    "cancelTitle": "Cancel your subscription?",
+    "cancelMessage": "You will keep premium access until the end of the billing period.",
+    "cancelKeep": "Keep Premium",
+    "cancelConfirm": "Cancel Subscription",
+    "cancelledTitle": "Subscription cancelled",
+    "cancelledMessage": "Your premium benefits remain active until the current period ends.",
+    "cancelledAction": "Got it"
+  },
+  "profile": {
+    "fields": {
+      "name": "Name",
+      "dateOfBirth": "Date of birth",
+      "placeOfBirth": "Place of birth",
+      "livingCountry": "Current country of residence",
+      "level": "Level"
+    },
+    "levels": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced"
+    },
+    "errors": {
+      "invalidDate": "Enter a date in YYYY-MM-DD format.",
+      "nameRequired": "Enter a name before saving."
+    },
+    "preview": {
+      "title": "Profile (Preview)",
+      "load": "Load",
+      "save": "Save",
+      "updatedAt": "Saved at {updatedAt}",
+      "backToHome": "Back to preview home"
+    }
+  },
+  "splash": {
+    "status": "Loading your experience…"
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Continue with your preferred sign-in method.",
+      "google": "Continue with Google",
+      "dev": "Continue (Dev)",
+      "loading": "Signing you in…",
+      "legal": "By continuing you agree to the",
+      "legalLink": "Terms & Privacy"
+    }
+  },
+  "terms": {
+    "title": "Terms & Conditions",
+    "body": "By continuing, you agree to the latest terms for 8Fate. Please review them carefully before proceeding.",
+    "version": "Version {{version}}",
+    "agreeLabel": "I agree to the Terms & Conditions ({{version}}).",
+    "agree": "Agree and continue",
+    "close": "Close"
+  },
+  "timeFinder": {
+    "title": "Time Finder",
+    "subtitle": "Find the birth-time window that feels most like you.",
+    "helper": "Choose the profile that best describes your personality. Premium unlocks full access.",
+    "todQuestion": "Were you born during the day or at night?",
+    "tod": {
+      "morning": "Daytime (06:00–18:00)",
+      "night": "Night-time (18:00–06:00)"
+    },
+    "back": "← Back",
+    "slotsHelper": "Select the Shi-Chen (2-hour window) that best matches your birth time. The outer two windows are unlocked with Premium.",
+    "skip": "Skip for now",
+    "dateLabel": "Date of birth",
+    "timeRangeLabel": "Time range",
+    "timezoneLabel": "Timezone",
+    "search": "Search windows",
+    "resultsTitle": "Suggested windows",
+    "finish": "Finish registration",
+    "lockedTitle": "Premium option",
+    "lockedBody": "Upgrade to unlock this time window.",
+    "lockedCta": "Unlock premium",
+    "successTitle": "Registration complete",
+    "successMessage": "You're all set. Let's head to your daily experience.",
+    "successAction": "Go to Daily",
+    "options": {
+      "dawn": {
+        "title": "05:00 - 07:00 · Dawn",
+        "body": "Gentle, reflective energy with a steady pace through the day.",
+        "tags": ["Grounded", "Patient"]
+      },
+      "midday": {
+        "title": "11:00 - 13:00 · Midday",
+        "body": "Bright, social energy with a focus on clear direction.",
+        "tags": ["Optimistic", "Expressive", "Focused"]
+      },
+      "dusk": {
+        "title": "17:00 - 19:00 · Dusk",
+        "body": "Balanced momentum with thoughtful decision-making.",
+        "tags": ["Balanced", "Observant"]
+      },
+      "night": {
+        "title": "21:00 - 23:00 · Night",
+        "body": "Quiet intuition and deep creativity beneath the surface.",
+        "tags": ["Intuitive", "Creative"]
+      },
+      "midnight": {
+        "title": "23:00 - 01:00 · Midnight",
+        "body": "Transformative, visionary energy with strong inner drive.",
+        "tags": ["Visionary", "Independent", "Resilient"]
+      }
+    },
+    "range": {
+      "morning": "06:00 - 12:00",
+      "afternoon": "12:00 - 18:00",
+      "evening": "18:00 - 24:00",
+      "night": "00:00 - 06:00"
+    }
+  },
+  "premium": {
+    "title": "Premium",
+    "subtitle": "Unlock deeper insights, personalized guidance, and premium chat.",    "badge": "✨ Premium",    "heroTitle": "Unlock Your Full Destiny",
+    "heroSubtitle": "Get unlimited access to all readings, AI chat, and deeper insights.",
+    "cta": "Get Premium",
+    "choosePlan": "Choose a plan",
+    "alreadyPremium": "You already have premium access",
+    "enjoyFeatures": "Enjoy all premium features below.",
+    "active": "Premium is active",
+    "inactive": "Premium is not active",
+    "statusActive": "Premium active",
+    "statusInactive": "Premium inactive",
+    "planName": "Premium access",
+    "planDescription": "All premium insights, daily guidance, and unlimited chat.",
+    "features": {
+      "unlimitedChat": "Unlimited AI chat sessions",
+      "advancedAnalysis": "Advanced BaZi analysis",
+      "timeFinderPremium": "All 5 TimeFinder windows",
+      "compatibilityReports": "Compatibility reports",
+      "prioritySupport": "Priority support",
+      "adFree": "Ad-free experience"
+    },
+    "pricing": {
+      "monthly": {
+        "name": "Monthly",
+        "period": "/ month"
+      },
+      "yearly": {
+        "name": "Yearly",
+        "period": "/ year",
+        "savings": "Save 17%"
+      },
+      "lifetime": {
+        "name": "Lifetime",
+        "period": "one-time",
+        "savings": "Best value"
+      }
+    }
+  },
+  "purchase": {
+    "title": "Complete Purchase",
+    "headline": "Upgrade to Premium",
+    "subtitle": "Complete your upgrade to premium.",
+    "orderSummary": "Order Summary",
+    "plan": "Plan",
+    "period": "Billing period",
+    "total": "Total",
+    "paymentMethod": "Payment Method",
+    "payWithApplePay": "Pay with Apple Pay",
+    "securePayment": "Secured by Apple Pay · 256-bit encryption",
+    "termsAgreement": "By purchasing, you agree to our Terms & Conditions",
+    "processing": "Processing payment…",
+    "confirm": "Confirm purchase",
+    "confirmTitle": "Confirm your plan",
+    "confirmMessage": "Purchase {plan} for ${price}?",
+    "cancel": "Cancel",
+    "selectPlan": "Choose {plan}",
+    "restore": "Restore purchase",
+    "success": "Purchase successful",
+    "successTitle": "Welcome to Premium",
+    "successMessage": "Your purchase is complete and premium access is now active.",
+    "successAction": "Go to Premium",
+    "failure": "Purchase failed",
+    "error": {
+      "failed": "Payment failed. Please try again."
+    },
+    "plans": {
+      "monthly": {
+        "title": "Monthly plan",
+        "interval": "mo",
+        "features": [
+          "Daily luck & avoid insights",
+          "Premium time finder windows",
+          "Unlimited AI chat"
+        ]
+      },
+      "yearly": {
+        "title": "Yearly plan",
+        "interval": "yr",
+        "badge": "Best value",
+        "features": [
+          "Save with an annual subscription",
+          "All premium insights unlocked",
+          "Priority chat guidance"
+        ]
+      }
+    }
+  },
+  "monthly": {
+    "header": {
+      "subtitle": "Day Master {dayMaster} · {interaction}"
+    },
+    "overview": {
+      "title": "Monthly overview"
+    },
+    "luckAvoid": {
+      "title": "Luck & avoid"
+    },
+    "luck": {
+      "title": "Luck"
+    },
+    "avoid": {
+      "title": "Avoid"
+    },
+    "fortune": {
+      "title": "Fortune hints",
+      "luckyColor": "Lucky color",
+      "luckyNumber": "Lucky number",
+      "activeElement": "Active element",
+      "weakElement": "Weak element"
+    },
+    "domains": {
+      "title": "Life domains",
+      "locked": "Premium required to reveal this insight.",
+      "unlockCta": "Unlock premium"
+    },
+    "domain": {
+      "work": "Work",
+      "wealth": "Wealth",
+      "relationship": "Relationship",
+      "health": "Health",
+      "study": "Study",
+      "family": "Family",
+      "talent": "Talent"
+    },
+    "interaction": {
+      "title": "Day Master × Month interaction"
+    },
+    "protection": {
+      "title": "Protection",
+      "focusLabel": "Focus"
+    },
+    "upcoming": {
+      "title": "Upcoming",
+      "disabledCta": "Not available yet"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your account, language, and preferences.",
+    "profileSection": "Profile details",
+    "preferencesSection": "Preferences",
+    "accountSection": "Account",
+    "languageLabel": "Language",
+    "skinLabel": "Skin",
+    "backgroundLabel": "Background",
+    "timezoneLabel": "Timezone",
+    "notificationsLabel": "Notifications",
+    "notificationsHint": "Receive daily guidance reminders",
+    "soundsLabel": "Sounds",
+    "soundsHint": "Play ambient sounds in the app",
+    "termsLink": "View Terms",
+    "viewTerms": "View Terms & Conditions",
+    "logout": "Log out",
+    "loggingOut": "Logging out…",
+    "userId": "User ID",
+    "email": "Email",
+    "status": "Status",
+    "free": "Free",
+    "premium": "Premium",
+    "upgradePremium": "Upgrade to Premium",
+    "managePremium": "Manage Premium",
+    "languageOptions": {
+      "en": "English",
+      "zhHant": "Traditional Chinese"
+    },
+    "skinOptions": {
+      "yang": "Yang",
+      "yin": "Yin"
+    },
+    "backgroundOptions": {
+      "default": "Default",
+      "grey": "Grey",
+      "purple": "Purple"
+    }
+  },
+  "chat": {
+    "title": "Chat",
+    "inputPlaceholder": "Type your message",
+    "send": "Send",
+    "thinking": "Thinking…",
+    "welcomeMessage": "Hi! I can help you explore your BaZi patterns. What would you like to focus on?",
+    "messagesRemaining": "{count} messages remaining this week",
+    "limitReached": {
+      "title": "Weekly limit reached",
+      "message": "You've used all 5 free messages this week. Upgrade to Premium for unlimited chat.",
+      "cta": "Upgrade to Premium",
+      "placeholder": "Upgrade to continue chatting…"
+    },
+    "suggestions": {
+      "todayFortune": "What does my BaZi say about today?",
+      "luckyElements": "What are my lucky elements?",
+      "careerAdvice": "Career advice for this month",
+      "relationshipInsight": "Relationship insights"
+    }
+  },
+  "bazi": {
+    "common": {
+      "dayMaster": "Day Master",
+      "heavenlyStem": "Heavenly Stem",
+      "earthlyBranch": "Earthly Branch",
+      "tenGod": "Ten God",
+      "element": "Element",
+      "fiveElements": "Five Elements",
+      "pillar": "Pillar",
+      "luckPillar": "Luck Pillar"
+    },
+    "elements": {
+      "wood": "Wood",
+      "fire": "Fire",
+      "earth": "Earth",
+      "metal": "Metal",
+      "water": "Water"
+    },
+    "chart": {
+      "title": "Bazi Chart",
+      "subtitle": "The Blueprint of Your Destiny",
+      "dayMaster": "Day Master",
+      "fourPillars": "Four Pillars",
+      "yearPillar": "Year",
+      "monthPillar": "Month",
+      "dayPillar": "Day",
+      "hourPillar": "Hour",
+      "elementBalance": "Element Balance",
+      "elementAnalysis": "Element Analysis",
+      "strongestElement": "Your chart shows {element} as the strongest element ({score}), indicating a dominant influence in your life path.",
+      "weakestElement": "Conversely, {element} is the weakest ({score}), suggesting areas where you may need to cultivate balance and awareness."
+    },
+    "daily": {
+      "title": "Daily Fortune",
+      "energyScore": "Energy Score",
+      "todayPillar": "Today's Pillar",
+      "dayPillar": "Day Pillar",
+      "summary": "Summary",
+      "advice": "Advice",
+      "dosAndDonts": "Do's & Don'ts",
+      "fortune": "Today's Fortune",
+      "luckyActivity": "Lucky Activity",
+      "luckyElements": "Lucky Elements",
+      "luckyColors": "Lucky Colors",
+      "favorableDirections": "Favorable Directions",
+      "doList": "Do",
+      "dontList": "Don't",
+      "recommendations": "Recommendations"
+    },
+    "luckPillars": {
+      "title": "Luck Pillars",
+      "subtitle": "10-Year Fortune Cycles",
+      "currentPeriod": "Current Period",
+      "age": "Age {start}-{end}",
+      "analysis": "Analysis"
+    },
+    "forecast": {
+      "title": "Yearly Forecast",
+      "subtitle": "Year-by-Year Predictions",
+      "overview": "Overview",
+      "favorableMonths": "Favorable Months",
+      "unfavorableMonths": "Unfavorable Months",
+      "monthlyPredictions": "Monthly Predictions",
+      "month": "Month {month}"
+    },
+    "compatibility": {
+      "title": "Compatibility Analysis",
+      "subtitle": "Relationship Harmony",
+      "score": "Compatibility Score",
+      "elementHarmony": "Element Harmony",
+      "strengths": "Strengths",
+      "challenges": "Challenges",
+      "recommendations": "Recommendations"
+    },
+    "auspicious": {
+      "title": "Auspicious Dates",
+      "subtitle": "Find Favorable Dates",
+      "selectActivity": "Select Activity Type",
+      "dateScore": "Date Score",
+      "favorableFor": "Favorable For",
+      "unfavorableFor": "Unfavorable For",
+      "analysis": "Analysis"
+    },
+    "glossary": {
+      "dayMaster": "The Heavenly Stem of your birth day, representing your core self and personality.",
+      "heavenlyStem": "One of the 10 celestial stems in Chinese astrology, representing yang energy.",
+      "earthlyBranch": "One of the 12 terrestrial branches in Chinese astrology, representing yin energy.",
+      "tenGod": "The relationship between your Day Master and other stems, indicating life aspects.",
+      "pillar": "A combination of Heavenly Stem and Earthly Branch representing a time period.",
+      "fiveElements": "Wood, Fire, Earth, Metal, and Water - the fundamental energies in Bazi.",
+      "luckPillar": "10-year cycles that influence your fortune throughout life."
+    }
+  },
+  "yearly": {
+    "title": "Annual Forecast",
+    "subtitle": "Your Year Ahead",
+    "noData": "No forecast data available.",
+    "zodiacReading": "Zodiac Reading",
+    "zodiacYear": "Zodiac Year",
+    "yearPillar": "Year Pillar",
+    "overview": "Year Overview",
+    "luckSplit": "First & Second Half Luck",
+    "firstHalf": "First Half",
+    "secondHalf": "Second Half",
+    "firstHalfPeriod": "January – June",
+    "secondHalfPeriod": "July – December",
+    "lifeDomains": "Life Domains",
+    "luck": "Favourable This Year",
+    "avoid": "Avoid This Year",
+    "favorableMonths": "Favourable Months",
+    "unfavorableMonths": "Unfavourable Months",
+    "protection": "Protection Strategy",
+    "monthlyPredictions": "Monthly Predictions",
+    "luckPillarContext": "Luck Pillar Context",
+    "zodiacPosition": {
+      "head": "Head of Year",
+      "middle": "Middle of Year",
+      "tail": "Tail of Year",
+      "headDesc": "Born in the opening phase of this zodiac year.",
+      "middleDesc": "Born in the peak phase of this zodiac year.",
+      "tailDesc": "Born in the closing phase of this zodiac year.",
+      "headPeriod": "Months 1–4",
+      "middlePeriod": "Months 5–8",
+      "tailPeriod": "Months 9–12"
+    }
+  },
+  "destiny": {
+    "work": "Career",
+    "wealth": "Wealth",
+    "relationship": "Relationship",
+    "health": "Health",
+    "study": "Study",
+    "family": "Family",
+    "talent": "Talent"
+  },
+  "month": {
+    "1": "January",
+    "2": "February",
+    "3": "March",
+    "4": "April",
+    "5": "May",
+    "6": "June",
+    "7": "July",
+    "8": "August",
+    "9": "September",
+    "10": "October",
+    "11": "November",
+    "12": "December"
+  },
+  "info": {
+    "dayMaster": "Your Day Master is the Heavenly Stem of your Day Pillar. It represents your core self — your personality, strengths, and the lens through which you experience life. Everything in your chart is interpreted relative to your Day Master.",
+    "fourPillars": "The Four Pillars (Year, Month, Day, Hour) are the foundation of your Bazi chart. Each pillar contains a Heavenly Stem and Earthly Branch, encoding the energy of the moment you were born. Together they reveal your destiny blueprint.",
+    "elementBalance": "The Five Elements — Wood, Fire, Earth, Metal, Water — are the building blocks of Bazi. Your chart's element distribution shows which energies are strong or weak in your life, guiding what to cultivate and what to balance.",
+    "luckPillars": "Luck Pillars are 10-year cycles that activate different parts of your Bazi chart. Each pillar brings a new Heavenly Stem and Earthly Branch that interacts with your birth chart, shaping the dominant themes of that decade.",
+    "currentLuckPillar": "Your current Luck Pillar is the 10-year cycle you are living through right now. The Heavenly Stem acts on your upper chart (mind, career, relationships) while the Earthly Branch acts on your lower chart (body, resources, foundations).",
+    "tenGods": "The Ten Gods describe how each element in your chart relates to your Day Master. They reveal roles and themes: wealth, power, creativity, support, and competition. Each god has a positive and a challenging expression.",
+    "tenGod_friend": "Friend (比肩): Same element, same polarity as your Day Master. Represents peers, siblings, and competition. Brings solidarity and rivalry.",
+    "tenGod_robWealth": "Rob Wealth (劫財): Same element, opposite polarity. Represents rivals who take what is yours. Can also bring bold, decisive energy.",
+    "tenGod_eatingGod": "Eating God (食神): The element your Day Master produces, same polarity. Represents creativity, enjoyment, talent, and nurturing. A positive star.",
+    "tenGod_hurtingOfficer": "Hurting Officer (傷官): The element your Day Master produces, opposite polarity. Represents unconventional thinking, rebellion, and brilliance. Powerful but needs direction.",
+    "tenGod_directWealth": "Direct Wealth (正財): The element your Day Master controls, opposite polarity. Represents stable income, discipline, and earned resources.",
+    "tenGod_indirectWealth": "Indirect Wealth (偏財): The element your Day Master controls, same polarity. Represents windfall, investment, and the father figure.",
+    "tenGod_directOfficer": "Direct Officer (正官): The element that controls your Day Master, opposite polarity. Represents authority, structure, and the spouse (for women). A star of responsibility.",
+    "tenGod_sevenKillings": "Seven Killings (七殺): The element that controls your Day Master, same polarity. Represents pressure, power, and transformation. Can be a star of great achievement or great challenge.",
+    "tenGod_directResource": "Direct Resource (正印): The element that produces your Day Master, opposite polarity. Represents support, learning, and the mother figure. A nurturing star.",
+    "tenGod_indirectResource": "Indirect Resource (偏印): The element that produces your Day Master, same polarity. Represents unconventional knowledge, intuition, and independence.",
+    "zodiacReading": "Your Chinese Zodiac animal is determined by your birth year. In Bazi, the year pillar governs your social circle, reputation, and early life. The zodiac animal interacts with the current year's energy to reveal opportunities and challenges.",
+    "zodiacPosition": "The zodiac year is divided into three phases — Head (months 1–4), Middle (months 5–8), and Tail (months 9–12). Your birth month determines which phase you belong to, influencing how you experience the energy of your zodiac year.",
+    "firstHalfLuck": "The first half of the year (roughly January to June) is governed by the Heavenly Stem of the annual pillar. This period tends to affect your mind, career, and outward actions.",
+    "secondHalfLuck": "The second half of the year (roughly July to December) is governed by the Earthly Branch of the annual pillar. This period tends to affect your body, relationships, and inner resources.",
+    "annualFlow": "The Annual Flow describes how the current year's energy interacts with your personal Bazi chart. It reveals which life domains are activated, what opportunities arise, and what challenges to navigate.",
+    "monthlyFlow": "The Monthly Flow shows how each month's energy interacts with your chart. Monthly pillars create shorter cycles of activation, bringing specific themes to the foreground for 30 days.",
+    "wisdomStar": "The Wisdom Star (文昌) appears when specific elements align in your chart or the current year. It enhances learning ability, exam luck, and intellectual clarity. (add: full Wisdom Star explanation)",
+    "romanceStar": "The Romance Star (桃花) is activated by specific Earthly Branches. It attracts romantic energy, social charm, and interpersonal opportunities. (add: full Romance Star explanation)",
+    "specialInfluence": "Special Influence Stars are rare configurations in your chart or the current year that carry significant impact — both positive and challenging. (add: full Special Influence explanation)",
+    "auspiciousDirection": "Your auspicious direction is determined by your Day Master's element. Facing or travelling in this direction during important activities can support your energy. (add: full direction calculation explanation)",
+    "activityRecommendation": "Based on today's energy, certain types of activity are more aligned with the day's flow. Outdoor activities, travel, or staying home each carry different energy costs and benefits. (add: full activity recommendation explanation)",
+    "yinYang": "Yin and Yang are the two fundamental polarities in Chinese metaphysics. Your Day Master is either Yin or Yang, which shapes how you express your element's energy — Yin is receptive and internal, Yang is expressive and outward.",
+    "compatibility": "Bazi compatibility examines how two people's charts interact. It looks at element clashes, combinations, and the Ten God relationships between Day Masters to reveal the dynamics of a relationship.",
+    "luckPillarGod": "The dominant Ten God in your current Luck Pillar shapes the overarching theme of this 10-year period. For example, a Direct Officer pillar brings structure and authority themes; a Seven Killings pillar brings pressure and transformation."
+  }
+}

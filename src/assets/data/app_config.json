@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json.schemastore.org/json",
+  "version": 1,
+  "updatedAt": "2025-08-21T00:00:00Z",
+  "notes": "Global application constants and feature flags. This file is trimmed for MVP 1 usage.",
+  "apiVersion": "v1",
+  "minShellVersion": "1.0.0",
+  "supportedLocales": ["en"],
+  "features": {
+    "payments": true,
+    "applePay": true,
+    "stripe": false,
+    "googleSSO": true,
+    "facebookSSO": false,
+    "microsoftSSO": false,
+    "advancedDetailToggle": true,
+    "analytics": true
+  },
+  "ui": {
+    "theme": "light",
+    "splashTimeoutMs": 2000
+  },
+  "privacy": {
+    "collectPII": false,
+    "storeDOB": true,
+    "storeEmail": true,
+    "notes": "DOB is sensitive. All other fields can be fake/pseudonymous."
+  },
+  "sync": {
+    "enabled": true,
+    "resumeMinAgeMs": { "free": 1800000, "premium": 900000 },
+    "reconnectMinAgeMs": 3600000,
+    "maxDailyResumeChecks": { "free": 12, "premium": 24 },
+    "errorBackoffMs": [300000, 900000, 3600000],
+    "headEndpoint": "/sync/head",
+    "batchEndpoint": "/sync",
+    "useConditionalGets": true
+  },
+  "legal": {
+    "version": "v1.0.0",
+    "defaultLocale": "en"
+  }
+}

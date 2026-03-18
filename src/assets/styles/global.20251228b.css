@@ -1,0 +1,160 @@
+@import "./tokens.20251228b.css";
+@import "./base.20251228b.css";
+
+/* Typographic helpers */
+.title { font-weight: 700; line-height: 1.2; }
+.subtitle { color: var(--c-text-muted); line-height: 1.4; }
+
+
+/* Icon sizes used across pages */
+.icon-sm { width: 16px; height: 16px; }
+.icon-md { width: 24px; height: 24px; }
+.icon-lg { width: 64px; height: 64px; }
+
+
+/* Splash image helper */
+.splash-bg { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Screen-reader only helper */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); border: 0;
+}
+
+.revamp-listCard {
+  border: 1px solid var(--c-glass-border);
+  border-radius: var(--r-md);
+  padding: var(--s-4);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.revamp-monthlySubtitle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.revamp-monthlyLuckAvoid {
+  display: grid;
+  gap: var(--s-4);
+}
+
+.revamp-monthlyList {
+  display: grid;
+  gap: var(--s-2);
+  padding-left: var(--s-4);
+}
+
+.revamp-colorDot {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  border: 1px solid var(--c-glass-border);
+  display: inline-block;
+}
+
+.revamp-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px var(--s-2);
+  border-radius: 999px;
+  border: 1px solid var(--c-glass-border);
+  background: rgba(255, 255, 255, 0.1);
+  font-weight: 600;
+}
+
+.revamp-fortuneRow {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+}
+
+.revamp-fortuneValue {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.revamp-domainRow {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.revamp-domainTrend {
+  margin-left: auto;
+  font-weight: 600;
+}
+
+.revamp-domainSummary {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.revamp-locked {
+  opacity: 0.6;
+  filter: blur(1px);
+}
+
+.revamp-interactionIcons {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.revamp-upcomingCard {
+  opacity: 0.7;
+}
+
+@media (min-width: 640px) {
+  .revamp-monthlyLuckAvoid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.revamp-chatLayout {
+  min-height: 70vh;
+}
+
+.revamp-chatHistory {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  max-height: 45vh;
+  overflow-y: auto;
+}
+
+.revamp-chatBubble {
+  padding: var(--s-3);
+  border-radius: var(--r-md);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.revamp-chatBubble--user {
+  align-self: flex-end;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.revamp-chatBubble--assistant {
+  align-self: flex-start;
+}
+
+.revamp-chatComposer {
+  display: flex;
+  gap: var(--s-3);
+  align-items: center;
+}
+
+.revamp-chatComposer input {
+  flex: 1;
+}
+
+.revamp-mutedInline {
+  color: var(--c-text-muted);
+}

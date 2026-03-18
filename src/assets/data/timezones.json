@@ -1,0 +1,187 @@
+{
+  "$schema": "https://json.schemastore.org/json",
+  "version": 2,
+  "updatedAt": "2025-09-10T00:00:00Z",
+  "notes": "Local mapping of time zones and Shi-Chen (Chinese 2h ranges). Used client-side for time guessing and conversions.",
+  "shiChen": [
+    { "key": "Zi",   "char": "子", "start": "23:00", "end": "01:00" },
+    { "key": "Chou", "char": "丑", "start": "01:00", "end": "03:00" },
+    { "key": "Yin",  "char": "寅", "start": "03:00", "end": "05:00" },
+    { "key": "Mao",  "char": "卯", "start": "05:00", "end": "07:00" },
+    { "key": "Chen", "char": "辰", "start": "07:00", "end": "09:00" },
+    { "key": "Si",   "char": "巳", "start": "09:00", "end": "11:00" },
+    { "key": "Wu",   "char": "午", "start": "11:00", "end": "13:00" },
+    { "key": "Wei",  "char": "未", "start": "13:00", "end": "15:00" },
+    { "key": "Shen", "char": "申", "start": "15:00", "end": "17:00" },
+    { "key": "You",  "char": "酉", "start": "17:00", "end": "19:00" },
+    { "key": "Xu",   "char": "戌", "start": "19:00", "end": "21:00" },
+    { "key": "Hai",  "char": "亥", "start": "21:00", "end": "23:00" }
+  ],
+  "timezones": [
+    {
+      "id": "Asia/Hong_Kong",
+      "country": "HK",
+      "label": "Hong Kong",
+      "baseUtcOffset": 8,
+      "dst": false
+    },
+    {
+      "id": "Asia/Shanghai",
+      "country": "CN",
+      "label": "Beijing",
+      "baseUtcOffset": 8,
+      "dst": false
+    },
+    {
+      "id": "Asia/Shanghai",
+      "country": "CN",
+      "label": "Shanghai",
+      "baseUtcOffset": 8,
+      "dst": false
+    },
+    {
+      "id": "Asia/Shanghai",
+      "country": "CN",
+      "label": "Guangzhou",
+      "baseUtcOffset": 8,
+      "dst": false
+    },
+    {
+      "id": "Asia/Shanghai",
+      "country": "CN",
+      "label": "Shenzhen",
+      "baseUtcOffset": 8,
+      "dst": false
+    },
+    {
+      "id": "Asia/Shanghai",
+      "country": "CN",
+      "label": "Chengdu",
+      "baseUtcOffset": 8,
+      "dst": false
+    },
+    {
+      "id": "Asia/Shanghai",
+      "country": "CN",
+      "label": "Chongqing",
+      "baseUtcOffset": 8,
+      "dst": false
+    },
+    {
+      "id": "Asia/Shanghai",
+      "country": "CN",
+      "label": "Wuhan",
+      "baseUtcOffset": 8,
+      "dst": false
+    },
+    {
+      "id": "Asia/Shanghai",
+      "country": "CN",
+      "label": "Xi'an",
+      "baseUtcOffset": 8,
+      "dst": false
+    },
+    {
+      "id": "Asia/Shanghai",
+      "country": "CN",
+      "label": "Hangzhou",
+      "baseUtcOffset": 8,
+      "dst": false
+    },
+    {
+      "id": "Asia/Shanghai",
+      "country": "CN",
+      "label": "Zhongshan",
+      "baseUtcOffset": 8,
+      "dst": false
+    },
+    {
+      "id": "Asia/Shanghai",
+      "country": "CN",
+      "label": "Zhuhai",
+      "baseUtcOffset": 8,
+      "dst": false
+    },
+    {
+      "id": "Asia/Taipei",
+      "country": "TW",
+      "label": "Taipei",
+      "baseUtcOffset": 8,
+      "dst": false
+    },
+    {
+      "id": "Asia/Tokyo",
+      "country": "JP",
+      "label": "Tokyo",
+      "baseUtcOffset": 9,
+      "dst": false
+    },
+    {
+      "id": "Asia/Seoul",
+      "country": "KR",
+      "label": "Seoul",
+      "baseUtcOffset": 9,
+      "dst": false
+    },
+    {
+      "id": "America/New_York",
+      "country": "US",
+      "label": "New York",
+      "baseUtcOffset": -5,
+      "dst": {
+        "observes": true,
+        "dstOffset": -4,
+        "startRule": "second Sunday in March 02:00",
+        "endRule": "first Sunday in November 02:00"
+      }
+    },
+    {
+      "id": "America/Chicago",
+      "country": "US",
+      "label": "Chicago",
+      "baseUtcOffset": -6,
+      "dst": {
+        "observes": true,
+        "dstOffset": -5,
+        "startRule": "second Sunday in March 02:00",
+        "endRule": "first Sunday in November 02:00"
+      }
+    },
+    {
+      "id": "America/Los_Angeles",
+      "country": "US",
+      "label": "Los Angeles",
+      "baseUtcOffset": -8,
+      "dst": {
+        "observes": true,
+        "dstOffset": -7,
+        "startRule": "second Sunday in March 02:00",
+        "endRule": "first Sunday in November 02:00"
+      }
+    },
+    {
+      "id": "Europe/London",
+      "country": "GB",
+      "label": "London",
+      "baseUtcOffset": 0,
+      "dst": {
+        "observes": true,
+        "dstOffset": 1,
+        "startRule": "last Sunday in March 01:00",
+        "endRule": "last Sunday in October 02:00"
+      }
+    },
+    {
+      "id": "Europe/Paris",
+      "country": "FR",
+      "label": "Paris",
+      "baseUtcOffset": 1,
+      "dst": {
+        "observes": true,
+        "dstOffset": 2,
+        "startRule": "last Sunday in March 02:00",
+        "endRule": "last Sunday in October 03:00"
+      }
+    }
+  ]
+}

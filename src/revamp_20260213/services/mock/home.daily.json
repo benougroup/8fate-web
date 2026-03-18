@@ -1,0 +1,33 @@
+{
+  "dateISO": "2025-01-10",
+  "theme": "yin",
+  "cards": [
+    {
+      "id": "card-restful-flow",
+      "slot": "today",
+      "title": {
+        "en": "Restful Flow",
+        "zhHant": "安穩流"
+      },
+      "summary": "Choose gentler pacing to keep your focus steady.",
+      "action": "Create a short, calming checklist.",
+      "avoid": "Overloading your afternoon."
+    },
+    {
+      "id": "card-clear-boundary",
+      "slot": "luck",
+      "title": {
+        "en": "Clear Boundary"
+      },
+      "summary": "Protect time for the work that matters most.",
+      "action": "Decline one low-priority request.",
+      "avoid": "Saying yes by default."
+    }
+  ],
+  "sourceUpdatedAtISO": "2025-01-05T10:00:00.000Z",
+  "generatedFor": {
+    "timeZone": "Asia/Hong_Kong",
+    "locale": "en"
+  },
+  "forLocalDateISO": "2025-01-10"
+}

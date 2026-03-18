@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "npcs": [
+    {
+      "id": "npc_guard",
+      "name": "Town Guard",
+      "belief": "QuietDoubters",
+      "spriteId": "npc_guard",
+      "routine": {
+        "dayAnchor": { "mapId": "bright_hollow", "x": 12, "y": 10 },
+        "nightAnchor": { "mapId": "bright_hollow", "x": 10, "y": 10 },
+        "dayWaypoints": [
+          { "x": 12, "y": 10 },
+          { "x": 13, "y": 10 },
+          { "x": 13, "y": 11 },
+          { "x": 12, "y": 11 }
+        ],
+        "stepIntervalMs": 900
+      },
+      "interaction": {
+        "defaultSceneId": "demo_guard_default",
+        "variants": [
+          {
+            "sceneId": "demo_guard_night_block",
+            "conditions": { "timePhaseIn": ["NIGHT"], "trustAtMost": { "value": 40 } }
+          },
+          {
+            "sceneId": "demo_guard_night_allow",
+            "conditions": { "timePhaseIn": ["NIGHT"], "trustAtLeast": { "value": 40 } }
+          }
+        ]
+      },
+      "blocking": {
+        "enabled": true,
+        "tiles": [{ "mapId": "bright_hollow", "x": 9, "y": 10 }],
+        "onlyAtNight": true,
+        "allowIf": { "trustAtLeast": { "value": 40 } }
+      }
+    },
+    {
+      "id": "npc_apprentice",
+      "name": "Apprentice",
+      "belief": "LanternFaith",
+      "spriteId": "npc_apprentice",
+      "routine": {
+        "dayAnchor": { "mapId": "bright_hollow", "x": 16, "y": 9 },
+        "nightAnchor": { "mapId": "bright_hollow", "x": 18, "y": 9 },
+        "stepIntervalMs": 0
+      },
+      "interaction": {
+        "defaultSceneId": "demo_apprentice"
+      }
+    }
+  ]
+}

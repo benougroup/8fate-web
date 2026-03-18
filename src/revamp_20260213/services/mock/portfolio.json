@@ -1,0 +1,17 @@
+{
+  "profileSummary": "Balanced chart with stronger Water/Wood influences.",
+  "pillars": [
+    { "label": "Year", "value": "Water Monkey" },
+    { "label": "Month", "value": "Earth Ox" }
+  ],
+  "sourceUpdatedAtISO": "2026-01-03T00:00:00.000Z",
+  "generatedFor": {
+    "timeZone": "Asia/Hong_Kong",
+    "locale": "en"
+  },
+  "preferences": {
+    "locale": "en",
+    "theme": "yang",
+    "backgroundKey": "background001"
+  }
+}

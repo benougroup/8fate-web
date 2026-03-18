@@ -1,0 +1,17 @@
+{
+  "id": "mock-user-001",
+  "locale": "en",
+  "profile": {
+    "name": "Guest",
+    "dateOfBirthISO": "1990-02-04",
+    "birthTimeBlockIndex": 5,
+    "placeOfBirth": "Hong Kong",
+    "level": "beginner"
+  },
+  "sourceUpdatedAtISO": "2025-01-05T10:00:00.000Z",
+  "generatedFor": {
+    "timeZone": "Asia/Hong_Kong",
+    "locale": "en",
+    "inputsHash": "0"
+  }
+}

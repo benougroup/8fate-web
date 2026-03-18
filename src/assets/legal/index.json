@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json.schemastore.org/json",
+  "version": "v1.0.0",
+  "defaultLocale": "en",
+  "assets": {
+    "en": "terms.v1.0.0.en.html"
+  },
+  "updatedAt": "2025-08-21T00:00:00Z",
+  "notes": "Local Terms manifest. Terms.tsx should use this first, then fall back to server."
+}

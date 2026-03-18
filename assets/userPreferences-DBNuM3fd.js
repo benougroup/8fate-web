@@ -1,0 +1,1 @@
+function t(){const r="English";if(typeof window>"u")return r;const a=["profile_data","localProfile.v1","dev_profile_data"];for(const n of a)try{const e=window.localStorage.getItem(n);if(!e)continue;const o=JSON.parse(e);if(o!=null&&o.language)return o.language}catch(e){console.warn("Failed to parse stored language",e)}return r}export{t as r};

@@ -4364,3 +4364,166 @@ button.revamp-railItem {
   transition: border-color 0.15s ease, color 0.15s ease;
 }
 .revamp-sectionInfoBtn:hover { border-color: var(--c-accent); color: var(--c-accent); }
+
+
+/* ============================================================
+   FLIP CARD HINT ARROW
+   ============================================================ */
+.revamp-cardFlip--clickable::after {
+  content: "tap to flip";
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 10px;
+  color: var(--c-text-muted);
+  opacity: 0.65;
+  pointer-events: none;
+  letter-spacing: 0.03em;
+  transition: opacity 0.2s ease;
+  z-index: 2;
+}
+.revamp-cardFlip--clickable:hover::after { opacity: 1; }
+.revamp-cardFlip--flipped::after { content: "tap to flip back"; }
+
+/* ============================================================
+   SECTION TITLE - CHINESE NAME
+   ============================================================ */
+.revamp-sectionTitleZhName {
+  font-size: var(--fs-sm);
+  color: var(--c-text-muted);
+  font-weight: 500;
+  margin-right: 4px;
+  letter-spacing: 0.04em;
+}
+
+/* ============================================================
+   REGISTER - FIELD ERRORS & TIME SLOT GRID
+   ============================================================ */
+.revamp-fieldError {
+  display: block;
+  font-size: var(--fs-xs);
+  color: var(--c-error, #e53e3e);
+  margin-top: 4px;
+  font-weight: 500;
+}
+.revamp-formInput--error {
+  border-color: var(--c-error, #e53e3e) !important;
+  box-shadow: 0 0 0 2px rgba(229,62,62,0.15);
+}
+.revamp-timeSlotGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.revamp-timeSlotCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border: 1.5px solid var(--c-border);
+  border-radius: var(--r-lg);
+  background: var(--c-surface);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.revamp-timeSlotCard:hover { border-color: var(--c-accent); }
+.revamp-timeSlotCard--selected { border-color: var(--c-accent); background: rgba(180,140,60,0.1); }
+.revamp-timeSlotHeader { display: flex; align-items: center; gap: 8px; }
+.revamp-timeSlotEmoji { font-size: 22px; line-height: 1; }
+.revamp-timeSlotLabel { font-size: var(--fs-sm); font-weight: 600; color: var(--c-text); }
+.revamp-timeSlotRange { font-size: var(--fs-xs); color: var(--c-text-muted); }
+.revamp-timeSlotPersonalities { margin: 0; padding-left: 14px; list-style: disc; }
+.revamp-timeSlotPersonalities li { font-size: 11px; color: var(--c-text-muted); line-height: 1.4; margin-bottom: 2px; }
+
+/* ============================================================
+   LOGIN - ERROR & DEV BADGE
+   ============================================================ */
+.revamp-loginError {
+  font-size: var(--fs-sm);
+  color: var(--c-error, #e53e3e);
+  text-align: center;
+  margin-bottom: 8px;
+  padding: 8px 12px;
+  background: rgba(229,62,62,0.08);
+  border-radius: var(--r-md);
+}
+.revamp-loginDevBadge {
+  font-size: 10px;
+  color: var(--c-text-muted);
+  text-align: center;
+  margin-bottom: 4px;
+  padding: 4px 8px;
+  background: rgba(255,200,0,0.1);
+  border: 1px dashed rgba(255,200,0,0.4);
+  border-radius: var(--r-sm);
+}
+
+/* ============================================================
+   GLOBAL BOTTOM PADDING - prevent content cut-off
+   ============================================================ */
+.revamp-content,
+.revamp-pageContent,
+.revamp-homeContent {
+  padding-bottom: max(calc(env(safe-area-inset-bottom, 0px) + 80px), 80px) !important;
+}
+
+/* ============================================================
+   DAILY - ENERGY SCORE + DAY PILLAR ROW
+   ============================================================ */
+.revamp-dailyPhaseRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.revamp-dailyEnergyBadge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: var(--c-accent-subtle);
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+.revamp-dailyEnergyLabel { font-size: var(--fs-sm); font-weight: 600; color: var(--c-text); }
+.revamp-dailyEnergyValue { font-size: var(--fs-lg); font-weight: 700; color: var(--c-accent); }
+
+/* ============================================================
+   DAILY - DO/DONT FLIP CARDS
+   ============================================================ */
+.revamp-doDontFlipGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.revamp-doDontPanel {
+  position: relative;
+  padding: 14px;
+  border-radius: var(--r-lg);
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.revamp-doDontPanel--do {
+  background: linear-gradient(135deg,rgba(72,187,120,0.12),rgba(72,187,120,0.04));
+  border: 1px solid rgba(72,187,120,0.25);
+}
+.revamp-doDontPanel--dont {
+  background: linear-gradient(135deg,rgba(229,62,62,0.12),rgba(229,62,62,0.04));
+  border: 1px solid rgba(229,62,62,0.25);
+}
+.revamp-doDontTitle { font-size: var(--fs-sm); font-weight: 700; margin-bottom: 4px; }
+.revamp-doDontTitle--do { color: var(--c-success, #48bb78); }
+.revamp-doDontTitle--dont { color: var(--c-error, #e53e3e); }
+.revamp-doDontList { margin: 0; padding-left: 14px; list-style: disc; }
+.revamp-doDontList li { font-size: var(--fs-sm); color: var(--c-text); line-height: 1.5; margin-bottom: 2px; }
+.revamp-doDontPanel--locked { overflow: hidden; }
+.revamp-doDontPanel--locked .revamp-doDontList { filter: blur(5px); user-select: none; pointer-events: none; }
+.revamp-doDontLockedOverlay {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  background: rgba(0,0,0,0.08); border-radius: var(--r-lg); cursor: pointer;
+}
+.revamp-doDontLockedLabel { font-size: 11px; font-weight: 600; color: var(--c-accent); text-align: center; padding: 0 12px; }

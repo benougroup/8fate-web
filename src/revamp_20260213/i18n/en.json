@@ -49,7 +49,11 @@
       "luckAvoid": "Luck & Avoid",
       "avoid": "Avoid",
       "protection": "Protection",
-      "upcoming": "Upcoming"
+      "upcoming": "Upcoming",
+      "todayZh": "今日",
+      "luckZh": "吉凶",
+      "protectionZh": "護身",
+      "upcomingZh": "預覽"
     },
     "section": {
       "today": "Today",
@@ -562,27 +566,44 @@
       "dawn": {
         "title": "05:00 - 07:00 · Dawn",
         "body": "Gentle, reflective energy with a steady pace through the day.",
-        "tags": ["Grounded", "Patient"]
+        "tags": [
+          "Grounded",
+          "Patient"
+        ]
       },
       "midday": {
         "title": "11:00 - 13:00 · Midday",
         "body": "Bright, social energy with a focus on clear direction.",
-        "tags": ["Optimistic", "Expressive", "Focused"]
+        "tags": [
+          "Optimistic",
+          "Expressive",
+          "Focused"
+        ]
       },
       "dusk": {
         "title": "17:00 - 19:00 · Dusk",
         "body": "Balanced momentum with thoughtful decision-making.",
-        "tags": ["Balanced", "Observant"]
+        "tags": [
+          "Balanced",
+          "Observant"
+        ]
       },
       "night": {
         "title": "21:00 - 23:00 · Night",
         "body": "Quiet intuition and deep creativity beneath the surface.",
-        "tags": ["Intuitive", "Creative"]
+        "tags": [
+          "Intuitive",
+          "Creative"
+        ]
       },
       "midnight": {
         "title": "23:00 - 01:00 · Midnight",
         "body": "Transformative, visionary energy with strong inner drive.",
-        "tags": ["Visionary", "Independent", "Resilient"]
+        "tags": [
+          "Visionary",
+          "Independent",
+          "Resilient"
+        ]
       }
     },
     "range": {
@@ -594,7 +615,9 @@
   },
   "premium": {
     "title": "Premium",
-    "subtitle": "Unlock deeper insights, personalized guidance, and premium chat.",    "badge": "✨ Premium",    "heroTitle": "Unlock Your Full Destiny",
+    "subtitle": "Unlock deeper insights, personalized guidance, and premium chat.",
+    "badge": "✨ Premium",
+    "heroTitle": "Unlock Your Full Destiny",
     "heroSubtitle": "Get unlimited access to all readings, AI chat, and deeper insights.",
     "cta": "Get Premium",
     "choosePlan": "Choose a plan",
@@ -835,7 +858,13 @@
       "favorableDirections": "Favorable Directions",
       "doList": "Do",
       "dontList": "Don't",
-      "recommendations": "Recommendations"
+      "recommendations": "Recommendations",
+      "todayPhase": "Today's Phase",
+      "doListTitle": "Lucky (Do)",
+      "dontListTitle": "Avoid (Don't)",
+      "unlockDont": "Upgrade to Premium to see what to avoid",
+      "luckyLabel": "Lucky",
+      "unluckyLabel": "Unlucky"
     },
     "luckPillars": {
       "title": "Luck Pillars",

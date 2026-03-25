@@ -70,7 +70,7 @@ export function Terms() {
   const navigate = useNavigate();
   const [params] = useSearchParams();
   const mode = normalizeMode(params.get("mode"));
-  const { locale, theme, setTncAccepted } = usePreferences();
+  const { locale, theme, setTncAccepted, userId, hasAcceptedTnc } = usePreferences();
   const showAgree = mode !== "viewOnly";
   const [termsContent, setTermsContent] = React.useState<string>("");
   const [termsVersion, setTermsVersion] = React.useState<string>("");
@@ -138,6 +138,19 @@ export function Terms() {
   }
 
   function handleBack() {
+    // If the user is already logged in (has a userId) and has accepted T&C,
+    // the back button should go to the daily home page, not the previous history
+    // entry (which could be the login page — confusing).
+    if (userId && hasAcceptedTnc) {
+      navigate("/daily", { replace: true });
+      return;
+    }
+    // For onboarding mode: go back to login
+    if (mode === "onboarding") {
+      navigate("/login", { replace: true });
+      return;
+    }
+    // For viewOnly mode (opened from login legal links): go back
     navigate(-1);
   }
 

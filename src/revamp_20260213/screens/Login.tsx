@@ -1,26 +1,86 @@
+/**
+ * Login.tsx
+ *
+ * Authentication entry point.
+ *
+ * Flow:
+ *  1. User taps "Continue with Google"
+ *  2. DEV  → mock delay, uses mock credentials
+ *     PROD → real Google OAuth (implement productionGoogleAuth below)
+ *  3. After auth, calls backend POST /api/auth/google { idToken }
+ *     Response: { userId, email, isNewUser: boolean }
+ *  4. Routing:
+ *       isNewUser === true  → /terms?mode=onboarding  (new account: T&C then Register)
+ *       isNewUser === false → /daily                   (existing account: go home)
+ *
+ * NOTE: Mock data (localStorage) is only written in development mode (ENV.useMock).
+ */
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { getBrandSrc } from "../assets/assetMap";
+import { ENV } from "../config/env";
 import { Page } from "../components/Page";
 import { t } from "../i18n/t";
 import { usePreferences } from "../stores/preferencesStore";
+
+type AuthResult = { userId: string; email: string; isNewUser: boolean };
+
+/** DEV-only mock — returns a fake existing account. Set isNewUser:true to test onboarding. */
+async function mockGoogleAuth(): Promise<AuthResult> {
+  await new Promise((resolve) => setTimeout(resolve, 800));
+  return { userId: "mock-user-123", email: "user@example.com", isNewUser: false };
+}
+
+/**
+ * PRODUCTION Google auth.
+ * Replace this body with your real Google Identity / Firebase OAuth flow.
+ * Must return AuthResult or throw on failure.
+ */
+async function productionGoogleAuth(): Promise<AuthResult> {
+  // TODO: implement real Google OAuth
+  // Example:
+  //   const idToken = await signInWithGoogleGIS();
+  //   const res = await fetch("/api/auth/google", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({ idToken }),
+  //   });
+  //   if (!res.ok) throw new Error("Auth failed");
+  //   return res.json();
+  throw new Error("Google Sign-In is not yet configured for production.");
+}
 
 export function Login() {
   const navigate = useNavigate();
   const { theme, setAuthUser, setTncAccepted } = usePreferences();
   const [loading, setLoading] = React.useState(false);
+  const [errorMsg, setErrorMsg] = React.useState<string | null>(null);
   const logoSrc = getBrandSrc(theme, "geon_logo");
   const quoteSrc = getBrandSrc(theme, "geon_quote");
 
   async function handleGoogleLogin() {
     if (loading) return;
     setLoading(true);
+    setErrorMsg(null);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 800));
-      setAuthUser({ userId: "mock-user-123", email: "user@example.com" });
-      setTncAccepted(false);
-      navigate("/terms?mode=onboarding", { replace: true });
-    } catch {
+      const result: AuthResult = ENV.useMock
+        ? await mockGoogleAuth()
+        : await productionGoogleAuth();
+
+      setAuthUser({ userId: result.userId, userEmail: result.email });
+
+      if (result.isNewUser) {
+        // New account → T&C agreement then registration
+        setTncAccepted(false);
+        navigate("/terms?mode=onboarding", { replace: true });
+      } else {
+        // Existing account → go straight to daily home
+        setTncAccepted(true);
+        navigate("/daily", { replace: true });
+      }
+    } catch (err) {
+      const message = err instanceof Error ? err.message : t("common.errorUnknownDetail");
+      setErrorMsg(message);
       setLoading(false);
     }
   }
@@ -46,6 +106,12 @@ export function Login() {
 
         {/* Action section — pinned to bottom */}
         <div className="revamp-loginActions">
+          {errorMsg && (
+            <p className="revamp-loginError" role="alert">{errorMsg}</p>
+          )}
+          {ENV.useMock && (
+            <p className="revamp-loginDevBadge">Dev mode — mock auth active</p>
+          )}
           <button
             type="button"
             className="revamp-googleButton"

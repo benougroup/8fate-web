@@ -131,7 +131,18 @@ function persistPreferences() {
     return;
   }
 
-  window.localStorage.setItem(STORAGE_KEY, JSON.stringify(currentPreferences));
+  // In production, only persist non-sensitive UI preferences (theme, locale, background).
+  // Auth tokens / user identity are managed server-side and must NOT be stored in
+  // localStorage in production to avoid XSS exposure.
+  // In development (mock mode) we persist everything for convenience.
+  const isDev = import.meta.env.MODE === "development";
+  if (isDev) {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(currentPreferences));
+  } else {
+    const { userId: _u, userEmail: _e, userName: _n, lastLoginProvider: _l, ...uiPrefs } =
+      currentPreferences;
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(uiPrefs));
+  }
 }
 
 function notify() {

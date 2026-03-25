@@ -1,4 +1,32 @@
+/**
+ * Home.tsx — Daily Fortune home screen (revamp_20260213)
+ *
+ * Layout order:
+ *  1. TopBar (user pill, notification, theme toggle)
+ *  2. Date header
+ *  3. Today's Phase row: [Energy Score badge] + [Day Pillar card] side-by-side
+ *  4. Section cards: Today | Luck & Avoid (flip) | Protection | Upcoming
+ *  5. Daily Fortune detail (from baziProvider):
+ *     - Summary & Advice
+ *     - Lucky Activity
+ *     - Lucky Colors (no duplicate)
+ *     - Do / Don't flip cards (Don't blurred for non-premium)
+ *     - Recommendations
+ *
+ * Flip card rules:
+ *  - Luck section: front = Lucky, back = Unlucky (avoid). Tap hint shown.
+ *  - Do/Don't: front = Do (Lucky), back = Don't (Unlucky). Don't is blurred for free users.
+ *
+ * Section headers:
+ *  - All use SectionTitleRow with zhNameKey + titleKey + ? help popup.
+ *  - All help icons are "?" (question_mark).
+ *
+ * Mock data:
+ *  - Only persisted in dev mode (ENV.isDev). See preferencesStore.
+ */
+
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 import { Page } from "../components/Page";
 import { PageCard } from "../components/PageCard";
 import { PageContent } from "../components/PageContent";
@@ -66,10 +94,14 @@ const SLOT_ICON: Record<HomeSectionSlot, IconKey> = {
   upcoming: "upcoming",
 };
 
+/**
+ * Section help popups — all use "?" icon.
+ * Chinese names shown before English titles via zhNameKey.
+ */
 const HOME_SECTION_HELP: Record<
   HomeSectionSlot,
   {
-    variant: "question" | "exclamation";
+    variant?: "question" | "exclamation";
     titleKey: string;
     bodyKey: string;
   }
@@ -85,7 +117,7 @@ const HOME_SECTION_HELP: Record<
     bodyKey: "home.help.luck.body",
   },
   protection: {
-    variant: "exclamation",
+    variant: "question",
     titleKey: "home.help.protection.title",
     bodyKey: "home.help.protection.body",
   },
@@ -94,6 +126,14 @@ const HOME_SECTION_HELP: Record<
     titleKey: "home.help.upcoming.title",
     bodyKey: "home.help.upcoming.body",
   },
+};
+
+/** Chinese name keys for each section */
+const SLOT_ZH_NAME: Record<HomeSectionSlot, string> = {
+  today: "home.sections.todayZh",
+  luck: "home.sections.luckZh",
+  protection: "home.sections.protectionZh",
+  upcoming: "home.sections.upcomingZh",
 };
 
 const PREVIEW_HOME_DATA: HomeData = {
@@ -170,6 +210,7 @@ const PREVIEW_AVOID_META: LuckPanelMeta = {
 };
 
 export function Home({ preview = false, forcedTheme }: HomeProps) {
+  const navigate = useNavigate();
   const { theme, locale } = usePreferences();
   const { profile, setProfile } = useProfile();
   const [loading, setLoading] = React.useState(true);
@@ -198,15 +239,14 @@ export function Home({ preview = false, forcedTheme }: HomeProps) {
         if (isMounted) {
           setData(response);
           setError(null);
-          
-          // Load daily fortune data
-          getDailyFortune().then((fortuneData) => {
-            if (isMounted) {
-              setDailyFortune(fortuneData);
-            }
-          }).catch((err) => {
-            console.error("Failed to load daily fortune:", err);
-          });
+
+          getDailyFortune()
+            .then((fortuneData) => {
+              if (isMounted) setDailyFortune(fortuneData);
+            })
+            .catch((err) => {
+              console.error("Failed to load daily fortune:", err);
+            });
         }
       } catch (caught) {
         if (isMounted) {
@@ -214,9 +254,7 @@ export function Home({ preview = false, forcedTheme }: HomeProps) {
           setError(toUserErrorMessage(caught));
         }
       } finally {
-        if (isMounted) {
-          setLoading(false);
-        }
+        if (isMounted) setLoading(false);
       }
     }
 
@@ -229,26 +267,54 @@ export function Home({ preview = false, forcedTheme }: HomeProps) {
   }, [preview, reloadNonce]);
 
   React.useEffect(() => {
-    if (!forcedTheme) {
-      return;
-    }
-
+    if (!forcedTheme) return;
     setTheme(forcedTheme);
   }, [forcedTheme]);
 
   const previewName = t("home.user.previewName");
 
   React.useEffect(() => {
-    if (!preview || hasSeededProfile.current) {
-      return;
-    }
-
-    if (!profile.name.trim()) {
-      setProfile({ name: previewName });
-    }
-
+    if (!preview || hasSeededProfile.current) return;
+    if (!profile.name.trim()) setProfile({ name: previewName });
     hasSeededProfile.current = true;
   }, [preview, previewName, profile.name, setProfile]);
+
+  // Hydrate profile from API (non-preview only)
+  React.useEffect(() => {
+    if (preview) return;
+    let isMounted = true;
+
+    async function hydrateProfile() {
+      try {
+        const response = await getMeApi();
+        const { profile: apiProfile } = response;
+        if (!isMounted) return;
+        const updates: Partial<{
+          name: string;
+          dateOfBirthISO: string;
+          placeOfBirth: string;
+          livingCountry: string;
+          level: string;
+        }> = {};
+        if (!profile.name.trim() && apiProfile.name) updates.name = apiProfile.name;
+        if (!profile.dateOfBirthISO && apiProfile.dateOfBirthISO)
+          updates.dateOfBirthISO = apiProfile.dateOfBirthISO;
+        if (!profile.placeOfBirth && apiProfile.placeOfBirth)
+          updates.placeOfBirth = apiProfile.placeOfBirth;
+        if (!profile.livingCountry && apiProfile.livingCountry)
+          updates.livingCountry = apiProfile.livingCountry;
+        if (!profile.level && apiProfile.level) updates.level = apiProfile.level;
+        if (Object.keys(updates).length > 0) setProfile(updates);
+      } catch (caught) {
+        console.warn("profile.hydration failed:", toUserErrorMessage(caught));
+      }
+    }
+
+    hydrateProfile();
+    return () => {
+      isMounted = false;
+    };
+  }, [preview, setProfile]);
 
   const isPremium = profile.level === "advanced";
   const displayName = profile.name.trim() || t("home.user.guest");
@@ -265,22 +331,24 @@ export function Home({ preview = false, forcedTheme }: HomeProps) {
   const dashboardLabel = preview
     ? t("home.cta.backToDashboard")
     : t("home.cta.returnToDashboard");
+
   const sectionConfigs = HOME_SECTION_SLOTS.map((slot) => ({
     key: slot,
     iconKey: slot === "luck" ? "avoid" : SLOT_ICON[slot],
     secondaryIconKey: slot === "luck" ? "luck" : undefined,
     labelKey: `home.sections.${slot}`,
+    zhNameKey: SLOT_ZH_NAME[slot],
     help: HOME_SECTION_HELP[slot],
   })) satisfies Array<{
     key: HomeSectionSlot;
     iconKey: IconKey;
     secondaryIconKey?: IconKey;
     labelKey: string;
+    zhNameKey: string;
     help: (typeof HOME_SECTION_HELP)[HomeSectionSlot];
   }>;
-  const dailyMeta = preview
-    ? PREVIEW_DAILY_META
-    : data?.dailyMeta ?? PREVIEW_DAILY_META;
+
+  const dailyMeta = preview ? PREVIEW_DAILY_META : data?.dailyMeta ?? PREVIEW_DAILY_META;
   const protectionPhrase = preview
     ? PREVIEW_PROTECTION_PHRASE
     : data?.protectionPhrase ?? PREVIEW_PROTECTION_PHRASE;
@@ -291,48 +359,75 @@ export function Home({ preview = false, forcedTheme }: HomeProps) {
   const avoidMeta = preview ? PREVIEW_AVOID_META : data?.avoidMeta ?? PREVIEW_AVOID_META;
   const hasUnreadNotifications = false;
 
-  React.useEffect(() => {
-    if (preview) {
-      return;
-    }
+  // ── Luck/Avoid flip card ──────────────────────────────────────────────────
+  // Front = Lucky (吉), Back = Unlucky/Avoid (凶)
+  const luckFlipFront = (
+    <div className="revamp-cardFlipPanel glass-card">
+      <div className="revamp-cardFlipTitle">{t("bazi.daily.luckyLabel")}</div>
+      <LuckAvoidMeta meta={luckMeta} variant="luck" />
+    </div>
+  );
+  const luckFlipBack = (
+    <div className="revamp-cardFlipPanel glass-card">
+      <div className="revamp-cardFlipTitle">{t("bazi.daily.unluckyLabel")}</div>
+      <LuckAvoidMeta meta={avoidMeta} variant="avoid" />
+    </div>
+  );
 
-    let isMounted = true;
+  // ── Do / Don't flip card ─────────────────────────────────────────────────
+  // Front = Do (Lucky), Back = Don't (Unlucky) — Don't blurred for free users
+  const doPanel = (
+    <div className="revamp-doDontPanel revamp-doDontPanel--do">
+      <div className="revamp-doDontTitle revamp-doDontTitle--do">
+        {t("bazi.daily.doListTitle")}
+      </div>
+      <ul className="revamp-doDontList">
+        {(dailyFortune?.doList ?? ["Start new projects", "Network with colleagues"]).map(
+          (item: string, i: number) => (
+            <li key={i}>{item}</li>
+          )
+        )}
+      </ul>
+    </div>
+  );
 
-    async function hydrateProfile() {
-      try {
-        const response = await getMeApi();
-        const { profile: apiProfile } = response;
-        if (!isMounted) {
-          return;
-        }
-        // Only update fields that are not already set locally.
-        // This prevents the mock API from overwriting data the user just registered.
-        const updates: Partial<{
-          name: string;
-          dateOfBirthISO: string;
-          placeOfBirth: string;
-          livingCountry: string;
-          level: string;
-        }> = {};
-        if (!profile.name.trim() && apiProfile.name) updates.name = apiProfile.name;
-        if (!profile.dateOfBirthISO && apiProfile.dateOfBirthISO) updates.dateOfBirthISO = apiProfile.dateOfBirthISO;
-        if (!profile.placeOfBirth && apiProfile.placeOfBirth) updates.placeOfBirth = apiProfile.placeOfBirth;
-        if (!profile.livingCountry && apiProfile.livingCountry) updates.livingCountry = apiProfile.livingCountry;
-        if (!profile.level && apiProfile.level) updates.level = apiProfile.level;
-        if (Object.keys(updates).length > 0) {
-          setProfile(updates);
-        }
-      } catch (caught) {
-        console.warn("profile.hydration failed:", toUserErrorMessage(caught));
-      }
-    }
-
-    hydrateProfile();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [preview, setProfile]);
+  const dontPanel = (
+    <div
+      className={[
+        "revamp-doDontPanel revamp-doDontPanel--dont",
+        !isPremium ? "revamp-doDontPanel--locked" : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
+      <div className="revamp-doDontTitle revamp-doDontTitle--dont">
+        {t("bazi.daily.dontListTitle")}
+      </div>
+      <ul className="revamp-doDontList">
+        {(dailyFortune?.dontList ?? ["Avoid conflicts", "Postpone major purchases"]).map(
+          (item: string, i: number) => (
+            <li key={i}>{item}</li>
+          )
+        )}
+      </ul>
+      {!isPremium && (
+        <div
+          className="revamp-doDontLockedOverlay"
+          role="button"
+          tabIndex={0}
+          onClick={() => navigate("/premium")}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") navigate("/premium");
+          }}
+        >
+          <span style={{ fontSize: "20px" }}>🔒</span>
+          <span className="revamp-doDontLockedLabel">
+            {t("bazi.daily.unlockDont")}
+          </span>
+        </div>
+      )}
+    </div>
+  );
 
   return (
     <Page>
@@ -367,6 +462,51 @@ export function Home({ preview = false, forcedTheme }: HomeProps) {
             <Text className="revamp-homeDate">
               {t("home.header.dateLabel", { date: formattedDate })}
             </Text>
+
+            {/* ── Today's Phase: Energy Score + Day Pillar side-by-side ── */}
+            {dailyFortune && (
+              <PageSection
+                title={
+                  <SectionTitleRow
+                    titleKey="bazi.daily.todayPhase"
+                    zhNameKey="bazi.daily.todayPillar"
+                    help={{
+                      titleKey: "home.help.today.title",
+                      bodyKey: "home.help.today.body",
+                    }}
+                  />
+                }
+                gap="sm"
+              >
+                <div className="revamp-dailyPhaseRow">
+                  {/* Energy Score badge */}
+                  {dailyFortune.energyScore !== undefined && (
+                    <div className="revamp-dailyEnergyBadge">
+                      <span className="revamp-dailyEnergyLabel">
+                        {t("bazi.daily.energyScore")}
+                      </span>
+                      <span className="revamp-dailyEnergyValue">
+                        {dailyFortune.energyScore.toFixed(1)}/10
+                      </span>
+                    </div>
+                  )}
+                  {/* Day Pillar card (horizontal, compact) */}
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <BaziPillarCard
+                      pillarName={t("bazi.chart.dayPillar")}
+                      stem={dailyFortune.dayPillar.stem}
+                      stemEn={dailyFortune.dayPillar.stemEn}
+                      branch={dailyFortune.dayPillar.branch}
+                      branchEn={dailyFortune.dayPillar.branchEn}
+                      element={dailyFortune.dayPillar.element}
+                      tenGod={dailyFortune.dayPillar.tenGod}
+                    />
+                  </div>
+                </div>
+              </PageSection>
+            )}
+
+            {/* ── Section cards ── */}
             {sectionConfigs.map((section) => {
               const emptyCard = (
                 <div className="revamp-sectionCard revamp-homeCard glass-card">
@@ -399,26 +539,18 @@ export function Home({ preview = false, forcedTheme }: HomeProps) {
                   {content}
                 </div>
               );
-              const flipFront = (
-                <div className="revamp-cardFlipPanel glass-card">
-                  <LuckAvoidMeta meta={luckMeta} variant="luck" />
-                </div>
-              );
-              const flipBack = (
-                <div className="revamp-cardFlipPanel glass-card">
-                  <LuckAvoidMeta meta={avoidMeta} variant="avoid" />
-                </div>
-              );
+
               const sectionBody = loading
                 ? loadingCard
                 : error
                 ? errorCard
                 : section.key === "luck"
                 ? (
+                    // Luck & Avoid flip card — front=Lucky, back=Unlucky
                     <CardFlip
                       className="revamp-homeCard"
-                      front={flipFront}
-                      back={flipBack}
+                      front={luckFlipFront}
+                      back={luckFlipBack}
                       ariaLabel={t("home.card.flipLabel", {
                         section: sectionLabel,
                       })}
@@ -440,6 +572,7 @@ export function Home({ preview = false, forcedTheme }: HomeProps) {
                       iconKey={section.iconKey}
                       secondaryIconKey={section.secondaryIconKey}
                       titleKey={section.labelKey}
+                      zhNameKey={section.zhNameKey}
                       help={section.help}
                     />
                   }
@@ -450,63 +583,25 @@ export function Home({ preview = false, forcedTheme }: HomeProps) {
               );
             })}
 
-            {/* Bazi Daily Fortune Section */}
-            {dailyFortune && dailyFortune.energyScore !== undefined && (
+            {/* ── Daily Fortune detail ── */}
+            {dailyFortune && (
               <>
-                {/* Energy Score Badge */}
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: "var(--space-sm)",
-                    padding: "var(--space-sm) var(--space-md)",
-                    background: "var(--c-accent-subtle)",
-                    borderRadius: "var(--radius-full)",
-                    width: "fit-content",
-                    margin: "var(--space-lg) auto 0",
-                  }}
-                >
-                  <Text style={{ fontSize: "var(--fs-sm)", fontWeight: 600 }}>
-                    {t("bazi.daily.energyScore")}:
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: "var(--fs-lg)",
-                      fontWeight: 700,
-                      color: "var(--c-accent)",
-                    }}
-                  >
-                    {dailyFortune.energyScore.toFixed(1)}/10
-                  </Text>
-                </div>
-
-                {/* Today's Pillar */}
-                <PageSection
-                  title={t("bazi.daily.todayPillar")}
-                  gap="sm"
-                >
-                  <BaziPillarCard
-                    pillarName={t("bazi.chart.dayPillar")}
-                    stem={dailyFortune.dayPillar.stem}
-                    stemEn={dailyFortune.dayPillar.stemEn}
-                    branch={dailyFortune.dayPillar.branch}
-                    branchEn={dailyFortune.dayPillar.branchEn}
-                    element={dailyFortune.dayPillar.element}
-                    tenGod={dailyFortune.dayPillar.tenGod}
-                  />
-                </PageSection>
-
                 {/* Summary & Advice */}
                 <PageSection
-                  title={t("bazi.daily.summary")}
+                  title={
+                    <SectionTitleRow
+                      titleKey="bazi.daily.summary"
+                      help={{
+                        titleKey: "home.help.today.title",
+                        bodyKey: "home.help.today.body",
+                      }}
+                    />
+                  }
                   gap="sm"
                 >
                   <Card>
                     <Stack gap="md">
-                      <Text style={{ fontWeight: 600 }}>
-                        {dailyFortune.summary}
-                      </Text>
+                      <Text style={{ fontWeight: 600 }}>{dailyFortune.summary}</Text>
                       <Text muted>{dailyFortune.advice}</Text>
                     </Stack>
                   </Card>
@@ -514,7 +609,15 @@ export function Home({ preview = false, forcedTheme }: HomeProps) {
 
                 {/* Lucky Activity */}
                 <PageSection
-                  title={t("bazi.daily.luckyActivity")}
+                  title={
+                    <SectionTitleRow
+                      titleKey="bazi.daily.luckyActivity"
+                      help={{
+                        titleKey: "home.help.luck.title",
+                        bodyKey: "home.help.luck.body",
+                      }}
+                    />
+                  }
                   gap="sm"
                 >
                   <Card>
@@ -522,137 +625,110 @@ export function Home({ preview = false, forcedTheme }: HomeProps) {
                   </Card>
                 </PageSection>
 
-                {/* Lucky Colors */}
-                <PageSection
-                  title={t("bazi.daily.luckyColors")}
-                  gap="sm"
-                >
-                  <div
-                    style={{
-                      display: "flex",
-                      gap: "var(--space-md)",
-                      flexWrap: "wrap",
-                    }}
-                  >
-                    {dailyFortune.luckyColors?.map((color: string) => (
-                      <div
-                        key={color}
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "var(--space-sm)",
-                          padding: "var(--space-sm) var(--space-md)",
-                          background: "var(--c-card)",
-                          borderRadius: "var(--radius-md)",
+                {/* Lucky Colors — shown once, no duplicate */}
+                {dailyFortune.luckyColors?.length > 0 && (
+                  <PageSection
+                    title={
+                      <SectionTitleRow
+                        titleKey="bazi.daily.luckyColors"
+                        help={{
+                          titleKey: "home.help.luck.title",
+                          bodyKey: "home.help.luck.body",
                         }}
-                      >
+                      />
+                    }
+                    gap="sm"
+                  >
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: "var(--space-md, 12px)",
+                        flexWrap: "wrap",
+                      }}
+                    >
+                      {dailyFortune.luckyColors.map((color: string) => (
                         <div
+                          key={color}
                           style={{
-                            width: "24px",
-                            height: "24px",
-                            borderRadius: "50%",
-                            backgroundColor: color,
-                            border: "2px solid var(--c-border)",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "var(--space-sm, 6px)",
+                            padding: "6px 12px",
+                            background: "var(--c-card)",
+                            borderRadius: "var(--r-md)",
                           }}
-                        />
-                        <Text>{color}</Text>
-                      </div>
-                    ))}
-                  </div>
-                </PageSection>
+                        >
+                          <div
+                            style={{
+                              width: "20px",
+                              height: "20px",
+                              borderRadius: "50%",
+                              backgroundColor: color.toLowerCase().startsWith("#")
+                                ? color
+                                : color,
+                              border: "2px solid var(--c-border)",
+                              flexShrink: 0,
+                            }}
+                          />
+                          <Text>{color}</Text>
+                        </div>
+                      ))}
+                    </div>
+                  </PageSection>
+                )}
 
-                {/* Do's and Don'ts */}
+                {/* Do / Don't — side by side, Don't blurred for free users */}
                 <PageSection
-                  title={t("bazi.daily.dosAndDonts")}
+                  title={
+                    <SectionTitleRow
+                      titleKey="bazi.daily.dosAndDonts"
+                      zhNameKey="bazi.daily.doListTitle"
+                      help={{
+                        titleKey: "home.help.luck.title",
+                        bodyKey: "home.help.luck.body",
+                      }}
+                    />
+                  }
                   gap="sm"
                 >
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "1fr 1fr",
-                      gap: "var(--space-md)",
-                    }}
-                  >
-                    {/* Do's */}
-                    <Card>
-                      <Stack gap="sm">
-                        <Text
-                          style={{
-                            fontWeight: 600,
-                            color: "var(--c-success)",
-                          }}
-                        >
-                          {t("bazi.daily.doList")}
-                        </Text>
-                        <ul
-                          style={{
-                            margin: 0,
-                            paddingLeft: "var(--space-md)",
-                          }}
-                        >
-                          {dailyFortune.doList?.map((item: string, i: number) => (
-                            <li key={i}>
-                              <Text style={{ fontSize: "var(--fs-sm)" }}>
-                                {item}
-                              </Text>
-                            </li>
-                          ))}
-                        </ul>
-                      </Stack>
-                    </Card>
-
-                    {/* Don'ts */}
-                    <Card>
-                      <Stack gap="sm">
-                        <Text
-                          style={{
-                            fontWeight: 600,
-                            color: "var(--c-error)",
-                          }}
-                        >
-                          {t("bazi.daily.dontList")}
-                        </Text>
-                        <ul
-                          style={{
-                            margin: 0,
-                            paddingLeft: "var(--space-md)",
-                          }}
-                        >
-                          {dailyFortune.dontList?.map((item: string, i: number) => (
-                            <li key={i}>
-                              <Text style={{ fontSize: "var(--fs-sm)" }}>
-                                {item}
-                              </Text>
-                            </li>
-                          ))}
-                        </ul>
-                      </Stack>
-                    </Card>
+                  <div className="revamp-doDontFlipGrid">
+                    {doPanel}
+                    {dontPanel}
                   </div>
                 </PageSection>
 
                 {/* Recommendations */}
-                <PageSection
-                  title={t("bazi.daily.recommendations")}
-                  gap="sm"
-                >
-                  <Card>
-                    <ul
-                      style={{
-                        margin: 0,
-                        paddingLeft: "var(--space-md)",
-                      }}
-                    >
-                      {dailyFortune.recommendations?.map(
-                        (item: string, i: number) => (
-                          <li key={i}>
-                            <Text>{item}</Text>
-                          </li>
-                        )
-                      )}
-                    </ul>
-                  </Card>
-                </PageSection>
+                {dailyFortune.recommendations?.length > 0 && (
+                  <PageSection
+                    title={
+                      <SectionTitleRow
+                        titleKey="bazi.daily.recommendations"
+                        help={{
+                          titleKey: "home.help.upcoming.title",
+                          bodyKey: "home.help.upcoming.body",
+                        }}
+                      />
+                    }
+                    gap="sm"
+                  >
+                    <Card>
+                      <ul
+                        style={{
+                          margin: 0,
+                          paddingLeft: "var(--space-md, 16px)",
+                        }}
+                      >
+                        {dailyFortune.recommendations.map(
+                          (item: string, i: number) => (
+                            <li key={i}>
+                              <Text>{item}</Text>
+                            </li>
+                          )
+                        )}
+                      </ul>
+                    </Card>
+                  </PageSection>
+                )}
               </>
             )}
 

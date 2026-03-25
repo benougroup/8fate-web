@@ -48,7 +48,11 @@
       "luckAvoid": "幸運 / 避免",
       "avoid": "避免",
       "protection": "保護",
-      "upcoming": "即將到來"
+      "upcoming": "即將到來",
+      "todayZh": "今日",
+      "luckZh": "吉凶",
+      "protectionZh": "護身",
+      "upcomingZh": "預覽"
     },
     "section": {
       "today": "今日",
@@ -530,27 +534,44 @@
       "dawn": {
         "title": "05:00 - 07:00 · 清晨",
         "body": "溫和而穩定的能量，步調沉穩。",
-        "tags": ["沉穩", "耐心"]
+        "tags": [
+          "沉穩",
+          "耐心"
+        ]
       },
       "midday": {
         "title": "11:00 - 13:00 · 正午",
         "body": "明亮而外向的能量，方向清晰。",
-        "tags": ["樂觀", "表達", "專注"]
+        "tags": [
+          "樂觀",
+          "表達",
+          "專注"
+        ]
       },
       "dusk": {
         "title": "17:00 - 19:00 · 黃昏",
         "body": "平衡的動能，思考周全。",
-        "tags": ["平衡", "觀察"]
+        "tags": [
+          "平衡",
+          "觀察"
+        ]
       },
       "night": {
         "title": "21:00 - 23:00 · 夜晚",
         "body": "安靜直覺與深層創意。",
-        "tags": ["直覺", "創意"]
+        "tags": [
+          "直覺",
+          "創意"
+        ]
       },
       "midnight": {
         "title": "23:00 - 01:00 · 午夜",
         "body": "轉化與願景能量，內在驅動強烈。",
-        "tags": ["願景", "獨立", "韌性"]
+        "tags": [
+          "願景",
+          "獨立",
+          "韌性"
+        ]
       }
     },
     "range": {
@@ -736,7 +757,13 @@
       "favorableDirections": "有利方位",
       "doList": "宜",
       "dontList": "忌",
-      "recommendations": "推薦"
+      "recommendations": "推薦",
+      "todayPhase": "今日節氣",
+      "doListTitle": "宜（吉）",
+      "dontListTitle": "忌（凶）",
+      "unlockDont": "升級至高級版以查看忌諱事項",
+      "luckyLabel": "吉",
+      "unluckyLabel": "凶"
     },
     "luckPillars": {
       "title": "大運",

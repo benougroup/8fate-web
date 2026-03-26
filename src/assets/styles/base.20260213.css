@@ -112,6 +112,8 @@ a:hover {
   overflow-y: auto;
   position: relative;
   z-index: 1;
+  /* Ensure content scrolls above the floating nav */
+  padding-bottom: max(calc(env(safe-area-inset-bottom, 0px) + 96px), 96px);
 }
 
 @media (min-width: 600px) {
@@ -143,6 +145,7 @@ a:hover {
   padding: var(--s-6);
   width: 100%;
   position: relative;
+  box-sizing: border-box;
 }
 
 .revamp-card.revamp-container--full {
@@ -1906,6 +1909,19 @@ button.revamp-linkPill {
   outline-offset: 2px;
 }
 
+.revamp-radialItem.is-active {
+  background: var(--c-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--c-accent), transparent 70%);
+}
+
+.revamp-radialItem.is-active .revamp-radialItemLabel {
+  color: #fff;
+}
+
+.revamp-radialItem.is-active .revamp-radialItemIcon {
+  filter: brightness(0) invert(1);
+}
+
 .revamp-radialItem:disabled {
   opacity: 0.55;
   cursor: default;
@@ -2374,7 +2390,9 @@ button.revamp-railItem {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: rgba(12, 12, 12, 0.35);
+  background: rgba(8, 8, 8, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -3137,140 +3155,7 @@ button.revamp-railItem {
   max-width: 400px;
 }
 
-/* Chat Screen */
-.revamp-chatLayout {
-  display: flex;
-  flex-direction: column;
-  height: calc(100dvh - 120px);
-  min-height: 0;
-  gap: var(--s-3);
-  padding: var(--s-3) var(--s-4) max(var(--s-3), env(safe-area-inset-bottom));
-}
-
-.revamp-chatHistory {
-  flex: 1;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-3);
-  padding: var(--s-4);
-  border-radius: var(--r-md);
-  background: rgba(255, 255, 255, 0.02);
-}
-
-.revamp-chatBubble {
-  max-width: 80%;
-  padding: var(--s-3) var(--s-4);
-  border-radius: var(--r-md);
-  font-size: var(--fs-sm);
-  line-height: 1.5;
-}
-
-.revamp-chatBubble--user {
-  align-self: flex-end;
-  background: var(--c-accent);
-  color: #0b0c2a;
-  font-weight: 600;
-  border-bottom-right-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-}
-
-.revamp-chatBubble--assistant {
-  align-self: flex-start;
-  background: var(--c-surface-solid);
-  color: var(--c-ink);
-  border: 1px solid var(--c-glass-border);
-  border-bottom-left-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-.revamp-chatComposer {
-  display: flex;
-  gap: var(--s-3);
-  padding: var(--s-4);
-  border-radius: var(--r-md);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--c-glass-border);
-}
-
-.revamp-chatInput {
-  flex: 1;
-  border: none;
-  background: transparent;
-  color: var(--c-text);
-  font-size: 16px;
-  outline: none;
-}
-
-.revamp-chatInput::placeholder {
-  color: var(--c-text-muted);
-}
-
-.revamp-chatSend {
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.revamp-chatSuggestedQuestions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s-2);
-  padding: var(--s-3);
-}
-
-.revamp-chatSuggestedQuestion {
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--c-glass-border);
-  font-size: var(--fs-sm);
-  color: var(--c-text);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.revamp-chatSuggestedQuestion:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: var(--c-accent);
-}
-
-.revamp-chatLimitBanner {
-  padding: var(--s-3);
-  border-radius: var(--r-md);
-  background: rgba(201, 164, 76, 0.1);
-  border: 1px solid rgba(201, 164, 76, 0.3);
-  font-size: var(--fs-sm);
-  color: var(--c-yellow);
-  text-align: center;
-}
-
-.revamp-chatUpgradeBanner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--s-3);
-  padding: var(--s-5);
-  border-radius: var(--r-lg);
-  background: rgba(63, 93, 115, 0.1);
-  border: 1px solid var(--c-accent);
-  text-align: center;
-}
-
-.revamp-chatUpgradeBannerTitle {
-  font-size: var(--fs-lg);
-  font-weight: 700;
-  color: var(--c-ink);
-}
-
-.revamp-chatUpgradeBannerMessage {
-  font-size: var(--fs-sm);
-  color: var(--c-text-muted);
-}
+/* Chat Screen — old definitions removed; see CHAT LAYOUT FIX section below */
 
 /* Locked Overlay */
 .revamp-lockedOverlay {
@@ -3929,9 +3814,21 @@ button.revamp-railItem {
   padding: var(--s-4) var(--s-4) calc(var(--s-8) + 72px);
 }
 
-/* ChatPage variant: overflow hidden so chat layout controls scrolling */
+/* ChatPage variant: fills full viewport height, no scroll on the card itself */
 .revamp-chatPage {
   overflow: hidden !important;
+  /* Remove bottom padding so chat fills to the bottom of the viewport */
+  padding-bottom: 0 !important;
+  /* Ensure the card fills the full height of the page container */
+  height: 100% !important;
+  min-height: 0 !important;
+  flex: 1 !important;
+}
+
+/* When chat page is active, prevent the page from scrolling */
+.revamp-page:has(.revamp-chatPage) {
+  overflow: hidden !important;
+  padding-bottom: 0 !important;
 }
 
 /* Page height fix: ensure Page fills full viewport height */
@@ -4002,6 +3899,31 @@ button.revamp-railItem {
   align-items: center;
   gap: var(--s-2);
   flex-shrink: 0;
+}
+
+.revamp-innerTopBarBackBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px 4px 0;
+  display: inline-flex;
+  align-items: center;
+  color: var(--c-ink);
+  font-size: var(--fs-xl);
+  line-height: 1;
+  flex-shrink: 0;
+  opacity: 0.8;
+  transition: opacity 0.15s;
+}
+.revamp-innerTopBarBackBtn:hover {
+  opacity: 1;
+}
+
+.revamp-innerTopBarIconLabel {
+  font-size: var(--fs-xs);
+  color: var(--c-text-muted);
+  font-weight: 500;
+  margin-bottom: 1px;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -4527,3 +4449,41 @@ button.revamp-railItem {
   background: rgba(0,0,0,0.08); border-radius: var(--r-lg); cursor: pointer;
 }
 .revamp-doDontLockedLabel { font-size: 11px; font-weight: 600; color: var(--c-accent); text-align: center; padding: 0 12px; }
+
+/* ============================================================
+   DEV MODE LOGIN PANEL
+   ============================================================ */
+.revamp-loginDevPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  background: rgba(255,200,0,0.07);
+  border: 1px dashed rgba(255,200,0,0.5);
+  border-radius: var(--r-md);
+  margin-bottom: 4px;
+}
+.revamp-loginDevBtn {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: var(--r-md);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.2s;
+}
+.revamp-loginDevBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.revamp-loginDevBtn--existing {
+  background: var(--c-accent, #7c3aed);
+  color: #fff;
+}
+.revamp-loginDevBtn--new {
+  background: rgba(124,58,237,0.12);
+  color: var(--c-accent, #7c3aed);
+  border: 1px solid rgba(124,58,237,0.3);
+}

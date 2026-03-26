@@ -704,14 +704,29 @@
     }
   },
   "monthly": {
+    "luckTrend": {
+      "title": "Luck Trend",
+      "help": {
+        "title": "Luck Trend",
+        "body": "The luck trend chart shows how your fortune score changes month by month. Tap any month to see the score and a brief reading for that period."
+      }
+    },
     "header": {
       "subtitle": "Day Master {dayMaster} · {interaction}"
     },
     "overview": {
-      "title": "Monthly overview"
+      "title": "Monthly overview",
+      "help": {
+        "title": "Monthly Overview",
+        "body": "A summary of the month's energy and how it interacts with your personal BaZi chart. This gives you the overall theme and tone for the month ahead."
+      }
     },
     "luckAvoid": {
-      "title": "Luck & avoid"
+      "title": "Luck & avoid",
+      "help": {
+        "title": "Luck & Avoid",
+        "body": "A summary of the activities, directions, and choices most aligned with this month's energy (Luck) and those best avoided (Avoid)."
+      }
     },
     "luck": {
       "title": "Luck"
@@ -721,6 +736,10 @@
     },
     "fortune": {
       "title": "Fortune hints",
+      "help": {
+        "title": "Fortune Hints",
+        "body": "Practical guidance for the month: your lucky colour, lucky number, and the active and weak elements. Use these to align your choices with the month's energy."
+      },
       "luckyColor": "Lucky color",
       "luckyNumber": "Lucky number",
       "activeElement": "Active element",
@@ -729,7 +748,11 @@
     "domains": {
       "title": "Life domains",
       "locked": "Premium required to reveal this insight.",
-      "unlockCta": "Unlock premium"
+      "unlockCta": "Unlock premium",
+      "help": {
+        "title": "Life Domains",
+        "body": "The six life domains — Career, Wealth, Relationship, Health, Study, and Family — each receive a different level of activation from the month's energy. Premium unlocks the full analysis."
+      }
     },
     "domain": {
       "work": "Work",
@@ -741,11 +764,19 @@
       "talent": "Talent"
     },
     "interaction": {
-      "title": "Day Master × Month interaction"
+      "title": "Day Master × Month interaction",
+      "help": {
+        "title": "Day Master × Month",
+        "body": "This section shows how your Day Master element interacts with the current month's Heavenly Stem and Earthly Branch. The interaction type (e.g. producing, controlling) shapes the month's dominant themes."
+      }
     },
     "protection": {
       "title": "Protection",
-      "focusLabel": "Focus"
+      "focusLabel": "Focus",
+      "help": {
+        "title": "Protection",
+        "body": "A personalised strategy to protect your energy and mitigate challenging influences this month. Based on your Day Master and the month's elemental interactions."
+      }
     },
     "upcoming": {
       "title": "Upcoming",
@@ -871,7 +902,8 @@
       "subtitle": "10-Year Fortune Cycles",
       "currentPeriod": "Current Period",
       "age": "Age {start}-{end}",
-      "analysis": "Analysis"
+      "analysis": "Analysis",
+      "timeline": "Luck Pillar Timeline"
     },
     "forecast": {
       "title": "Yearly Forecast",
@@ -931,6 +963,16 @@
     "protection": "Protection Strategy",
     "monthlyPredictions": "Monthly Predictions",
     "luckPillarContext": "Luck Pillar Context",
+    "summary": "Year at a Glance",
+    "periods": "Year in Three Phases",
+    "periodBeginning": "Beginning",
+    "periodMiddle": "Middle",
+    "periodEnd": "End",
+    "favorable": "Favourable",
+    "unfavorable": "Unfavourable",
+    "critical": "Critical",
+    "luckAvoid": "Luck & Avoid",
+    "specialStars": "Special Stars",
     "zodiacPosition": {
       "head": "Head of Year",
       "middle": "Middle of Year",
@@ -970,9 +1012,9 @@
     "dayMaster": "Your Day Master is the Heavenly Stem of your Day Pillar. It represents your core self — your personality, strengths, and the lens through which you experience life. Everything in your chart is interpreted relative to your Day Master.",
     "fourPillars": "The Four Pillars (Year, Month, Day, Hour) are the foundation of your Bazi chart. Each pillar contains a Heavenly Stem and Earthly Branch, encoding the energy of the moment you were born. Together they reveal your destiny blueprint.",
     "elementBalance": "The Five Elements — Wood, Fire, Earth, Metal, Water — are the building blocks of Bazi. Your chart's element distribution shows which energies are strong or weak in your life, guiding what to cultivate and what to balance.",
-    "luckPillars": "Luck Pillars are 10-year cycles that activate different parts of your Bazi chart. Each pillar brings a new Heavenly Stem and Earthly Branch that interacts with your birth chart, shaping the dominant themes of that decade.",
+    "luckPillars": { "title": "Luck Pillars", "body": "Luck Pillars are 10-year cycles that activate different parts of your Bazi chart. Each pillar brings a new Heavenly Stem and Earthly Branch that interacts with your birth chart, shaping the dominant themes of that decade." },
     "currentLuckPillar": "Your current Luck Pillar is the 10-year cycle you are living through right now. The Heavenly Stem acts on your upper chart (mind, career, relationships) while the Earthly Branch acts on your lower chart (body, resources, foundations).",
-    "tenGods": "The Ten Gods describe how each element in your chart relates to your Day Master. They reveal roles and themes: wealth, power, creativity, support, and competition. Each god has a positive and a challenging expression.",
+    "tenGods": { "title": "Ten Gods", "body": "The Ten Gods describe how each element in your chart relates to your Day Master. They reveal roles and themes: wealth, power, creativity, support, and competition. Each god has a positive and a challenging expression." },
     "tenGod_friend": "Friend (比肩): Same element, same polarity as your Day Master. Represents peers, siblings, and competition. Brings solidarity and rivalry.",
     "tenGod_robWealth": "Rob Wealth (劫財): Same element, opposite polarity. Represents rivals who take what is yours. Can also bring bold, decisive energy.",
     "tenGod_eatingGod": "Eating God (食神): The element your Day Master produces, same polarity. Represents creativity, enjoyment, talent, and nurturing. A positive star.",
@@ -983,7 +1025,6 @@
     "tenGod_sevenKillings": "Seven Killings (七殺): The element that controls your Day Master, same polarity. Represents pressure, power, and transformation. Can be a star of great achievement or great challenge.",
     "tenGod_directResource": "Direct Resource (正印): The element that produces your Day Master, opposite polarity. Represents support, learning, and the mother figure. A nurturing star.",
     "tenGod_indirectResource": "Indirect Resource (偏印): The element that produces your Day Master, same polarity. Represents unconventional knowledge, intuition, and independence.",
-    "zodiacReading": "Your Chinese Zodiac animal is determined by your birth year. In Bazi, the year pillar governs your social circle, reputation, and early life. The zodiac animal interacts with the current year's energy to reveal opportunities and challenges.",
     "zodiacPosition": "The zodiac year is divided into three phases — Head (months 1–4), Middle (months 5–8), and Tail (months 9–12). Your birth month determines which phase you belong to, influencing how you experience the energy of your zodiac year.",
     "firstHalfLuck": "The first half of the year (roughly January to June) is governed by the Heavenly Stem of the annual pillar. This period tends to affect your mind, career, and outward actions.",
     "secondHalfLuck": "The second half of the year (roughly July to December) is governed by the Earthly Branch of the annual pillar. This period tends to affect your body, relationships, and inner resources.",
@@ -996,6 +1037,17 @@
     "activityRecommendation": "Based on today's energy, certain types of activity are more aligned with the day's flow. Outdoor activities, travel, or staying home each carry different energy costs and benefits. (add: full activity recommendation explanation)",
     "yinYang": "Yin and Yang are the two fundamental polarities in Chinese metaphysics. Your Day Master is either Yin or Yang, which shapes how you express your element's energy — Yin is receptive and internal, Yang is expressive and outward.",
     "compatibility": "Bazi compatibility examines how two people's charts interact. It looks at element clashes, combinations, and the Ten God relationships between Day Masters to reveal the dynamics of a relationship.",
-    "luckPillarGod": "The dominant Ten God in your current Luck Pillar shapes the overarching theme of this 10-year period. For example, a Direct Officer pillar brings structure and authority themes; a Seven Killings pillar brings pressure and transformation."
+    "luckPillarGod": "The dominant Ten God in your current Luck Pillar shapes the overarching theme of this 10-year period. For example, a Direct Officer pillar brings structure and authority themes; a Seven Killings pillar brings pressure and transformation.",
+    "yearlySummary": { "title": "Year at a Glance", "body": "A high-level overview of how the year's energy interacts with your personal chart. Includes your zodiac animal, the year's element, and the overall theme for the 12 months ahead." },
+    "yearlyPeriods": { "title": "Year in Three Phases", "body": "The year is divided into three phases: Beginning (Jan–Apr), Middle (May–Aug), and End (Sep–Dec). Each phase is governed by different elemental interactions, creating distinct windows of opportunity and challenge." },
+    "zodiacReading": { "title": "Zodiac Reading", "body": "Your Chinese Zodiac animal is determined by your birth year. The zodiac position (Head, Middle, Tail) indicates which phase of the zodiac year you were born in, shaping how you experience this year's energy." },
+    "yearPillar": { "title": "Year Pillar", "body": "The Year Pillar for the current year consists of a Heavenly Stem and Earthly Branch. Together they encode the dominant energy of the year and interact with your personal chart to reveal annual themes." },
+    "luckSplit": { "title": "First & Second Half Luck", "body": "The first half (Jan–Jun) is governed by the Heavenly Stem; the second half (Jul–Dec) by the Earthly Branch. Each half activates different aspects of your chart." },
+    "lifeDomains": { "title": "Life Domains", "body": "The six life domains — Career, Wealth, Relationship, Health, Study, and Family — each receive a different level of activation from the year's energy. Premium unlocks the full analysis for each domain." },
+    "monthlyPredictions": { "title": "Monthly Predictions", "body": "Each month carries its own elemental energy that interacts with your chart. The chart shows the relative luck score for each month; tap a month to read the detailed prediction." },
+    "specialStars": { "title": "Special Stars", "body": "Special Stars are rare configurations that appear when specific elements align in your chart and the current year. They can bring exceptional opportunities or significant challenges." },
+    "protection": { "title": "Protection Strategy", "body": "A personalised strategy to protect your energy and mitigate challenging influences during the year. Based on your Day Master and the year's elemental interactions." },
+    "luckAvoid": { "title": "Luck & Avoid", "body": "A summary of the activities, directions, and choices most aligned with this year's energy (Luck) and those best avoided (Avoid)." },
+    "luckPillarTimeline": { "title": "Luck Pillar Timeline", "body": "Your personal timeline of 10-year Luck Pillars from birth. Each pillar activates a new Heavenly Stem and Earthly Branch, shaping the dominant themes of that decade." }
   }
 }

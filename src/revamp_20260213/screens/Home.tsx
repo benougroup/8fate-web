@@ -32,7 +32,7 @@ import { PageCard } from "../components/PageCard";
 import { PageContent } from "../components/PageContent";
 import { PageHeader } from "../components/PageHeader";
 import { PageSection } from "../components/PageSection";
-import { PillButton, PillLink } from "../components/PillButton";
+import { PillButton } from "../components/PillButton";
 import { Stack } from "../components/Stack";
 import { Text } from "../components/Text";
 import { TopBar } from "../components/TopBar";
@@ -211,7 +211,7 @@ const PREVIEW_AVOID_META: LuckPanelMeta = {
 
 export function Home({ preview = false, forcedTheme }: HomeProps) {
   const navigate = useNavigate();
-  const { theme, locale } = usePreferences();
+  const { theme, locale, isPremium } = usePreferences();
   const { profile, setProfile } = useProfile();
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
@@ -316,7 +316,7 @@ export function Home({ preview = false, forcedTheme }: HomeProps) {
     };
   }, [preview, setProfile]);
 
-  const isPremium = profile.level === "advanced";
+  // isPremium from preferencesStore (set by setPremium() after purchase)
   const displayName = profile.name.trim() || t("home.user.guest");
   const premiumBadgeSrc = getIconSrc(theme, "premium");
   const dateSource = data?.dateISO ? new Date(data.dateISO) : new Date();
@@ -374,56 +374,37 @@ export function Home({ preview = false, forcedTheme }: HomeProps) {
     </div>
   );
 
-  // ── Do / Don't flip card ─────────────────────────────────────────────────
-  // Front = Do (Lucky), Back = Don't (Unlucky) — Don't blurred for free users
-  const doPanel = (
+  // ── Do / Don't flip cards ────────────────────────────────────────────────
+  // Each is a flip card: front = Do (green), back = Don't (red, locked for free users)
+  const doFlipFront = (
     <div className="revamp-doDontPanel revamp-doDontPanel--do">
-      <div className="revamp-doDontTitle revamp-doDontTitle--do">
-        {t("bazi.daily.doListTitle")}
-      </div>
+      <div className="revamp-doDontTitle revamp-doDontTitle--do">✅ {t("bazi.daily.doListTitle")}</div>
       <ul className="revamp-doDontList">
         {(dailyFortune?.doList ?? ["Start new projects", "Network with colleagues"]).map(
-          (item: string, i: number) => (
-            <li key={i}>{item}</li>
-          )
+          (item: string, i: number) => <li key={i}>{item}</li>
         )}
       </ul>
     </div>
   );
-
-  const dontPanel = (
-    <div
-      className={[
-        "revamp-doDontPanel revamp-doDontPanel--dont",
-        !isPremium ? "revamp-doDontPanel--locked" : "",
-      ]
-        .filter(Boolean)
-        .join(" ")}
-    >
-      <div className="revamp-doDontTitle revamp-doDontTitle--dont">
-        {t("bazi.daily.dontListTitle")}
-      </div>
-      <ul className="revamp-doDontList">
-        {(dailyFortune?.dontList ?? ["Avoid conflicts", "Postpone major purchases"]).map(
-          (item: string, i: number) => (
-            <li key={i}>{item}</li>
-          )
-        )}
-      </ul>
-      {!isPremium && (
+  const doFlipBack = (
+    <div className="revamp-doDontPanel revamp-doDontPanel--dont">
+      <div className="revamp-doDontTitle revamp-doDontTitle--dont">🚫 {t("bazi.daily.dontListTitle")}</div>
+      {isPremium ? (
+        <ul className="revamp-doDontList">
+          {(dailyFortune?.dontList ?? ["Avoid conflicts", "Postpone major purchases"]).map(
+            (item: string, i: number) => <li key={i}>{item}</li>
+          )}
+        </ul>
+      ) : (
         <div
           className="revamp-doDontLockedOverlay"
           role="button"
           tabIndex={0}
           onClick={() => navigate("/premium")}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") navigate("/premium");
-          }}
+          onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") navigate("/premium"); }}
         >
           <span style={{ fontSize: "20px" }}>🔒</span>
-          <span className="revamp-doDontLockedLabel">
-            {t("bazi.daily.unlockDont")}
-          </span>
+          <span className="revamp-doDontLockedLabel">{t("bazi.daily.unlockDont")}</span>
         </div>
       )}
     </div>
@@ -500,6 +481,7 @@ export function Home({ preview = false, forcedTheme }: HomeProps) {
                       branchEn={dailyFortune.dayPillar.branchEn}
                       element={dailyFortune.dayPillar.element}
                       tenGod={dailyFortune.dayPillar.tenGod}
+                      horizontal
                     />
                   </div>
                 </div>
@@ -625,59 +607,7 @@ export function Home({ preview = false, forcedTheme }: HomeProps) {
                   </Card>
                 </PageSection>
 
-                {/* Lucky Colors — shown once, no duplicate */}
-                {dailyFortune.luckyColors?.length > 0 && (
-                  <PageSection
-                    title={
-                      <SectionTitleRow
-                        titleKey="bazi.daily.luckyColors"
-                        help={{
-                          titleKey: "home.help.luck.title",
-                          bodyKey: "home.help.luck.body",
-                        }}
-                      />
-                    }
-                    gap="sm"
-                  >
-                    <div
-                      style={{
-                        display: "flex",
-                        gap: "var(--space-md, 12px)",
-                        flexWrap: "wrap",
-                      }}
-                    >
-                      {dailyFortune.luckyColors.map((color: string) => (
-                        <div
-                          key={color}
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "var(--space-sm, 6px)",
-                            padding: "6px 12px",
-                            background: "var(--c-card)",
-                            borderRadius: "var(--r-md)",
-                          }}
-                        >
-                          <div
-                            style={{
-                              width: "20px",
-                              height: "20px",
-                              borderRadius: "50%",
-                              backgroundColor: color.toLowerCase().startsWith("#")
-                                ? color
-                                : color,
-                              border: "2px solid var(--c-border)",
-                              flexShrink: 0,
-                            }}
-                          />
-                          <Text>{color}</Text>
-                        </div>
-                      ))}
-                    </div>
-                  </PageSection>
-                )}
-
-                {/* Do / Don't — side by side, Don't blurred for free users */}
+                {/* Do / Don't — flip card, Don't side locked for free users */}
                 <PageSection
                   title={
                     <SectionTitleRow
@@ -691,10 +621,12 @@ export function Home({ preview = false, forcedTheme }: HomeProps) {
                   }
                   gap="sm"
                 >
-                  <div className="revamp-doDontFlipGrid">
-                    {doPanel}
-                    {dontPanel}
-                  </div>
+                  <CardFlip
+                    className="revamp-homeCard"
+                    front={doFlipFront}
+                    back={doFlipBack}
+                    ariaLabel={t("bazi.daily.dosAndDonts")}
+                  />
                 </PageSection>
 
                 {/* Recommendations */}
@@ -732,7 +664,7 @@ export function Home({ preview = false, forcedTheme }: HomeProps) {
               </>
             )}
 
-            <PillLink to="/dashboard">{dashboardLabel}</PillLink>
+            {/* Legacy dashboard link removed */}
           </Stack>
         </PageContent>
       </PageCard>

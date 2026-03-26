@@ -26,7 +26,7 @@ export const MonthlyNew: React.FC = () => {
     return (
       <Page>
         <PageCard className="revamp-innerPage">
-          <InnerTopBar title="Monthly" />
+          <InnerTopBar title="Monthly" backTo="/portfolio" />
           <PageContent className="revamp-innerPageContent">
             <div style={{ textAlign: "center", padding: "40px 20px" }}>
               Loading monthly fortune...
@@ -77,6 +77,8 @@ export const MonthlyNew: React.FC = () => {
         <InnerTopBar
           title={monthlyData.month}
           subtitle={`流月（${monthlyData.chineseMonth}）`}
+          backTo="/portfolio"
+          iconLabel="monthly"
         />
         <PageContent className="revamp-innerPageContent">
         {/* Monthly Overview */}

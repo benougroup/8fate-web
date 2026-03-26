@@ -29,7 +29,7 @@ export const YearlyNew: React.FC = () => {
     return (
       <Page>
         <PageCard className="revamp-innerPage">
-          <InnerTopBar title="Yearly" />
+          <InnerTopBar title="Yearly" backTo="/portfolio" />
           <PageContent className="revamp-innerPageContent">
             <div style={{ textAlign: "center", padding: "40px 20px" }}>
               Loading yearly forecast...
@@ -84,6 +84,8 @@ export const YearlyNew: React.FC = () => {
         <InnerTopBar
           title={`${yearlyData.year} 流年`}
           subtitle={`Year of the ${yearlyData.zodiac}`}
+          backTo="/portfolio"
+          iconLabel="year"
         />
         <PageContent className="revamp-innerPageContent">
         {/* Yearly Overview */}

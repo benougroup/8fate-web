@@ -44,72 +44,6 @@ function formatTimeZoneLabel(timeZoneId: string): string {
   return `${timeZoneId} (${offset})`;
 }
 
-// ── 4-slot time-of-day configuration ──────────────────────────────────────
-// Each slot covers 6 hours (3 Shi-Chen).
-// The personality traits are placeholders — replace with AI-generated copy.
-
-type TimeSlot = {
-  id: "midnight" | "morning" | "afternoon" | "night";
-  label: string;
-  range: string;
-  emoji: string;
-  /** Shi-Chen keys that fall in this slot */
-  shiChenKeys: string[];
-  /** AI personality hints (placeholder) */
-  personalities: string[];
-};
-
-const TIME_SLOTS: TimeSlot[] = [
-  {
-    id: "midnight",
-    label: "Midnight",
-    range: "00:00 – 06:00",
-    emoji: "🌑",
-    shiChenKeys: ["Zi", "Chou", "Yin"],
-    personalities: [
-      "Introspective and perceptive — you notice what others miss",
-      "Strong inner world; creative and imaginative",
-      "Independent thinker who recharges in solitude",
-    ],
-  },
-  {
-    id: "morning",
-    label: "Morning",
-    range: "06:00 – 12:00",
-    emoji: "🌅",
-    shiChenKeys: ["Mao", "Chen", "Si"],
-    personalities: [
-      "Energetic and proactive — you like to start early",
-      "Practical and detail-oriented; strong work ethic",
-      "Sociable and communicative; good at building rapport",
-    ],
-  },
-  {
-    id: "afternoon",
-    label: "Afternoon",
-    range: "12:00 – 18:00",
-    emoji: "☀️",
-    shiChenKeys: ["Wu", "Wei", "Shen"],
-    personalities: [
-      "Confident and decisive — you lead naturally",
-      "Warm and generous; people gravitate toward you",
-      "Ambitious and results-driven; thrives under pressure",
-    ],
-  },
-  {
-    id: "night",
-    label: "Night",
-    range: "18:00 – 00:00",
-    emoji: "🌙",
-    shiChenKeys: ["You", "Xu", "Hai"],
-    personalities: [
-      "Reflective and strategic — you plan before you act",
-      "Empathetic and intuitive; reads people well",
-      "Persistent and resilient; plays the long game",
-    ],
-  },
-];
-
 // ── Field error type ───────────────────────────────────────────────────────
 
 type FieldErrors = {
@@ -135,8 +69,6 @@ export function Register() {
   const [livingCountry, setLivingCountry] = React.useState(profile.livingCountry || "");
   const [birthPlaceKey, setBirthPlaceKey] = React.useState("");
   const [dateOfBirth, setDateOfBirth] = React.useState("");
-  // Selected time-of-day slot (null = not selected)
-  const [selectedSlotId, setSelectedSlotId] = React.useState<TimeSlot["id"] | null>(null);
   // If user knows exact Shi-Chen
   const [isTimeKnown, setIsTimeKnown] = React.useState(false);
   const [shiChenIndex, setShiChenIndex] = React.useState<string>("");
@@ -168,9 +100,6 @@ export function Register() {
     if (!birthCountry) errors.birthCountry = "Please select your country of birth.";
     if (!birthPlaceKey) errors.birthPlaceKey = "Please select your birth city or place.";
     if (!dateOfBirth) errors.dateOfBirth = "Please enter your date of birth.";
-    if (!isTimeKnown && !selectedSlotId) {
-      errors.timeSlot = "Please select a birth time window, or use Time Finder.";
-    }
     if (isTimeKnown && shiChenIndex === "") {
       errors.timeSlot = "Please select your birth Shi-Chen.";
     }
@@ -194,12 +123,6 @@ export function Register() {
       let blockIndex: number | null = null;
       if (isTimeKnown && shiChenIndex !== "") {
         blockIndex = Number(shiChenIndex);
-      } else if (selectedSlotId) {
-        // Use the middle Shi-Chen of the selected slot as the initial estimate
-        const slot = TIME_SLOTS.find((s) => s.id === selectedSlotId)!;
-        const midKey = slot.shiChenKeys[1]; // middle of the 3
-        const midIdx = shiChenList.findIndex((sc: ShiChenEntry) => sc.key === midKey);
-        blockIndex = midIdx >= 0 ? midIdx : null;
       }
 
       setProfile({
@@ -213,13 +136,7 @@ export function Register() {
 
       await new Promise((resolve) => setTimeout(resolve, 100));
 
-      // If user selected a time slot (not exact), send them to Time Finder
-      // to confirm the exact Shi-Chen within that window.
-      if (!isTimeKnown && selectedSlotId) {
-        navigate(`/timefinder?mode=onboarding&tod=${selectedSlotId}`, { replace: true });
-      } else {
-        navigate("/daily", { replace: true });
-      }
+      navigate("/daily", { replace: true });
     } catch {
       setFieldErrors({ name: "Failed to save profile. Please try again." });
       setSubmitting(false);
@@ -366,7 +283,6 @@ export function Register() {
                     onChange={(e) => {
                       setIsTimeKnown(e.target.checked);
                       setShiChenIndex("");
-                      setSelectedSlotId(null);
                       clearError("timeSlot");
                     }}
                   />
@@ -395,49 +311,29 @@ export function Register() {
                   </span>
                 </>
               ) : (
-                /* 4-slot time-of-day picker */
+                /* Unknown birth time — send to Time Finder to narrow it down */
                 <>
                   <p className="revamp-registerFieldHint" style={{ marginBottom: "12px" }}>
-                    Select the time window that best matches when you were born.
-                    Each window shows personality traits to help you identify the right one.
-                    You will confirm the exact Shi-Chen in the next step.
+                    Not sure of your exact birth time? Use Time Finder to narrow it down.
                   </p>
-                  <div className="revamp-timeSlotGrid">
-                    {TIME_SLOTS.map((slot) => (
-                      <button
-                        key={slot.id}
-                        type="button"
-                        className={`revamp-timeSlotCard${selectedSlotId === slot.id ? " revamp-timeSlotCard--selected" : ""}`}
-                        onClick={() => { setSelectedSlotId(slot.id); clearError("timeSlot"); }}
-                        aria-pressed={selectedSlotId === slot.id}
-                      >
-                        <div className="revamp-timeSlotHeader">
-                          <span className="revamp-timeSlotEmoji">{slot.emoji}</span>
-                          <div>
-                            <div className="revamp-timeSlotLabel">{slot.label}</div>
-                            <div className="revamp-timeSlotRange">{slot.range}</div>
-                          </div>
-                        </div>
-                        <ul className="revamp-timeSlotPersonalities">
-                          {slot.personalities.map((trait) => (
-                            <li key={trait}>{trait}</li>
-                          ))}
-                        </ul>
-                      </button>
-                    ))}
-                  </div>
-                  <div className="revamp-registerFinderWrap" style={{ marginTop: "12px" }}>
-                    <p className="revamp-registerFieldHint">
-                      Still unsure? Use Time Finder to narrow it down with more detail.
-                    </p>
-                    <Button
-                      type="button"
-                      variant="secondary"
-                      onClick={() => navigate("/timefinder?mode=onboarding")}
-                    >
-                      Open Time Finder
-                    </Button>
-                  </div>
+                  <Button
+                    type="button"
+                    variant="secondary"
+                    size="md"
+                    style={{ width: "100%" }}
+                    onClick={() => {
+                      setProfile({
+                        name: name.trim(),
+                        dateOfBirthISO: dateOfBirth,
+                        placeOfBirth: birthPlaces.find((p) => p.id === birthPlaceKey)?.label ?? "",
+                        livingCountry,
+                        marketingConsent,
+                      });
+                      navigate("/timefinder?mode=onboarding");
+                    }}
+                  >
+                    Use Time Finder →
+                  </Button>
                 </>
               )}
 

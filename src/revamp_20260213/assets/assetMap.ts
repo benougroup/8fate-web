@@ -75,6 +75,7 @@ import darkSun from "@/assets/images/menu/dark/dark_sun.png";
 import lightYear from "@/assets/images/menu/light/light_year.png";
 import darkYear from "@/assets/images/menu/dark/dark_year.png";
 import menuMoon from "@/assets/images/menu/dark/dark_moon.png";
+import lightMoon from "@/assets/images/menu/light/light_moon.png";
 import lightLuckTrend from "@/assets/images/menu/light/light_lucktrend.png";
 import darkLuckTrend from "@/assets/images/menu/dark/dark_lucktrend.png";
 import lightMe from "@/assets/images/menu/light/light_me.png";
@@ -378,7 +379,7 @@ const iconMap: Record<ThemeVariant, Record<IconKey, string>> = {
     yinyang: lightYinyang,
     menu: lightMenu,
     sun: lightSun,
-    moon: menuMoon,
+    moon: lightMoon,
     monthly_flow: lightMonthlyFlow,
     year: lightYear,
     lucktrend: lightLuckTrend,
@@ -441,7 +442,7 @@ const iconMap: Record<ThemeVariant, Record<IconKey, string>> = {
     yinyang: darkYinyang,
     menu: darkMenu,
     sun: darkSun,
-    moon: menuMoon,
+    moon: lightMoon,
     monthly_flow: darkMonthlyFlow,
     year: darkYear,
     lucktrend: darkLuckTrend,

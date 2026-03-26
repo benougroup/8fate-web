@@ -36,7 +36,7 @@ export const LifeDomainCard: React.FC<LifeDomainCardProps> = ({
   const label = domainLabels[domain.domain];
   const emoji = icon || domainIcons[domain.domain];
 
-  const frontContent = (
+  const front = (
     <div className="revamp-lifeDomainCard-front">
       <div className="revamp-lifeDomainCard-icon">{emoji}</div>
       <div className="revamp-lifeDomainCard-label">
@@ -52,7 +52,7 @@ export const LifeDomainCard: React.FC<LifeDomainCardProps> = ({
     </div>
   );
 
-  const backContent = (
+  const back = (
     <div className="revamp-lifeDomainCard-back">
       <div className="revamp-lifeDomainCard-icon-small">{emoji}</div>
       <p className="revamp-lifeDomainCard-description">{domain.description}</p>
@@ -67,13 +67,14 @@ export const LifeDomainCard: React.FC<LifeDomainCardProps> = ({
   return (
     <div
       className="revamp-lifeDomainCard"
-      onClick={() => !domain.isPremium && setIsFlipped(!isFlipped)}
       style={{ cursor: domain.isPremium ? "not-allowed" : "pointer" }}
     >
       <CardFlip
-        frontContent={frontContent}
-        backContent={backContent}
+        front={front}
+        back={back}
         isFlipped={isFlipped}
+        onFlipChange={(next) => !domain.isPremium && setIsFlipped(next)}
+        flipOnClick={!domain.isPremium}
       />
     </div>
   );

@@ -1,3 +1,11 @@
+/**
+ * Settings.tsx — User settings page (revamp_20260213)
+ *
+ * Birthday edit rules:
+ *  - Free users: 1 lifetime free edit (tracked via birthdayFreeEditUsedAt)
+ *  - Premium users: 1 edit per calendar month (tracked via birthdayPremiumEditMonth)
+ *  - When edit is locked, show a message explaining why and how to unlock
+ */
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import timezonesManifest from "@/assets/data/timezones.json";
@@ -72,6 +80,14 @@ function SelectRow({
   );
 }
 
+/** Returns "YYYY-MM" for the current month */
+function currentYearMonth(): string {
+  const now = new Date();
+  const y = now.getFullYear();
+  const m = String(now.getMonth() + 1).padStart(2, "0");
+  return `${y}-${m}`;
+}
+
 export function Settings() {
   const navigate = useNavigate();
   const services = useServices();
@@ -79,7 +95,6 @@ export function Settings() {
     locale,
     theme,
     setLocale,
-    userId,
     userEmail,
     isPremium,
   } = usePreferences();
@@ -90,6 +105,67 @@ export function Settings() {
   const [background, setBackground] = React.useState("default");
   const countries = React.useMemo(() => extractCountryOptions(timezonesManifest), []);
   const { profile, setProfile } = useProfile();
+
+  // ── Birthday edit state ──────────────────────────────────────────────────
+  const [isEditingBirthday, setIsEditingBirthday] = React.useState(false);
+  const [birthdayInput, setBirthdayInput] = React.useState(profile.dateOfBirthISO || "");
+  const [birthdayError, setBirthdayError] = React.useState("");
+
+  /**
+   * Determine if the user can edit their birthday:
+   *  - Free: canEdit = birthdayFreeEditUsedAt === null
+   *  - Premium: canEdit = birthdayPremiumEditMonth !== currentYearMonth()
+   */
+  const canEditBirthday = React.useMemo(() => {
+    if (isPremium) {
+      return profile.birthdayPremiumEditMonth !== currentYearMonth();
+    }
+    return profile.birthdayFreeEditUsedAt === null;
+  }, [isPremium, profile.birthdayFreeEditUsedAt, profile.birthdayPremiumEditMonth]);
+
+  const birthdayEditHint = React.useMemo(() => {
+    if (canEditBirthday) {
+      return isPremium
+        ? t("settings.birthdayPremiumEditAvailable")
+        : t("settings.birthdayEditAvailable");
+    }
+    return isPremium
+      ? t("settings.birthdayPremiumMonthlyUsed")
+      : t("settings.birthdayFreeEditUsed");
+  }, [canEditBirthday, isPremium]);
+
+  function handleBirthdaySave() {
+    // Validate YYYY-MM-DD format
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    if (!dateRegex.test(birthdayInput)) {
+      setBirthdayError(t("profile.errors.invalidDate"));
+      return;
+    }
+    const parsed = new Date(birthdayInput);
+    if (isNaN(parsed.getTime())) {
+      setBirthdayError(t("profile.errors.invalidDate"));
+      return;
+    }
+
+    // Save the new birthday
+    setProfile({ dateOfBirthISO: birthdayInput });
+
+    // Record the edit usage
+    if (isPremium) {
+      setProfile({ birthdayPremiumEditMonth: currentYearMonth() });
+    } else {
+      setProfile({ birthdayFreeEditUsedAt: new Date().toISOString() });
+    }
+
+    setBirthdayError("");
+    setIsEditingBirthday(false);
+  }
+
+  function handleBirthdayCancel() {
+    setBirthdayInput(profile.dateOfBirthISO || "");
+    setBirthdayError("");
+    setIsEditingBirthday(false);
+  }
 
   async function handleLogout() {
     setLoading(true);
@@ -120,6 +196,71 @@ export function Settings() {
               <span className={`revamp-settingsBadge ${isPremium ? "revamp-settingsBadge--premium" : ""}`}>
                 {isPremium ? t("settings.premium") : t("settings.free")}
               </span>
+            </div>
+
+            {/* ── Birthday edit row ── */}
+            <div className="revamp-settingsBirthdaySection">
+              <div className="revamp-settingsInfoRow" style={{ alignItems: "flex-start" }}>
+                <div style={{ flex: 1 }}>
+                  <span className="revamp-settingsFieldLabel">{t("settings.birthdayLabel")}</span>
+                  <div style={{ marginTop: 2 }}>
+                    {isEditingBirthday ? (
+                      <div className="revamp-settingsBirthdayEdit">
+                        <input
+                          type="date"
+                          className="revamp-formInput revamp-formInput--compact"
+                          value={birthdayInput}
+                          onChange={(e) => {
+                            setBirthdayInput(e.target.value);
+                            setBirthdayError("");
+                          }}
+                          style={{ maxWidth: 180 }}
+                        />
+                        {birthdayError && (
+                          <span className="revamp-settingsBirthdayError">{birthdayError}</span>
+                        )}
+                        <div className="revamp-settingsBirthdayActions">
+                          <button
+                            type="button"
+                            className="revamp-settingsBirthdaySave"
+                            onClick={handleBirthdaySave}
+                          >
+                            {t("settings.birthdayEditSave")}
+                          </button>
+                          <button
+                            type="button"
+                            className="revamp-settingsBirthdayCancel"
+                            onClick={handleBirthdayCancel}
+                          >
+                            {t("settings.birthdayEditCancel")}
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <span className="revamp-settingsValue">
+                        {profile.dateOfBirthISO || "—"}
+                      </span>
+                    )}
+                  </div>
+                  <div className="revamp-settingsBirthdayHint">{birthdayEditHint}</div>
+                </div>
+                {!isEditingBirthday && (
+                  <button
+                    type="button"
+                    className={`revamp-settingsBirthdayEditBtn ${canEditBirthday ? "" : "revamp-settingsBirthdayEditBtn--locked"}`}
+                    onClick={() => {
+                      if (canEditBirthday) {
+                        setBirthdayInput(profile.dateOfBirthISO || "");
+                        setIsEditingBirthday(true);
+                      }
+                    }}
+                    disabled={!canEditBirthday}
+                    title={canEditBirthday ? t("settings.birthdayEditCta") : birthdayEditHint}
+                  >
+                    {t("settings.birthdayEditCta")}
+                  </button>
+                )}
+              </div>
             </div>
           </section>
 

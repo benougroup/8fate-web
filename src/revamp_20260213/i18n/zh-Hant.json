@@ -12,7 +12,8 @@
     "labelValue": "{label}：{value}",
     "open_info": "開啟資訊",
     "close": "關閉",
-    "premiumRequired": "需要 Premium"
+    "premiumRequired": "需要 Premium",
+    "tapToFlip": "點擊翻轉"
   },
   "revamp": {
     "overlay": {

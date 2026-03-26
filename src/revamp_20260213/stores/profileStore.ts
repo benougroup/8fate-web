@@ -9,6 +9,16 @@ type Profile = {
   birthTimeBlockIndex: number | null;
   level: UserLevel | "";
   marketingConsent: boolean;
+  /**
+   * ISO date string of when the free (lifetime) birthday edit was used.
+   * null = not used yet → user still has their 1 free edit.
+   */
+  birthdayFreeEditUsedAt: string | null;
+  /**
+   * "YYYY-MM" string of the last month a premium user edited their birthday.
+   * null = no premium edit used yet this month.
+   */
+  birthdayPremiumEditMonth: string | null;
 };
 
 const STORAGE_KEY = "revamp.profile.v1";
@@ -20,6 +30,8 @@ const DEFAULT_PROFILE: Profile = {
   birthTimeBlockIndex: null,
   level: "",
   marketingConsent: false,
+  birthdayFreeEditUsedAt: null,
+  birthdayPremiumEditMonth: null,
 };
 
 const listeners = new Set<() => void>();
@@ -46,6 +58,8 @@ function loadProfile(): Profile {
     );
     const level = normalizeLevel(parsed.level);
     const marketingConsent = normalizeBoolean(parsed.marketingConsent);
+    const birthdayFreeEditUsedAt = normalizeString(parsed.birthdayFreeEditUsedAt);
+    const birthdayPremiumEditMonth = normalizeString(parsed.birthdayPremiumEditMonth);
 
     return {
       name: name ?? DEFAULT_PROFILE.name,
@@ -56,6 +70,8 @@ function loadProfile(): Profile {
         birthTimeBlockIndex ?? DEFAULT_PROFILE.birthTimeBlockIndex,
       level: level ?? DEFAULT_PROFILE.level,
       marketingConsent: marketingConsent ?? DEFAULT_PROFILE.marketingConsent,
+      birthdayFreeEditUsedAt: birthdayFreeEditUsedAt ?? DEFAULT_PROFILE.birthdayFreeEditUsedAt,
+      birthdayPremiumEditMonth: birthdayPremiumEditMonth ?? DEFAULT_PROFILE.birthdayPremiumEditMonth,
     };
   } catch (error) {
     console.warn("Failed to parse profile store", error);
@@ -154,6 +170,16 @@ export function setProfile(profile: Partial<Profile>) {
   if ("marketingConsent" in profile) {
     nextProfile.marketingConsent =
       normalizeBoolean(profile.marketingConsent) ?? currentProfile.marketingConsent;
+  }
+
+  if ("birthdayFreeEditUsedAt" in profile) {
+    nextProfile.birthdayFreeEditUsedAt =
+      normalizeString(profile.birthdayFreeEditUsedAt) ?? currentProfile.birthdayFreeEditUsedAt;
+  }
+
+  if ("birthdayPremiumEditMonth" in profile) {
+    nextProfile.birthdayPremiumEditMonth =
+      normalizeString(profile.birthdayPremiumEditMonth) ?? currentProfile.birthdayPremiumEditMonth;
   }
 
   currentProfile = nextProfile;

@@ -289,13 +289,7 @@ export function Home({ preview = false, forcedTheme }: HomeProps) {
         const response = await getMeApi();
         const { profile: apiProfile } = response;
         if (!isMounted) return;
-        const updates: Partial<{
-          name: string;
-          dateOfBirthISO: string;
-          placeOfBirth: string;
-          livingCountry: string;
-          level: string;
-        }> = {};
+        const updates: Partial<import("../stores/profileStore").Profile> = {};
         if (!profile.name.trim() && apiProfile.name) updates.name = apiProfile.name;
         if (!profile.dateOfBirthISO && apiProfile.dateOfBirthISO)
           updates.dateOfBirthISO = apiProfile.dateOfBirthISO;
@@ -481,7 +475,6 @@ export function Home({ preview = false, forcedTheme }: HomeProps) {
                       branchEn={dailyFortune.dayPillar.branchEn}
                       element={dailyFortune.dayPillar.element}
                       tenGod={dailyFortune.dayPillar.tenGod}
-                      horizontal
                     />
                   </div>
                 </div>

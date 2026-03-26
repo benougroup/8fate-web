@@ -13,7 +13,8 @@
     "labelValue": "{label}: {value}",
     "open_info": "Open info",
     "close": "Close",
-    "premiumRequired": "Premium required"
+    "premiumRequired": "Premium required",
+    "tapToFlip": "Tap to flip"
   },
   "revamp": {
     "overlay": {
@@ -808,6 +809,16 @@
     "premium": "Premium",
     "upgradePremium": "Upgrade to Premium",
     "managePremium": "Manage Premium",
+    "birthdayLabel": "Date of birth",
+    "birthdayEditCta": "Edit",
+    "birthdayEditSave": "Save",
+    "birthdayEditCancel": "Cancel",
+    "birthdayFreeEditUsed": "Free edit used. Upgrade to Premium to edit monthly.",
+    "birthdayPremiumMonthlyUsed": "Monthly edit used. Available again next month.",
+    "birthdayEditAvailable": "1 free edit available",
+    "birthdayPremiumEditAvailable": "1 edit available this month",
+    "nameLabel": "Name",
+    "nameSave": "Save name",
     "languageOptions": {
       "en": "English",
       "zhHant": "Traditional Chinese"
@@ -820,6 +831,28 @@
       "default": "Default",
       "grey": "Grey",
       "purple": "Purple"
+    }
+  },
+  "portfolio": {
+    "profile": {
+      "title": "Profile",
+      "help": {
+        "title": "Your Profile",
+        "body": "Your personal details used to calculate your BaZi chart. Name, date of birth, and place of birth are the foundation of your destiny reading."
+      }
+    },
+    "dayMaster": {
+      "help": {
+        "title": "Day Master",
+        "body": "Your Day Master is the Heavenly Stem of your Day Pillar. It represents your core self, personality, and the lens through which you experience the world."
+      }
+    },
+    "explore": {
+      "title": "Explore Your Destiny",
+      "help": {
+        "title": "Destiny Features",
+        "body": "Each feature reveals a different dimension of your BaZi chart — from daily guidance to long-term luck cycles."
+      }
     }
   },
   "chat": {

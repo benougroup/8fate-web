@@ -3,6 +3,7 @@ import { Page } from "../components/Page";
 import { PageCard } from "../components/PageCard";
 import { PageContent } from "../components/PageContent";
 import { PageHeader } from "../components/PageHeader";
+import { InnerTopBar } from "../components/InnerTopBar";
 import { PageSection } from "../components/PageSection";
 import { Stack } from "../components/Stack";
 import { Text } from "../components/Text";
@@ -172,14 +173,9 @@ export function YearlyForecast() {
   return (
     <Page>
       <PageCard>
+        <InnerTopBar title={`${forecast.year} ${t("yearly.title")}`} backTo="/portfolio" />
         <PageContent>
           <Stack gap="lg">
-            {/* ── Header ── */}
-            <PageHeader
-              title={`${forecast.year} ${t("yearly.title")}`}
-              subtitle={t("yearly.subtitle")}
-              icon="year"
-            />
 
             {/* ── Zodiac Reading ── */}
             <PageSection>

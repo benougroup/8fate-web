@@ -4381,6 +4381,30 @@ button.revamp-railItem {
   border-radius: var(--r-sm);
 }
 
+/* Dev mode shortcut buttons on Login screen */
+.revamp-devButton {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: var(--r-md);
+  border: 1.5px solid var(--c-border);
+  background: var(--c-surface);
+  color: var(--c-text);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  margin-bottom: 8px;
+}
+.revamp-devButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.revamp-devButtonPrimary {
+  background: var(--c-primary, #6b3fa0);
+  color: #fff;
+  border-color: var(--c-primary, #6b3fa0);
+}
+
 /* ============================================================
    GLOBAL BOTTOM PADDING - prevent content cut-off
    ============================================================ */

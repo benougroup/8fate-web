@@ -106,6 +106,32 @@ export function Settings() {
   const countries = React.useMemo(() => extractCountryOptions(timezonesManifest), []);
   const { profile, setProfile } = useProfile();
 
+  // ── Username edit state ─────────────────────────────────────────────────
+  const [isEditingName, setIsEditingName] = React.useState(false);
+  const [nameInput, setNameInput] = React.useState(profile.name || "");
+  const [nameError, setNameError] = React.useState("");
+
+  function handleNameSave() {
+    const trimmed = nameInput.trim();
+    if (!trimmed || trimmed.length < 2) {
+      setNameError(t("settings.nameErrorTooShort"));
+      return;
+    }
+    if (trimmed.length > 40) {
+      setNameError(t("settings.nameErrorTooLong"));
+      return;
+    }
+    setProfile({ name: trimmed });
+    setNameError("");
+    setIsEditingName(false);
+  }
+
+  function handleNameCancel() {
+    setNameInput(profile.name || "");
+    setNameError("");
+    setIsEditingName(false);
+  }
+
   // ── Birthday edit state ──────────────────────────────────────────────────
   const [isEditingBirthday, setIsEditingBirthday] = React.useState(false);
   const [birthdayInput, setBirthdayInput] = React.useState(profile.dateOfBirthISO || "");
@@ -189,6 +215,69 @@ export function Settings() {
             <div className="revamp-settingsInfoRow">
               <span className="revamp-settingsFieldLabel">{t("settings.email")}</span>
               <span className="revamp-settingsValue">{userEmail ?? "—"}</span>
+            </div>
+
+            {/* ── Username edit row ── */}
+            <div className="revamp-settingsBirthdaySection">
+              <div className="revamp-settingsInfoRow" style={{ alignItems: "flex-start" }}>
+                <div style={{ flex: 1 }}>
+                  <span className="revamp-settingsFieldLabel">{t("settings.nameLabel")}</span>
+                  <div style={{ marginTop: 2 }}>
+                    {isEditingName ? (
+                      <div className="revamp-settingsBirthdayEdit">
+                        <input
+                          type="text"
+                          className="revamp-formInput revamp-formInput--compact"
+                          value={nameInput}
+                          onChange={(e) => {
+                            setNameInput(e.target.value);
+                            setNameError("");
+                          }}
+                          placeholder={t("settings.namePlaceholder")}
+                          maxLength={40}
+                          style={{ maxWidth: 200 }}
+                          autoFocus
+                        />
+                        {nameError && (
+                          <span className="revamp-settingsBirthdayError">{nameError}</span>
+                        )}
+                        <div className="revamp-settingsBirthdayActions">
+                          <button
+                            type="button"
+                            className="revamp-settingsBirthdaySave"
+                            onClick={handleNameSave}
+                          >
+                            {t("settings.birthdayEditSave")}
+                          </button>
+                          <button
+                            type="button"
+                            className="revamp-settingsBirthdayCancel"
+                            onClick={handleNameCancel}
+                          >
+                            {t("settings.birthdayEditCancel")}
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <span className="revamp-settingsValue">
+                        {profile.name || "—"}
+                      </span>
+                    )}
+                  </div>
+                </div>
+                {!isEditingName && (
+                  <button
+                    type="button"
+                    className="revamp-settingsBirthdayEditBtn"
+                    onClick={() => {
+                      setNameInput(profile.name || "");
+                      setIsEditingName(true);
+                    }}
+                  >
+                    {t("settings.birthdayEditCta")}
+                  </button>
+                )}
+              </div>
             </div>
 
             <div className="revamp-settingsInfoRow">

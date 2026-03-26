@@ -4,7 +4,6 @@ import { Button } from "../components/Button";
 import { FloatingRadialNav } from "../components/FloatingRadialNav";
 import { Page } from "../components/Page";
 import { PageCard } from "../components/PageCard";
-import { InnerTopBar } from "../components/InnerTopBar";
 import { t } from "../i18n/t";
 import { usePreferences } from "../stores/preferencesStore";
 
@@ -52,19 +51,42 @@ export function PremiumLanding() {
   const navigate = useNavigate();
   const { isPremium } = usePreferences();
   const [selectedTier, setSelectedTier] = React.useState<string>("yearly");
+  const [showExitDialog, setShowExitDialog] = React.useState(false);
 
   function handlePurchase() {
     navigate(`/purchase?plan=${selectedTier}`);
+  }
+
+  function handleBackAttempt() {
+    if (isPremium) {
+      navigate(-1);
+    } else {
+      setShowExitDialog(true);
+    }
+  }
+
+  function handleLeave() {
+    setShowExitDialog(false);
+    navigate(-1);
   }
 
   if (isPremium) {
     return (
       <Page>
         <PageCard className="revamp-innerPage">
-          <InnerTopBar title={t("premium.title")} />
+          {/* Top bar with back button */}
+          <div className="revamp-innerTopBar">
+            <button className="revamp-innerTopBar__back" onClick={() => navigate(-1)} aria-label="Back">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+            <span className="revamp-innerTopBar__title">{t("premium.title")}</span>
+            <div style={{ width: 40 }} />
+          </div>
 
-          <div className="revamp-premiumHero">
-            <div className="revamp-premiumBadge">
+          <div className="revamp-innerPageContent" style={{ padding: "var(--s-6)", textAlign: "center" }}>
+            <div className="revamp-premiumBadge" style={{ display: "inline-block", marginBottom: "var(--s-4)" }}>
               {t("premium.statusActive")}
             </div>
             <h1 className="revamp-premiumHeroTitle">
@@ -86,7 +108,16 @@ export function PremiumLanding() {
   return (
     <Page>
       <PageCard className="revamp-innerPage">
-        <InnerTopBar title={t("premium.title")} />
+        {/* Top bar with back button */}
+        <div className="revamp-innerTopBar">
+          <button className="revamp-innerTopBar__back" onClick={handleBackAttempt} aria-label="Back">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+          <span className="revamp-innerTopBar__title">{t("premium.title")}</span>
+          <div style={{ width: 40 }} />
+        </div>
 
         <div className="revamp-innerPageContent" style={{ padding: "var(--s-6)" }}>
           {/* Hero Section */}
@@ -167,6 +198,24 @@ export function PremiumLanding() {
           </Button>
         </div>
       </PageCard>
+
+      {/* Exit Confirmation Dialog */}
+      {showExitDialog && (
+        <div className="revamp-dialogOverlay" onClick={() => setShowExitDialog(false)}>
+          <div className="revamp-dialog" onClick={(e) => e.stopPropagation()}>
+            <h2 className="revamp-dialogTitle">{t("premium.exitTitle")}</h2>
+            <p className="revamp-dialogMessage">{t("premium.exitMessage")}</p>
+            <div className="revamp-dialogActions">
+              <Button variant="primary" size="md" onClick={() => setShowExitDialog(false)}>
+                {t("premium.exitStay")}
+              </Button>
+              <Button variant="ghost" size="md" onClick={handleLeave}>
+                {t("premium.exitLeave")}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <FloatingRadialNav />
     </Page>

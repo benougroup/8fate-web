@@ -468,6 +468,7 @@ export function Home({ preview = false, forcedTheme }: HomeProps) {
                   {/* Day Pillar card (horizontal, compact) */}
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <BaziPillarCard
+                      compact
                       pillarName={t("bazi.chart.dayPillar")}
                       stem={dailyFortune.dayPillar.stem}
                       stemEn={dailyFortune.dayPillar.stemEn}

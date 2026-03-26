@@ -4720,3 +4720,15 @@ button.revamp-railItem {
   cursor: not-allowed;
   opacity: 0.6;
 }
+/* compact pillar */
+.revamp-baziPillarCard--compact { background: var(--c-card-bg); border: 1px solid var(--c-border); border-radius: var(--r-lg); padding: 10px 14px; display: flex; flex-direction: column; gap: 6px; }
+.revamp-pillarCompactName { font-size: var(--fs-xs); font-weight: 600; color: var(--c-text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.revamp-pillarCompactRow { display: flex; align-items: center; gap: 12px; }
+.revamp-pillarCompactCell { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.revamp-pillarCompactLabel { font-size: 10px; color: var(--c-text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.revamp-pillarCompactChar { font-size: 1.75rem; font-weight: 700; line-height: 1; color: var(--c-text); }
+.revamp-pillarCompactSub { font-size: var(--fs-xs); color: var(--c-text-muted); }
+.revamp-pillarCompactDivider { width: 1px; height: 40px; background: var(--c-border); flex-shrink: 0; }
+.revamp-pillarCompactFooter { display: flex; align-items: center; gap: 8px; padding-top: 6px; border-top: 1px solid var(--c-border-subtle); }
+.revamp-pillarCompactElement { font-size: var(--fs-xs); color: var(--c-text-muted); }
+.revamp-baziPillarCard:not(.revamp-baziPillarCard--compact) .revamp-pillarContent { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }

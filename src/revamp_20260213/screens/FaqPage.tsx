@@ -5,7 +5,8 @@ import { Button } from "../components/Button";
 import { Page } from "../components/Page";
 import { PageCard } from "../components/PageCard";
 import { PageContent } from "../components/PageContent";
-import { PageHeader } from "../components/PageHeader";
+import { InnerTopBar } from "../components/InnerTopBar";
+import { SectionTitleRow } from "../components/SectionTitleRow";
 import { PageSection } from "../components/PageSection";
 import { SectionTitle } from "../components/SectionTitle";
 import { Stack } from "../components/Stack";
@@ -21,9 +22,9 @@ export function FaqPage() {
   return (
     <Page>
       <PageCard>
+        <InnerTopBar title={t("faq.title")} subtitle={t("faq.subtitle")} backTo={-1} />
         <PageContent>
           <Stack gap="lg">
-            <PageHeader title={t("faq.title")} subtitle={t("faq.subtitle")} />
             <PageSection>
               <Stack gap="sm" align="start">
                 <SectionTitle>{t("faq.sections.gettingStarted.title")}</SectionTitle>

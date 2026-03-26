@@ -121,8 +121,10 @@ export type YearlyForecast = {
   luckPillarContext: string;
   monthlyPredictions: {
     month: number;
+    score: number; // 0-100 for line chart
     prediction: string;
     elementInteraction: string;
+    isPremium?: boolean; // months 7-12 are premium
   }[];
   specialStars?: SpecialStar[];
 };

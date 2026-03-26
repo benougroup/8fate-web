@@ -2,12 +2,12 @@ import * as React from "react";
 import { Page } from "../components/Page";
 import { PageCard } from "../components/PageCard";
 import { PageContent } from "../components/PageContent";
-import { PageHeader } from "../components/PageHeader";
+import { InnerTopBar } from "../components/InnerTopBar";
+import { SectionTitleRow } from "../components/SectionTitleRow";
 import { PageSection } from "../components/PageSection";
 import { Stack } from "../components/Stack";
 import { Text } from "../components/Text";
 import { FloatingRadialNav } from "../components/FloatingRadialNav";
-import { SectionInfoButton } from "../components/SectionInfoButton";
 import { t } from "../i18n/t";
 import { getBaziProfileById } from "../services/mock/baziData";
 import { usePreferences } from "../stores/preferencesStore";
@@ -165,48 +165,17 @@ export function LuckPillars() {
   return (
     <Page>
       <PageCard>
+        <InnerTopBar title={t("bazi.luckPillars.title")} subtitle={t("bazi.luckPillars.subtitle")} backTo={-1} />
         <PageContent>
           <Stack gap="lg">
-            {/* Header */}
-            <PageHeader
-              title={t("bazi.luckPillars.title")}
-              subtitle={t("bazi.luckPillars.subtitle")}
-              icon="lucktrend"
-            />
-
             {/* What are Luck Pillars */}
             <PageSection>
-              <div style={{ display: "flex", alignItems: "flex-start", gap: "8px" }}>
-                <img
-                  src={getIconSrc(theme, "major_cycle")}
-                  alt=""
-                  style={{ width: 24, height: 24, flexShrink: 0, marginTop: 2 }}
-                />
-                <div style={{ flex: 1 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 4 }}>
-                    <Text style={{ fontWeight: 600 }}>{t("info.luckPillars.title")}</Text>
-                    <SectionInfoButton
-                      title={t("info.luckPillars.title")}
-                      body={t("info.luckPillars.body")}
-                    />
-                  </div>
-                  <Text muted style={{ fontSize: "var(--fs-sm)" }}>
-                    Each 10-year Luck Pillar brings a Heavenly Stem and Earthly Branch that interact with your Day Master, shaping the quality of that decade. Tap any pillar to see the Ten Gods in play.
-                  </Text>
-                </div>
-              </div>
+              <SectionTitleRow titleKey="info.luckPillars.title" iconKey="major_cycle" help={{ titleKey: "info.luckPillars.title", bodyKey: "info.luckPillars.body" }} />
             </PageSection>
 
             {/* Ten Gods Legend */}
             <PageSection>
-              <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 8 }}>
-                <img src={getIconSrc(theme, "ten_gods")} alt="" style={{ width: 22, height: 22 }} />
-                <Text style={{ fontWeight: 600 }}>{t("info.tenGods.title")}</Text>
-                <SectionInfoButton
-                  title={t("info.tenGods.title")}
-                  body={t("info.tenGods.body")}
-                />
-              </div>
+              <SectionTitleRow titleKey="info.tenGods.title" iconKey="ten_gods" help={{ titleKey: "info.tenGods.title", bodyKey: "info.tenGods.body" }} />
               <div className="revamp-tenGodsGrid">
                 {(Object.keys(TEN_GOD_DESCRIPTIONS) as TenGodKey[]).map(god => (
                   <div key={god} className="revamp-tenGodsLegendItem">
@@ -224,13 +193,7 @@ export function LuckPillars() {
 
             {/* Luck Pillars Timeline */}
             <PageSection>
-              <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 12 }}>
-                <Text style={{ fontWeight: 600 }}>{t("bazi.luckPillars.timeline")}</Text>
-                <SectionInfoButton
-                  title={t("bazi.luckPillars.timeline")}
-                  body={t("info.luckPillarTimeline.body")}
-                />
-              </div>
+              <SectionTitleRow titleKey="bazi.luckPillars.timeline" iconKey="major_cycle" help={{ titleKey: "bazi.luckPillars.timeline", bodyKey: "info.luckPillarTimeline.body" }} />
               <Stack gap="sm">
                 {luckPillars.map((pillar) => (
                   <LuckPillarRow

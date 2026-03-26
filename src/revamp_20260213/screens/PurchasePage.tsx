@@ -48,23 +48,8 @@ export function PurchasePage() {
     setError(null);
 
     try {
-      // Dev mode: Simulate payment
-      if (import.meta.env.DEV) {
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-        setPremium(true);
-        navigate("/purchase/success", { replace: true });
-        return;
-      }
-
-      // Production: Apple Pay integration
-      // TODO: Implement actual Apple Pay flow
-      // const paymentResult = await services.payment.processApplePay(planId);
-      // if (paymentResult.success) {
-      //   setPremium(true);
-      //   navigate("/purchase/success", { replace: true });
-      // }
-
-      // Fallback for now
+      // Simulate payment processing (demo mode — works in both dev and production)
+      await new Promise((resolve) => setTimeout(resolve, 1500));
       setPremium(true);
       navigate("/purchase/success", { replace: true });
     } catch (err: any) {

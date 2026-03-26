@@ -139,9 +139,10 @@ function persistPreferences() {
   if (isDev) {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(currentPreferences));
   } else {
+    // isPremium is a UI/demo state, not sensitive auth data — persist it alongside UI prefs
     const { userId: _u, userEmail: _e, userName: _n, lastLoginProvider: _l, ...uiPrefs } =
       currentPreferences;
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(uiPrefs));
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...uiPrefs, isPremium: currentPreferences.isPremium }));
   }
 }
 

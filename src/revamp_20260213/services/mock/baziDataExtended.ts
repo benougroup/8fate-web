@@ -40,16 +40,19 @@ export const MOCK_MONTHLY_FORTUNE: MonthlyFortune = {
       domain: "wealth",
       trend: "neutral",
       description: "Neutral — save more than spend this month",
+      isPremium: true,
     },
     {
       domain: "relationship",
       trend: "down",
       description: "Misunderstandings likely, communicate gently",
+      isPremium: true,
     },
     {
       domain: "health",
       trend: "up",
       description: "Good recovery energy, focus on rest",
+      isPremium: true,
     },
     {
       domain: "study",
@@ -119,16 +122,19 @@ export const MOCK_YEARLY_FORECAST: YearlyForecast = {
       domain: "wealth",
       trend: "up",
       description: "Good investment opportunities, but avoid speculation",
+      isPremium: true,
     },
     {
       domain: "relationship",
       trend: "neutral",
       description: "Stable but requires attention and communication",
+      isPremium: true,
     },
     {
       domain: "health",
       trend: "neutral",
       description: "Watch for stress-related issues, prioritize self-care",
+      isPremium: true,
     },
     {
       domain: "study",
@@ -152,65 +158,17 @@ export const MOCK_YEARLY_FORECAST: YearlyForecast = {
   protectionStrategy: "Focus on Fire element balance. The year's strong Fire energy may overwhelm your Water Day Master. Use Earth element (yellow, brown colors, grounding activities) to mediate and create stability. Avoid excessive Fire activities (late nights, spicy food, heated arguments).",
   luckPillarContext: "You are currently in your 20-29 Luck Pillar (Fire/Wood). This decade aligns well with the Fire Horse year, amplifying opportunities for growth and expression. Use this alignment wisely.",
   monthlyPredictions: [
-    {
-      month: 1,
-      prediction: "Strong start, set intentions clearly",
-      elementInteraction: "Water-Fire balance needed",
-    },
-    {
-      month: 2,
-      prediction: "Excellent for networking and learning",
-      elementInteraction: "Wood supports Water",
-    },
-    {
-      month: 3,
-      prediction: "Challenges in communication, slow down",
-      elementInteraction: "Metal conflicts with Wood",
-    },
-    {
-      month: 4,
-      prediction: "Critical decision month, seek advice",
-      elementInteraction: "Earth mediates conflicts",
-    },
-    {
-      month: 5,
-      prediction: "Financial opportunities, be selective",
-      elementInteraction: "Fire-Water tension productive",
-    },
-    {
-      month: 6,
-      prediction: "Relationship challenges, practice patience",
-      elementInteraction: "Fire overwhelms Water",
-    },
-    {
-      month: 7,
-      prediction: "Consolidation begins, review progress",
-      elementInteraction: "Metal cools Fire",
-    },
-    {
-      month: 8,
-      prediction: "Harvest time, complete projects",
-      elementInteraction: "Earth grounds energy",
-    },
-    {
-      month: 9,
-      prediction: "Minor setbacks, stay flexible",
-      elementInteraction: "Water-Fire imbalance",
-    },
-    {
-      month: 10,
-      prediction: "Major breakthrough possible, stay focused",
-      elementInteraction: "Wood supports growth",
-    },
-    {
-      month: 11,
-      prediction: "Recognition and rewards",
-      elementInteraction: "Fire-Water harmony",
-    },
-    {
-      month: 12,
-      prediction: "Reflection and planning for next year",
-      elementInteraction: "Earth stabilizes",
-    },
+    { month: 1, score: 72, prediction: "Strong start, set intentions clearly", elementInteraction: "Water-Fire balance needed" },
+    { month: 2, score: 85, prediction: "Excellent for networking and learning", elementInteraction: "Wood supports Water" },
+    { month: 3, score: 55, prediction: "Challenges in communication, slow down", elementInteraction: "Metal conflicts with Wood" },
+    { month: 4, score: 48, prediction: "Critical decision month, seek advice", elementInteraction: "Earth mediates conflicts" },
+    { month: 5, score: 80, prediction: "Financial opportunities, be selective", elementInteraction: "Fire-Water tension productive" },
+    { month: 6, score: 60, prediction: "Relationship challenges, practice patience", elementInteraction: "Fire overwhelms Water" },
+    { month: 7, score: 68, isPremium: true, prediction: "Consolidation begins, review progress", elementInteraction: "Metal cools Fire" },
+    { month: 8, score: 82, isPremium: true, prediction: "Harvest time, complete projects", elementInteraction: "Earth grounds energy" },
+    { month: 9, score: 52, isPremium: true, prediction: "Minor setbacks, stay flexible", elementInteraction: "Water-Fire imbalance" },
+    { month: 10, score: 88, isPremium: true, prediction: "Major breakthrough possible, stay focused", elementInteraction: "Wood supports growth" },
+    { month: 11, score: 79, isPremium: true, prediction: "Recognition and rewards", elementInteraction: "Fire-Water harmony" },
+    { month: 12, score: 65, isPremium: true, prediction: "Reflection and planning for next year", elementInteraction: "Earth stabilizes" },
   ],
 };

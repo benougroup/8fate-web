@@ -2,7 +2,8 @@ import * as React from "react";
 import { Page } from "../components/Page";
 import { PageCard } from "../components/PageCard";
 import { PageContent } from "../components/PageContent";
-import { PageHeader } from "../components/PageHeader";
+import { InnerTopBar } from "../components/InnerTopBar";
+import { SectionTitleRow } from "../components/SectionTitleRow";
 import { PageSection } from "../components/PageSection";
 import { Stack } from "../components/Stack";
 import { Text } from "../components/Text";
@@ -109,14 +110,9 @@ export function Compatibility() {
   return (
     <Page>
       <PageCard>
+        <InnerTopBar title={t("bazi.compatibility.title")} subtitle={t("bazi.compatibility.subtitle")} backTo={-1} />
         <PageContent>
           <Stack gap="xl">
-            {/* Header */}
-            <PageHeader
-              title={t("bazi.compatibility.title")}
-              subtitle={t("bazi.compatibility.subtitle")}
-              icon="relationship"
-            />
 
             {/* Profile Names */}
             <PageSection>

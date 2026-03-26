@@ -2,7 +2,8 @@ import * as React from "react";
 import { Page } from "../components/Page";
 import { PageCard } from "../components/PageCard";
 import { PageContent } from "../components/PageContent";
-import { PageHeader } from "../components/PageHeader";
+import { InnerTopBar } from "../components/InnerTopBar";
+import { SectionTitleRow } from "../components/SectionTitleRow";
 import { PageSection } from "../components/PageSection";
 import { Stack } from "../components/Stack";
 import { Text } from "../components/Text";
@@ -12,10 +13,9 @@ import { ElementBalanceChart } from "../components/ElementBalanceChart";
 import { DayMasterCard } from "../components/DayMasterCard";
 import { ElementAnalysisCard } from "../components/ElementAnalysisCard";
 import { BaziTermTooltip } from "../components/BaziTermTooltip";
-import { IconSectionHeader } from "../components/IconSectionHeader";
-import { SectionInfoButton } from "../components/SectionInfoButton";
+
 import { usePreferences } from "../stores/preferencesStore";
-import { getIconSrc } from "../assets/assetMap";
+
 import { t } from "../i18n/t";
 import { getBaziProfileById } from "../services/mock/baziData";
 
@@ -91,23 +91,12 @@ export function BaziChart() {
   return (
     <Page>
       <PageCard>
+        <InnerTopBar title={t("bazi.chart.title")} subtitle={t("bazi.chart.subtitle")} backTo={-1} />
         <PageContent>
           <Stack gap="lg">
-            {/* Header */}
-            <PageHeader
-              title={t("bazi.chart.title")}
-              subtitle={t("bazi.chart.subtitle")}
-              icon="chart"
-            />
-
             {/* Day Master Display */}
             <PageSection>
-              <Stack gap="sm">
-                <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 4 }}>
-                  <IconSectionHeader iconKey="daymaster" title={t("bazi.chart.dayMaster")} />
-                  <SectionInfoButton title={t("bazi.chart.dayMaster")} body={t("info.dayMaster.body")} />
-                </div>
-              </Stack>
+              <SectionTitleRow titleKey="bazi.chart.dayMaster" iconKey="daymaster" help={{ titleKey: "bazi.chart.dayMaster", bodyKey: "info.dayMaster.body" }} />
               <DayMasterCard
                 dayMaster={chart.dayMaster}
                 dayMasterEn={chart.dayMasterEn}
@@ -119,16 +108,7 @@ export function BaziChart() {
 
             {/* Four Pillars */}
             <PageSection>
-              <Stack gap="sm">
-                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                  <IconSectionHeader iconKey="heavenly_stem" title={t("bazi.chart.fourPillars")} />
-                  <SectionInfoButton title={t("bazi.chart.fourPillars")} body={t("info.fourPillars.body")} />
-                  <BaziTermTooltip
-                    term={t("bazi.common.pillar")}
-                    definition={t("bazi.glossary.pillar")}
-                  />
-                </div>
-
+              <SectionTitleRow titleKey="bazi.chart.fourPillars" iconKey="heavenly_stem" help={{ titleKey: "bazi.chart.fourPillars", bodyKey: "info.fourPillars.body" }} />
                 <div
                   style={{
                     display: "grid",
@@ -173,23 +153,12 @@ export function BaziChart() {
                     element={chart.hour.elementEn}
                   />
                 </div>
-              </Stack>
             </PageSection>
 
             {/* Five Elements Balance */}
             <PageSection>
-              <Stack gap="md">
-                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                  <IconSectionHeader iconKey="five_elements_icon" title={t("bazi.chart.elementBalance")} />
-                  <SectionInfoButton title={t("bazi.chart.elementBalance")} body={t("info.elementBalance.body")} />
-                  <BaziTermTooltip
-                    term={t("bazi.common.fiveElements")}
-                    definition={t("bazi.glossary.fiveElements")}
-                  />
-                </div>
-
-                <ElementBalanceChart elements={elementData} />
-              </Stack>
+              <SectionTitleRow titleKey="bazi.chart.elementBalance" iconKey="five_elements_icon" help={{ titleKey: "bazi.chart.elementBalance", bodyKey: "info.elementBalance.body" }} />
+              <ElementBalanceChart elements={elementData} />
             </PageSection>
 
             {/* Element Analysis */}

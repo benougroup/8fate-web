@@ -1,6 +1,5 @@
 import type React from "react";
 import { Text } from "./Text";
-import { Stack } from "./Stack";
 import { TenGodBadge } from "./TenGodBadge";
 
 type BaziPillarCardProps = {
@@ -11,6 +10,8 @@ type BaziPillarCardProps = {
   branchEn?: string;
   tenGod: string;
   element: string;
+  /** When true, renders stem and branch side-by-side in a compact horizontal row */
+  compact?: boolean;
   className?: string;
 };
 
@@ -22,9 +23,41 @@ export function BaziPillarCard({
   branchEn,
   tenGod,
   element,
+  compact = false,
   className,
 }: BaziPillarCardProps) {
-  const classes = ["revamp-baziPillarCard", className].filter(Boolean).join(" ");
+  const classes = [
+    "revamp-baziPillarCard",
+    compact ? "revamp-baziPillarCard--compact" : "",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  if (compact) {
+    return (
+      <div className={classes}>
+        <div className="revamp-pillarCompactName">{pillarName}</div>
+        <div className="revamp-pillarCompactRow">
+          <div className="revamp-pillarCompactCell">
+            <span className="revamp-pillarCompactLabel">Stem</span>
+            <span className="revamp-pillarCompactChar">{stem}</span>
+            {stemEn && <span className="revamp-pillarCompactSub">{stemEn}</span>}
+          </div>
+          <div className="revamp-pillarCompactDivider" />
+          <div className="revamp-pillarCompactCell">
+            <span className="revamp-pillarCompactLabel">Branch</span>
+            <span className="revamp-pillarCompactChar">{branch}</span>
+            {branchEn && <span className="revamp-pillarCompactSub">{branchEn}</span>}
+          </div>
+        </div>
+        <div className="revamp-pillarCompactFooter">
+          <TenGodBadge tenGod={tenGod} />
+          <span className="revamp-pillarCompactElement">{element}</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={classes}>
@@ -33,40 +66,22 @@ export function BaziPillarCard({
           {pillarName}
         </Text>
       </div>
-
-      <Stack gap="md" align="center" className="revamp-pillarContent">
+      <div className="revamp-pillarContent">
         <div className="revamp-pillarStem">
-          <Text className="revamp-pillarLabel" muted>
-            Heavenly Stem
-          </Text>
+          <Text className="revamp-pillarLabel" muted>Heavenly Stem</Text>
           <div className="revamp-pillarCharacter">{stem}</div>
-          {stemEn && (
-            <Text className="revamp-pillarTranslation" muted>
-              {stemEn}
-            </Text>
-          )}
+          {stemEn && <Text className="revamp-pillarTranslation" muted>{stemEn}</Text>}
         </div>
-
         <div className="revamp-pillarDivider" />
-
         <div className="revamp-pillarBranch">
-          <Text className="revamp-pillarLabel" muted>
-            Earthly Branch
-          </Text>
+          <Text className="revamp-pillarLabel" muted>Earthly Branch</Text>
           <div className="revamp-pillarCharacter">{branch}</div>
-          {branchEn && (
-            <Text className="revamp-pillarTranslation" muted>
-              {branchEn}
-            </Text>
-          )}
+          {branchEn && <Text className="revamp-pillarTranslation" muted>{branchEn}</Text>}
         </div>
-      </Stack>
-
+      </div>
       <div className="revamp-pillarFooter">
         <TenGodBadge tenGod={tenGod} />
-        <Text className="revamp-pillarElement" muted>
-          {element}
-        </Text>
+        <Text className="revamp-pillarElement" muted>{element}</Text>
       </div>
     </div>
   );

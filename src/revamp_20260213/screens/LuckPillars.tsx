@@ -2,7 +2,7 @@ import * as React from "react";
 import { Page } from "../components/Page";
 import { PageCard } from "../components/PageCard";
 import { PageContent } from "../components/PageContent";
-import { InnerTopBar } from "../components/InnerTopBar";
+import { ContentPageTopBar } from "../components/ContentPageTopBar";
 import { SectionTitleRow } from "../components/SectionTitleRow";
 import { PageSection } from "../components/PageSection";
 import { Stack } from "../components/Stack";
@@ -165,7 +165,7 @@ export function LuckPillars() {
   return (
     <Page>
       <PageCard>
-        <InnerTopBar title={t("bazi.luckPillars.title")} subtitle={t("bazi.luckPillars.subtitle")} backTo={-1} />
+        <ContentPageTopBar />
         <PageContent>
           <Stack gap="lg">
             {/* What are Luck Pillars */}

@@ -2,7 +2,7 @@ import * as React from "react";
 import { Page } from "../components/Page";
 import { PageCard } from "../components/PageCard";
 import { PageContent } from "../components/PageContent";
-import { InnerTopBar } from "../components/InnerTopBar";
+import { ContentPageTopBar } from "../components/ContentPageTopBar";
 import { PageSection } from "../components/PageSection";
 import { SectionTitleRow } from "../components/SectionTitleRow";
 import { Stack } from "../components/Stack";
@@ -150,7 +150,7 @@ export function YearlyForecast() {
   return (
     <Page>
       <PageCard>
-        <InnerTopBar title={`${forecast.year} ${t("yearly.title")}`} backTo="/portfolio" />
+        <ContentPageTopBar />
         <PageContent>
           <Stack gap="lg">
 

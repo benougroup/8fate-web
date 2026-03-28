@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Page } from "../components/Page";
 import { PageCard } from "../components/PageCard";
-import { InnerTopBar } from "../components/InnerTopBar";
+import { ContentPageTopBar } from "../components/ContentPageTopBar";
 import { PageContent } from "../components/PageContent";
 import { PageSection } from "../components/PageSection";
 import { Stack } from "../components/Stack";
@@ -102,7 +102,7 @@ export function DailyFortune() {
     return (
       <Page>
         <PageCard className="revamp-innerPage">
-          <InnerTopBar title={t("bazi.daily.title")} />
+          <ContentPageTopBar backTo={-1} />
           <PageContent className="revamp-innerPageContent">
             <Stack gap="lg" align="center">
               <Text>Loading daily fortune...</Text>
@@ -121,7 +121,7 @@ export function DailyFortune() {
   return (
     <Page>
       <PageCard className="revamp-innerPage">
-        <InnerTopBar title={t("bazi.daily.title")} subtitle={today} />
+        <ContentPageTopBar backTo={-1} />
         <PageContent className="revamp-innerPageContent">
           <Stack gap="lg">
             {/* Energy Score */}

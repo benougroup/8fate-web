@@ -160,6 +160,7 @@ export type AuspiciousDate = {
   favorableFor: string[];
   unfavorableFor: string[];
   analysis: string;
+  isPremium?: boolean; // if true, full reading requires premium
 };
 
 export type TrendIndicator = "up" | "neutral" | "down";

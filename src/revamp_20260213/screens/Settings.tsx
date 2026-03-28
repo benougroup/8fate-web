@@ -13,7 +13,7 @@ import { Button } from "../components/Button";
 import { FloatingRadialNav } from "../components/FloatingRadialNav";
 import { Page } from "../components/Page";
 import { PageCard } from "../components/PageCard";
-import { InnerTopBar } from "../components/InnerTopBar";
+import { ContentPageTopBar } from "../components/ContentPageTopBar";
 import { t } from "../i18n/t";
 import { extractCountryOptions } from "../utils/timezones";
 import { useProfile } from "../stores/profileStore";
@@ -204,7 +204,7 @@ export function Settings() {
   return (
     <Page>
       <PageCard className="revamp-innerPage">
-        <InnerTopBar title={t("settings.title")} />
+        <ContentPageTopBar />
 
         <div className="revamp-settingsPage revamp-innerPageContent">
 

@@ -4,7 +4,7 @@ import { Button } from "../components/Button";
 import { FloatingRadialNav } from "../components/FloatingRadialNav";
 import { Page } from "../components/Page";
 import { PageCard } from "../components/PageCard";
-import { InnerTopBar } from "../components/InnerTopBar";
+import { ContentPageTopBar } from "../components/ContentPageTopBar";
 import { t } from "../i18n/t";
 import { useServices } from "../services";
 import { usePreferences } from "../stores/preferencesStore";
@@ -100,7 +100,7 @@ export function ChatPage() {
   return (
     <Page>
       <PageCard className="revamp-innerPage revamp-chatPage">
-        <InnerTopBar title={t("chat.title")} />
+        <ContentPageTopBar />
 
         <div className="revamp-chatLayout">
           {/* Message Limit Banner */}

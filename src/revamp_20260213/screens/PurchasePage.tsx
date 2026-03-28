@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "../components/Button";
 import { Page } from "../components/Page";
 import { PageCard } from "../components/PageCard";
-import { InnerTopBar } from "../components/InnerTopBar";
+import { ContentPageTopBar } from "../components/ContentPageTopBar";
 import { FloatingRadialNav } from "../components/FloatingRadialNav";
 import { t } from "../i18n/t";
 import { useServices } from "../services";
@@ -62,7 +62,7 @@ export function PurchasePage() {
   return (
     <Page>
       <PageCard className="revamp-innerPage">
-        <InnerTopBar title={t("purchase.title")} />
+        <ContentPageTopBar backTo={-1} />
 
         <div className="revamp-purchaseCard revamp-innerPageContent">
           {/* Order Summary */}

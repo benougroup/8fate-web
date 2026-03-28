@@ -32,6 +32,7 @@ const DEFAULT_PROFILE: Profile = {
   marketingConsent: false,
   birthdayFreeEditUsedAt: null,
   birthdayPremiumEditMonth: null,
+  signUpDate: "2025-06-15", // mock sign-up date
 };
 
 const listeners = new Set<() => void>();
@@ -60,6 +61,7 @@ function loadProfile(): Profile {
     const marketingConsent = normalizeBoolean(parsed.marketingConsent);
     const birthdayFreeEditUsedAt = normalizeString(parsed.birthdayFreeEditUsedAt);
     const birthdayPremiumEditMonth = normalizeString(parsed.birthdayPremiumEditMonth);
+    const signUpDate = normalizeString(parsed.signUpDate);
 
     return {
       name: name ?? DEFAULT_PROFILE.name,
@@ -72,6 +74,7 @@ function loadProfile(): Profile {
       marketingConsent: marketingConsent ?? DEFAULT_PROFILE.marketingConsent,
       birthdayFreeEditUsedAt: birthdayFreeEditUsedAt ?? DEFAULT_PROFILE.birthdayFreeEditUsedAt,
       birthdayPremiumEditMonth: birthdayPremiumEditMonth ?? DEFAULT_PROFILE.birthdayPremiumEditMonth,
+      signUpDate: signUpDate ?? DEFAULT_PROFILE.signUpDate,
     };
   } catch (error) {
     console.warn("Failed to parse profile store", error);

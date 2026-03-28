@@ -37,7 +37,7 @@ import { Button } from "../components/Button";
 import { Page } from "../components/Page";
 import { PageCard } from "../components/PageCard";
 import { PageContent } from "../components/PageContent";
-import { InnerTopBar } from "../components/InnerTopBar";
+import { ContentPageTopBar } from "../components/ContentPageTopBar";
 import { SectionTitleRow } from "../components/SectionTitleRow";
 import { Stack } from "../components/Stack";
 import { Text } from "../components/Text";
@@ -184,7 +184,7 @@ export function TimeFinder() {
                   )}
                 </div>
 
-                <InnerTopBar title="When were you born?" subtitle="Select the time window that best matches your birth time." backTo={-1} />
+                <ContentPageTopBar backTo={-1} />
 
                 <Stack gap="md">
                   {(Object.keys(TOD_META) as TODKey[]).map((key) => {
@@ -218,7 +218,7 @@ export function TimeFinder() {
                   </Button>
                 </div>
 
-                <InnerTopBar title={t("timeFinder.title")} subtitle={`${TOD_META[tod].emoji} ${TOD_META[tod].label} · ${TOD_META[tod].range}`} backTo={-1} />
+                <ContentPageTopBar backTo={-1} />
 
                 <Text muted>
                   Select the Shi-Chen (2-hour window) that best matches your personality.

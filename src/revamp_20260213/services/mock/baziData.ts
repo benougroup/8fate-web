@@ -331,38 +331,72 @@ export const MOCK_COMPATIBILITY: CompatibilityResult = {
 
 // Mock Auspicious Dates
 export const MOCK_AUSPICIOUS_DATES: AuspiciousDate[] = [
-  {
-    date: "2026-03-15",
-    score: 92,
-    dayPillar: {
-      stem: "甲",
-      stemEn: "Jia",
-      branch: "寅",
-      branchEn: "Yin",
-      element: "木",
-      elementEn: "Wood",
-      tenGod: "Friend",
-    },
-    favorableFor: ["Wedding", "Business Opening", "Moving", "Signing Contracts"],
-    unfavorableFor: ["Surgery", "Funerals"],
-    analysis: "Excellent day with strong Wood energy. Perfect for new beginnings and celebrations.",
-  },
-  {
-    date: "2026-03-22",
-    score: 85,
-    dayPillar: {
-      stem: "丙",
-      stemEn: "Bing",
-      branch: "午",
-      branchEn: "Wu",
-      element: "火",
-      elementEn: "Fire",
-      tenGod: "Eating God",
-    },
-    favorableFor: ["Travel", "Networking", "Celebrations"],
-    unfavorableFor: ["Legal Matters", "Confrontations"],
-    analysis: "Fire energy brings joy and social success. Great for gatherings and travel.",
-  },
+  // ── June 2025 (past, accessible to all users) ──
+  { date: "2025-06-18", score: 88, isPremium: false,
+    dayPillar: { stem: "甲", stemEn: "Jia", branch: "子", branchEn: "Zi", element: "木", elementEn: "Wood", tenGod: "Friend" },
+    favorableFor: ["New Beginnings", "Signing Contracts", "Travel"], unfavorableFor: ["Surgery"],
+    analysis: "Strong Wood-Water harmony. Excellent for starting new ventures and travel." },
+  { date: "2025-06-25", score: 75, isPremium: false,
+    dayPillar: { stem: "辛", stemEn: "Xin", branch: "未", branchEn: "Wei", element: "金", elementEn: "Metal", tenGod: "Direct Officer" },
+    favorableFor: ["Business Meetings", "Networking"], unfavorableFor: ["Moving House"],
+    analysis: "Metal-Earth day brings structure and discipline. Good for formal dealings." },
+  // ── July 2025 (past) ──
+  { date: "2025-07-04", score: 91, isPremium: false,
+    dayPillar: { stem: "戊", stemEn: "Wu", branch: "寅", branchEn: "Yin", element: "土", elementEn: "Earth", tenGod: "Indirect Resource" },
+    favorableFor: ["Wedding", "Moving", "Business Opening"], unfavorableFor: ["Confrontations"],
+    analysis: "Earth-Wood synergy creates stable growth. Ideal for long-term commitments." },
+  { date: "2025-07-19", score: 82, isPremium: true,
+    dayPillar: { stem: "癸", stemEn: "Gui", branch: "酉", branchEn: "You", element: "水", elementEn: "Water", tenGod: "Eating God" },
+    favorableFor: ["Creativity", "Study", "Meditation"], unfavorableFor: ["Legal Disputes"],
+    analysis: "Water-Metal day enhances intuition and creativity. Excellent for artistic pursuits." },
+  // ── August 2025 (past) ──
+  { date: "2025-08-08", score: 95, isPremium: true,
+    dayPillar: { stem: "丙", stemEn: "Bing", branch: "午", branchEn: "Wu", element: "火", elementEn: "Fire", tenGod: "Eating God" },
+    favorableFor: ["Grand Openings", "Celebrations", "Proposals"], unfavorableFor: ["Funerals", "Surgery"],
+    analysis: "Double Fire energy on 8/8 — extremely auspicious. Perfect for major life events." },
+  { date: "2025-08-22", score: 78, isPremium: true,
+    dayPillar: { stem: "庚", stemEn: "Geng", branch: "申", branchEn: "Shen", element: "金", elementEn: "Metal", tenGod: "Rob Wealth" },
+    favorableFor: ["Investments", "Negotiations"], unfavorableFor: ["Partnerships"],
+    analysis: "Metal day with competitive energy. Good for solo ventures and investments." },
+  // ── September 2025 (past) ──
+  { date: "2025-09-09", score: 89, isPremium: true,
+    dayPillar: { stem: "己", stemEn: "Ji", branch: "巳", branchEn: "Si", element: "土", elementEn: "Earth", tenGod: "Direct Resource" },
+    favorableFor: ["Education", "Signing Documents", "Property"], unfavorableFor: ["Risky Activities"],
+    analysis: "Earth-Fire combination supports stability and learning. Ideal for property deals." },
+  // ── October 2025 (past) ──
+  { date: "2025-10-10", score: 93, isPremium: true,
+    dayPillar: { stem: "甲", stemEn: "Jia", branch: "午", branchEn: "Wu", element: "木", elementEn: "Wood", tenGod: "Friend" },
+    favorableFor: ["Business Launch", "Wedding", "Travel"], unfavorableFor: ["Disputes"],
+    analysis: "Wood-Fire day radiates positive energy. Excellent for celebrations and new starts." },
+  // ── November 2025 (past) ──
+  { date: "2025-11-11", score: 87, isPremium: true,
+    dayPillar: { stem: "壬", stemEn: "Ren", branch: "子", branchEn: "Zi", element: "水", elementEn: "Water", tenGod: "Hurting Officer" },
+    favorableFor: ["Networking", "Social Events", "Romance"], unfavorableFor: ["Formal Contracts"],
+    analysis: "Double Water on 11/11 amplifies social connections and romantic energy." },
+  // ── December 2025 (past) ──
+  { date: "2025-12-12", score: 84, isPremium: true,
+    dayPillar: { stem: "丁", stemEn: "Ding", branch: "亥", branchEn: "Hai", element: "火", elementEn: "Fire", tenGod: "Hurting Officer" },
+    favorableFor: ["Year-End Celebrations", "Gifting", "Reflection"], unfavorableFor: ["Major Decisions"],
+    analysis: "Fire-Water balance on 12/12. Good for year-end reflection and celebrations." },
+  // ── January 2026 (past) ──
+  { date: "2026-01-06", score: 80, isPremium: true,
+    dayPillar: { stem: "乙", stemEn: "Yi", branch: "丑", branchEn: "Chou", element: "木", elementEn: "Wood", tenGod: "Rob Wealth" },
+    favorableFor: ["New Year Planning", "Study", "Health Checks"], unfavorableFor: ["Risky Investments"],
+    analysis: "Wood-Earth day supports steady planning. Good for setting intentions for the new year." },
+  // ── February 2026 (past) ──
+  { date: "2026-02-14", score: 90, isPremium: true,
+    dayPillar: { stem: "丙", stemEn: "Bing", branch: "辰", branchEn: "Chen", element: "火", elementEn: "Fire", tenGod: "Eating God" },
+    favorableFor: ["Romance", "Proposals", "Celebrations"], unfavorableFor: ["Confrontations"],
+    analysis: "Fire-Earth on Valentine's Day brings warmth and passion. Perfect for romantic gestures." },
+  // ── March 2026 (current month) ──
+  { date: "2026-03-15", score: 92, isPremium: false,
+    dayPillar: { stem: "甲", stemEn: "Jia", branch: "寅", branchEn: "Yin", element: "木", elementEn: "Wood", tenGod: "Friend" },
+    favorableFor: ["Wedding", "Business Opening", "Moving", "Signing Contracts"], unfavorableFor: ["Surgery", "Funerals"],
+    analysis: "Excellent day with strong Wood energy. Perfect for new beginnings and celebrations." },
+  { date: "2026-03-22", score: 85, isPremium: false,
+    dayPillar: { stem: "丙", stemEn: "Bing", branch: "午", branchEn: "Wu", element: "火", elementEn: "Fire", tenGod: "Eating God" },
+    favorableFor: ["Travel", "Networking", "Celebrations"], unfavorableFor: ["Legal Matters", "Confrontations"],
+    analysis: "Fire energy brings joy and social success. Great for gatherings and travel." },
 ];
 
 // Helper function to get profile by ID

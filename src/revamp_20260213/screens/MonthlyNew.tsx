@@ -25,10 +25,7 @@ import { Card } from "../components/Card";
 import { Stack } from "../components/Stack";
 import { Text } from "../components/Text";
 import { SectionTitleRow } from "../components/SectionTitleRow";
-import { TopBar } from "../components/TopBar";
-import { UserBadge } from "../components/UserBadge";
-import { SkinToggleIcon } from "../components/SkinToggleIcon";
-import { NotificationButton } from "../components/NotificationButton";
+import { ContentPageTopBar } from "../components/ContentPageTopBar";
 import { BaziPillarCard } from "../components/BaziPillarCard";
 import type { MonthlyFortune, LifeDomain } from "../services/mock/baziTypes";
 import { MOCK_MONTHLY_FORTUNE } from "../services/mock/baziDataExtended";
@@ -192,19 +189,7 @@ export const MonthlyNew: React.FC = () => {
           <Stack gap="lg">
 
             {/* ── 1. TopBar (mirrors Daily) ── */}
-            <TopBar
-              left={
-                <UserBadge
-                  name={profile?.name ?? "Guest"}
-                />
-              }
-              right={
-                <>
-                  <SkinToggleIcon />
-                  <NotificationButton />
-                </>
-              }
-            />
+            <ContentPageTopBar />
 
             {/* ── 2. Month header ── */}
             <div>

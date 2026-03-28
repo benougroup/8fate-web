@@ -442,7 +442,7 @@ const iconMap: Record<ThemeVariant, Record<IconKey, string>> = {
     yinyang: darkYinyang,
     menu: darkMenu,
     sun: darkSun,
-    moon: lightMoon,
+    moon: menuMoon,
     monthly_flow: darkMonthlyFlow,
     year: darkYear,
     lucktrend: darkLuckTrend,

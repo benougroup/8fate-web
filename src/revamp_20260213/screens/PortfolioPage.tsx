@@ -1,29 +1,27 @@
 /**
  * PortfolioPage.tsx — User portfolio / profile hub (revamp_20260213)
  *
- * Shows the user's real profile data from profileStore (not mock data).
- * The BaZi chart data (day master, etc.) still uses mock data until the
- * real API is connected.
- *
  * Layout:
- *  1. InnerTopBar (back to /daily, title "My Profile")
+ *  1. ContentPageTopBar (sticky, menu page — no back button)
  *  2. Profile info card (real name + DOB from profileStore)
- *  3. Day Master summary (from mock bazi data)
- *  4. Quick actions grid (navigate to other features)
+ *  3. Day Master + 5-Element spider web chart (SVG)
+ *  4. Four Pillars summary (compact horizontal)
+ *  5. Ten Gods spinner (← swipe through all 10 gods →)
+ *  6. Quick actions grid (navigate to other features)
  */
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { FloatingRadialNav } from "../components/FloatingRadialNav";
 import { Page } from "../components/Page";
 import { PageCard } from "../components/PageCard";
-import { InnerTopBar } from "../components/InnerTopBar";
+import { ContentPageTopBar } from "../components/ContentPageTopBar";
 import { PageContent } from "../components/PageContent";
 import { PageSection } from "../components/PageSection";
 import { SectionTitleRow } from "../components/SectionTitleRow";
-import { PillLink } from "../components/PillButton";
 import { Stack } from "../components/Stack";
 import { Text } from "../components/Text";
 import { Card } from "../components/Card";
+import { BaziPillarCard } from "../components/BaziPillarCard";
 import { t } from "../i18n/t";
 import { getBaziProfile } from "../services/providers/baziProvider";
 import type { BaziProfile } from "../services/mock/baziTypes";
@@ -31,6 +29,223 @@ import { getIconSrc } from "../assets/assetMap";
 import { usePreferences } from "../stores/preferencesStore";
 import { useProfile } from "../stores/profileStore";
 
+// ─── Spider Web (Radar) Chart ─────────────────────────────────────────────────
+const ELEMENT_COLORS: Record<string, string> = {
+  wood:  "#22c55e",
+  fire:  "#ef4444",
+  earth: "#f59e0b",
+  metal: "#94a3b8",
+  water: "#3b82f6",
+};
+const ELEMENT_LABELS: Record<string, { zh: string; en: string }> = {
+  wood:  { zh: "木", en: "Wood" },
+  fire:  { zh: "火", en: "Fire" },
+  earth: { zh: "土", en: "Earth" },
+  metal: { zh: "金", en: "Metal" },
+  water: { zh: "水", en: "Water" },
+};
+const ELEMENTS = ["wood", "fire", "earth", "metal", "water"] as const;
+
+function SpiderChart({ values }: { values: Record<string, number> }) {
+  const size = 220;
+  const cx = size / 2;
+  const cy = size / 2;
+  const maxR = 80;
+  const maxVal = Math.max(...Object.values(values), 1);
+  const n = ELEMENTS.length;
+
+  // Compute polygon points for each element
+  const pts = ELEMENTS.map((el, i) => {
+    const angle = (Math.PI * 2 * i) / n - Math.PI / 2;
+    const r = (values[el] / maxVal) * maxR;
+    return { x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle), el };
+  });
+
+  // Grid rings
+  const rings = [0.25, 0.5, 0.75, 1.0];
+
+  // Axis endpoints
+  const axes = ELEMENTS.map((el, i) => {
+    const angle = (Math.PI * 2 * i) / n - Math.PI / 2;
+    return {
+      x: cx + maxR * Math.cos(angle),
+      y: cy + maxR * Math.sin(angle),
+      lx: cx + (maxR + 20) * Math.cos(angle),
+      ly: cy + (maxR + 20) * Math.sin(angle),
+      el,
+    };
+  });
+
+  const polyPoints = pts.map((p) => `${p.x},${p.y}`).join(" ");
+
+  return (
+    <svg viewBox={`0 0 ${size} ${size}`} className="revamp-spiderChart" aria-label="Five Elements Balance">
+      {/* Grid rings */}
+      {rings.map((r) => {
+        const ringPts = ELEMENTS.map((_, i) => {
+          const angle = (Math.PI * 2 * i) / n - Math.PI / 2;
+          return `${cx + maxR * r * Math.cos(angle)},${cy + maxR * r * Math.sin(angle)}`;
+        }).join(" ");
+        return (
+          <polygon
+            key={r}
+            points={ringPts}
+            fill="none"
+            stroke="var(--c-border)"
+            strokeWidth={0.8}
+          />
+        );
+      })}
+
+      {/* Axes */}
+      {axes.map((a) => (
+        <line
+          key={a.el}
+          x1={cx} y1={cy}
+          x2={a.x} y2={a.y}
+          stroke="var(--c-border)"
+          strokeWidth={0.8}
+        />
+      ))}
+
+      {/* Data polygon */}
+      <polygon
+        points={polyPoints}
+        fill="var(--c-accent)"
+        fillOpacity={0.18}
+        stroke="var(--c-accent)"
+        strokeWidth={2}
+      />
+
+      {/* Data dots */}
+      {pts.map((p) => (
+        <circle
+          key={p.el}
+          cx={p.x} cy={p.y} r={4}
+          fill={ELEMENT_COLORS[p.el]}
+          stroke="#fff"
+          strokeWidth={1.5}
+        />
+      ))}
+
+      {/* Labels */}
+      {axes.map((a) => {
+        const lbl = ELEMENT_LABELS[a.el];
+        const anchor =
+          a.lx < cx - 5 ? "end" : a.lx > cx + 5 ? "start" : "middle";
+        return (
+          <g key={a.el}>
+            <text
+              x={a.lx} y={a.ly - 4}
+              textAnchor={anchor}
+              fontSize={11}
+              fontWeight={700}
+              fill={ELEMENT_COLORS[a.el]}
+            >
+              {lbl.zh}
+            </text>
+            <text
+              x={a.lx} y={a.ly + 8}
+              textAnchor={anchor}
+              fontSize={9}
+              fill="var(--c-text-muted)"
+            >
+              {lbl.en}
+            </text>
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
+// ─── Ten Gods Spinner ─────────────────────────────────────────────────────────
+type TenGodEntry = {
+  name: string;
+  zhName: string;
+  emoji: string;
+  desc: string;
+};
+
+const TEN_GODS: TenGodEntry[] = [
+  { name: "Friend",           zhName: "比肩", emoji: "🤝", desc: t("info.tenGod_friend") },
+  { name: "Rob Wealth",       zhName: "劫財", emoji: "⚔️", desc: t("info.tenGod_robWealth") },
+  { name: "Eating God",       zhName: "食神", emoji: "🍽️", desc: t("info.tenGod_eatingGod") },
+  { name: "Hurting Officer",  zhName: "傷官", emoji: "🎭", desc: t("info.tenGod_hurtingOfficer") },
+  { name: "Direct Wealth",    zhName: "正財", emoji: "💰", desc: t("info.tenGod_directWealth") },
+  { name: "Indirect Wealth",  zhName: "偏財", emoji: "🎲", desc: t("info.tenGod_indirectWealth") },
+  { name: "Direct Officer",   zhName: "正官", emoji: "🏛️", desc: t("info.tenGod_directOfficer") },
+  { name: "Seven Killings",   zhName: "七殺", emoji: "🗡️", desc: t("info.tenGod_sevenKillings") },
+  { name: "Direct Resource",  zhName: "正印", emoji: "📚", desc: t("info.tenGod_directResource") },
+  { name: "Indirect Resource",zhName: "偏印", emoji: "🔮", desc: t("info.tenGod_indirectResource") },
+];
+
+function TenGodSpinner() {
+  const [idx, setIdx] = React.useState(0);
+  const [animating, setAnimating] = React.useState(false);
+
+  const go = (dir: 1 | -1) => {
+    if (animating) return;
+    setAnimating(true);
+    setTimeout(() => {
+      setIdx((prev) => (prev + dir + TEN_GODS.length) % TEN_GODS.length);
+      setAnimating(false);
+    }, 150);
+  };
+
+  const god = TEN_GODS[idx];
+
+  return (
+    <div>
+      <div className="revamp-godSpinner">
+        <button
+          type="button"
+          className="revamp-godSpinnerBtn"
+          onClick={() => go(-1)}
+          aria-label="Previous god"
+        >
+          ←
+        </button>
+        <div
+          className="revamp-godSpinnerCard"
+          style={{ opacity: animating ? 0 : 1 }}
+        >
+          <div style={{ fontSize: "2rem" }}>{god.emoji}</div>
+          <div>
+            <Text style={{ fontWeight: 800, fontSize: "var(--fs-md)" }}>{god.name}</Text>
+            <Text muted style={{ fontSize: "var(--fs-sm)" }}>{god.zhName}</Text>
+          </div>
+          <Text muted style={{ fontSize: "var(--fs-xs)", textAlign: "center", lineHeight: 1.5 }}>
+            {god.desc.split(":").slice(1).join(":").trim().split(".")[0] + "."}
+          </Text>
+        </div>
+        <button
+          type="button"
+          className="revamp-godSpinnerBtn"
+          onClick={() => go(1)}
+          aria-label="Next god"
+        >
+          →
+        </button>
+      </div>
+      {/* Dot indicators */}
+      <div className="revamp-godSpinnerDots">
+        {TEN_GODS.map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            className={`revamp-godSpinnerDot${i === idx ? " revamp-godSpinnerDot--active" : ""}`}
+            onClick={() => setIdx(i)}
+            aria-label={`Go to ${TEN_GODS[i].name}`}
+            style={{ border: "none", cursor: "pointer", padding: 0 }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ─── Quick Action Card ────────────────────────────────────────────────────────
 type QuickAction = {
   label: string;
   sublabel: string;
@@ -38,6 +253,7 @@ type QuickAction = {
   route: string;
 };
 
+// ─── Main Component ───────────────────────────────────────────────────────────
 export function PortfolioPage() {
   const navigate = useNavigate();
   const { theme } = usePreferences();
@@ -59,29 +275,31 @@ export function PortfolioPage() {
     void loadBaziProfile();
   }, []);
 
-  // Use real user name from profileStore, fall back to mock data name
   const displayName = userProfile.name || baziProfile?.name || t("home.user.guest");
   const displayDOB = userProfile.dateOfBirthISO || baziProfile?.birthDate || "—";
   const displayLocation = userProfile.placeOfBirth || baziProfile?.birthLocation || "";
 
   const quickActions: QuickAction[] = [
-    { label: t("bazi.chart.title"),     sublabel: "Four Pillars",   iconKey: "daymaster",    route: "/bazi-chart" },
-    { label: "Luck Pillars",            sublabel: "10-Year Cycles", iconKey: "lucktrend",    route: "/luck-pillars" },
-    { label: "Annual Forecast",         sublabel: "2026 Reading",   iconKey: "year",         route: "/yearly" },
-    { label: "Monthly",                 sublabel: "This Month",     iconKey: "monthly_flow", route: "/monthly" },
-    { label: "Daily Fortune",           sublabel: "Today's Energy", iconKey: "daily_flow",   route: "/daily" },
-    { label: "Auspicious Dates",        sublabel: "Best Days",      iconKey: "today",        route: "/auspicious-dates" },
-    { label: "AI Chat",                 sublabel: "Ask a Question", iconKey: "mouth",        route: "/chat" },
+    { label: t("bazi.chart.title"),  sublabel: "Four Pillars",   iconKey: "daymaster",    route: "/bazi-chart" },
+    { label: "Luck Pillars",         sublabel: "10-Year Cycles", iconKey: "lucktrend",    route: "/luck-pillars" },
+    { label: "Annual Forecast",      sublabel: "2026 Reading",   iconKey: "year",         route: "/yearly" },
+    { label: "Monthly",              sublabel: "This Month",     iconKey: "monthly_flow", route: "/monthly" },
+    { label: "Daily Fortune",        sublabel: "Today's Energy", iconKey: "daily_flow",  route: "/daily" },
+    { label: "Auspicious Dates",     sublabel: "Best Days",      iconKey: "today",        route: "/auspicious-dates" },
+    { label: "AI Chat",              sublabel: "Ask a Question", iconKey: "mouth",        route: "/chat" },
   ];
+
+  const elements = baziProfile?.elements ?? { wood: 2.5, fire: 1.8, earth: 1.2, metal: 3.5, water: 2.0 };
+  const chart = baziProfile?.chart;
 
   if (isLoading) {
     return (
       <Page>
-        <PageCard className="revamp-innerPage">
-          <InnerTopBar title="My Profile" backTo="/daily" />
-          <PageContent className="revamp-innerPageContent">
-            <Stack gap="md" align="center">
-              <Text>{t("common.loading")}</Text>
+        <PageCard>
+          <PageContent>
+            <ContentPageTopBar />
+            <Stack gap="md" align="center" style={{ paddingTop: "var(--s-8)" }}>
+              <Text muted>{t("common.loading")}</Text>
             </Stack>
           </PageContent>
         </PageCard>
@@ -92,110 +310,152 @@ export function PortfolioPage() {
 
   return (
     <Page>
-      <PageCard className="revamp-innerPage">
-        <InnerTopBar title="My Bazi Profile" subtitle="Lifelong Destiny Analysis" backTo="/daily" />
-        <PageContent className="revamp-innerPageContent">
+      <PageCard>
+        <PageContent>
           <Stack gap="lg">
+            {/* ── Sticky Top Bar ── */}
+            <div className="revamp-portfolioStickyHeader">
+              <ContentPageTopBar />
+            </div>
 
-            {/* ── Profile Info ── */}
-            <PageSection
-              title={
-                <SectionTitleRow
-                  titleKey="portfolio.profile.title"
-                  help={{
-                    titleKey: "portfolio.profile.help.title",
-                    bodyKey: "portfolio.profile.help.body",
-                  }}
-                />
-              }
-              gap="sm"
-            >
-              <Card>
-                <Stack gap="sm">
-                  <Text style={{ fontWeight: 700, fontSize: "var(--fs-lg)", color: "var(--c-ink)" }}>
-                    {displayName}
-                  </Text>
-                  <Text muted>
-                    Born: {displayDOB}
-                    {baziProfile?.birthTime ? ` at ${baziProfile.birthTime}` : ""}
-                  </Text>
-                  {displayLocation && (
-                    <Text muted>Location: {displayLocation}</Text>
-                  )}
-                  {userProfile.livingCountry && (
-                    <Text muted>Living: {userProfile.livingCountry}</Text>
-                  )}
-                </Stack>
-              </Card>
-            </PageSection>
-
-            {/* ── Day Master Summary ── */}
-            {baziProfile && (
-              <PageSection
-                title={
-                  <SectionTitleRow
-                    titleKey="bazi.common.dayMaster"
-                    help={{
-                      titleKey: "portfolio.dayMaster.help.title",
-                      bodyKey: "portfolio.dayMaster.help.body",
-                    }}
-                  />
-                }
-                gap="sm"
-              >
-                <Card>
-                  <div style={{ display: "flex", alignItems: "center", gap: "var(--s-4)" }}>
-                    <img
-                      src={getIconSrc(theme, "daymaster")}
-                      alt="Day Master"
-                      style={{ width: 40, height: 40, flexShrink: 0 }}
-                    />
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ display: "flex", alignItems: "baseline", gap: "var(--s-2)" }}>
-                        <span
-                          style={{
-                            fontSize: "3rem",
-                            fontWeight: 700,
-                            color: "var(--c-accent)",
-                            lineHeight: 1,
-                          }}
-                        >
-                          {baziProfile.chart.dayMaster}
-                        </span>
-                        <Text muted style={{ fontSize: "var(--fs-sm)" }}>
-                          {baziProfile.chart.dayMasterEn} · {baziProfile.chart.dayMasterElement} ({baziProfile.chart.dayMasterElementEn})
-                        </Text>
-                      </div>
-                    </div>
+            {/* ── Profile Card ── */}
+            <Card>
+              <Stack gap="sm">
+                <div style={{ display: "flex", alignItems: "center", gap: "var(--s-4)" }}>
+                  {/* Avatar */}
+                  <div style={{
+                    width: 56, height: 56, borderRadius: "50%",
+                    background: "var(--c-accent)", display: "flex",
+                    alignItems: "center", justifyContent: "center",
+                    fontSize: "1.5rem", fontWeight: 800, color: "#fff", flexShrink: 0,
+                  }}>
+                    {displayName.charAt(0).toUpperCase()}
                   </div>
-                </Card>
+                  <div style={{ flex: 1 }}>
+                    <Text style={{ fontWeight: 800, fontSize: "var(--fs-lg)" }}>{displayName}</Text>
+                    {displayDOB !== "—" && (
+                      <Text muted style={{ fontSize: "var(--fs-sm)" }}>
+                        {new Date(displayDOB + "T00:00:00").toLocaleDateString("en-US", {
+                          year: "numeric", month: "long", day: "numeric"
+                        })}
+                      </Text>
+                    )}
+                    {displayLocation && (
+                      <Text muted style={{ fontSize: "var(--fs-xs)" }}>📍 {displayLocation}</Text>
+                    )}
+                  </div>
+                  {chart && (
+                    <div style={{ textAlign: "center", flexShrink: 0 }}>
+                      <div style={{
+                        fontSize: "2rem", fontWeight: 800,
+                        color: "var(--c-accent)", lineHeight: 1,
+                      }}>
+                        {chart.dayMaster}
+                      </div>
+                      <Text muted style={{ fontSize: "var(--fs-xs)" }}>
+                        {chart.dayMasterEn}
+                      </Text>
+                      <Text muted style={{ fontSize: "var(--fs-xs)" }}>
+                        {chart.dayMasterElementEn}
+                      </Text>
+                    </div>
+                  )}
+                </div>
+              </Stack>
+            </Card>
+
+            {/* ── Four Pillars ── */}
+            {chart && (
+              <PageSection>
+                <SectionTitleRow
+                  zhName="四柱"
+                  zhNameEn="Four Pillars"
+                  title={t("bazi.chart.title")}
+                  infoKey="fourPillars"
+                />
+                <div style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(4, 1fr)",
+                  gap: "var(--s-2)",
+                }}>
+                  {[
+                    { pillar: chart.year,  label: t("bazi.chart.yearPillar") },
+                    { pillar: chart.month, label: t("bazi.chart.monthPillar") },
+                    { pillar: chart.day,   label: t("bazi.chart.dayPillar") },
+                    { pillar: chart.hour,  label: t("bazi.chart.hourPillar") },
+                  ].map(({ pillar, label }) => (
+                    <BaziPillarCard key={label} pillar={pillar} label={label} compact />
+                  ))}
+                </div>
               </PageSection>
             )}
 
+            {/* ── 5-Element Spider Web Chart ── */}
+            <PageSection>
+              <SectionTitleRow
+                zhName="五行"
+                zhNameEn="Five Elements"
+                title="Element Balance"
+                infoKey="elementBalance"
+              />
+              <Card>
+                <SpiderChart values={elements} />
+                {/* Element value bars */}
+                <div style={{ marginTop: "var(--s-3)", display: "flex", flexDirection: "column", gap: "var(--s-2)" }}>
+                  {ELEMENTS.map((el) => {
+                    const maxVal = Math.max(...Object.values(elements), 1);
+                    const pct = Math.round((elements[el] / maxVal) * 100);
+                    return (
+                      <div key={el} style={{ display: "flex", alignItems: "center", gap: "var(--s-2)" }}>
+                        <span style={{
+                          width: 28, textAlign: "center", fontWeight: 800,
+                          color: ELEMENT_COLORS[el], fontSize: "var(--fs-sm)",
+                        }}>
+                          {ELEMENT_LABELS[el].zh}
+                        </span>
+                        <div style={{ flex: 1, height: 6, background: "var(--c-surface-3, rgba(0,0,0,0.08))", borderRadius: 3, overflow: "hidden" }}>
+                          <div style={{ width: `${pct}%`, height: "100%", background: ELEMENT_COLORS[el], borderRadius: 3 }} />
+                        </div>
+                        <span style={{ width: 32, textAlign: "right", fontSize: "var(--fs-xs)", color: "var(--c-text-muted)" }}>
+                          {elements[el].toFixed(1)}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </Card>
+            </PageSection>
+
+            {/* ── Ten Gods Spinner ── */}
+            <PageSection>
+              <SectionTitleRow
+                zhName="十神"
+                zhNameEn="Ten Gods"
+                title="Ten Gods"
+                infoKey="tenGods"
+              />
+              <Card>
+                <TenGodSpinner />
+              </Card>
+            </PageSection>
+
             {/* ── Quick Actions ── */}
-            <PageSection
-              title={
-                <SectionTitleRow
-                  titleKey="portfolio.explore.title"
-                  help={{
-                    titleKey: "portfolio.explore.help.title",
-                    bodyKey: "portfolio.explore.help.body",
-                  }}
-                />
-              }
-              gap="sm"
-            >
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))",
-                  gap: "var(--s-3)",
-                }}
-              >
+            <PageSection>
+              <SectionTitleRow
+                zhName="功能"
+                zhNameEn="Features"
+                title="Explore"
+                infoKey="baziChart"
+              />
+              <div style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fill, minmax(100px, 1fr))",
+                gap: "var(--s-3)",
+              }}>
                 {quickActions.map((action) => (
                   <Card
                     key={action.route}
-                    style={{ cursor: "pointer", textAlign: "center", padding: "var(--s-4)" }}
+                    style={{ cursor: "pointer", textAlign: "center", padding: "var(--s-4) var(--s-2)" }}
                     onClick={() => navigate(action.route)}
                   >
                     <Stack gap="xs" align="center">
@@ -204,7 +464,7 @@ export function PortfolioPage() {
                         alt={action.label}
                         style={{ width: 36, height: 36 }}
                       />
-                      <Text style={{ fontSize: "var(--fs-sm)", fontWeight: 600, color: "var(--c-ink)" }}>
+                      <Text style={{ fontSize: "var(--fs-xs)", fontWeight: 700, color: "var(--c-ink)" }}>
                         {action.label}
                       </Text>
                       <Text muted style={{ fontSize: "var(--fs-xs)" }}>

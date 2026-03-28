@@ -5037,3 +5037,118 @@ button.revamp-railItem {
 .revamp-godSpinnerDot--active {
   background: var(--c-accent);
 }
+
+
+/* ═══════════════════════════════════════════════════════
+   LUCK PILLARS — Life Timeline Bar
+═══════════════════════════════════════════════════════ */
+.revamp-lifeTimeline {
+  position: relative;
+  display: flex;
+  height: 28px;
+  border-radius: 14px;
+  overflow: visible;
+  margin-bottom: 24px;
+  gap: 2px;
+}
+.revamp-lifeTimelineSegment {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: opacity 0.2s;
+  min-width: 4px;
+  height: 28px;
+}
+.revamp-lifeTimelineSegment[data-current="true"] {
+  border-radius: 6px;
+  box-shadow: 0 0 0 2px var(--c-accent);
+}
+.revamp-lifeTimelineNow {
+  font-size: 10px;
+  color: var(--c-accent);
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.revamp-lifeTimelineLabels {
+  position: absolute;
+  bottom: -18px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--c-text-muted);
+}
+
+/* ═══════════════════════════════════════════════════════
+   LUCK PILLARS — Pillar Row Enhancements
+═══════════════════════════════════════════════════════ */
+.revamp-luckPillarIndexDot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+.revamp-luckPillarDetail {
+  padding: 12px 16px 16px;
+  border-top: 1px solid var(--c-border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.revamp-luckPillarEnergyBar {
+  position: relative;
+  height: 6px;
+  background: var(--c-border);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 18px;
+}
+.revamp-luckPillarEnergyFill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+.revamp-luckPillarEnergyLabel {
+  position: absolute;
+  right: 0;
+  top: -18px;
+  font-size: 10px;
+  font-weight: 600;
+}
+.revamp-luckPillarBreakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.revamp-luckPillarBreakdownItem {
+  background: var(--c-surface-2, rgba(0,0,0,0.04));
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.revamp-luckPillarBreakdownHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.revamp-luckPillarBreakdownChar {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--c-text);
+  line-height: 1;
+  min-width: 32px;
+}

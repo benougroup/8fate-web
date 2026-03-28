@@ -167,20 +167,23 @@ type TenGodEntry = {
   desc: string;
 };
 
-const TEN_GODS: TenGodEntry[] = [
-  { name: "Friend",           zhName: "比肩", emoji: "🤝", desc: t("info.tenGod_friend") },
-  { name: "Rob Wealth",       zhName: "劫財", emoji: "⚔️", desc: t("info.tenGod_robWealth") },
-  { name: "Eating God",       zhName: "食神", emoji: "🍽️", desc: t("info.tenGod_eatingGod") },
-  { name: "Hurting Officer",  zhName: "傷官", emoji: "🎭", desc: t("info.tenGod_hurtingOfficer") },
-  { name: "Direct Wealth",    zhName: "正財", emoji: "💰", desc: t("info.tenGod_directWealth") },
-  { name: "Indirect Wealth",  zhName: "偏財", emoji: "🎲", desc: t("info.tenGod_indirectWealth") },
-  { name: "Direct Officer",   zhName: "正官", emoji: "🏛️", desc: t("info.tenGod_directOfficer") },
-  { name: "Seven Killings",   zhName: "七殺", emoji: "🗡️", desc: t("info.tenGod_sevenKillings") },
-  { name: "Direct Resource",  zhName: "正印", emoji: "📚", desc: t("info.tenGod_directResource") },
-  { name: "Indirect Resource",zhName: "偏印", emoji: "🔮", desc: t("info.tenGod_indirectResource") },
-];
+function getTenGods(): TenGodEntry[] {
+  return [
+    { name: "Friend",           zhName: "比肩", emoji: "🤝", desc: t("info.tenGod_friend") },
+    { name: "Rob Wealth",       zhName: "劫財", emoji: "⚔️", desc: t("info.tenGod_robWealth") },
+    { name: "Eating God",       zhName: "食神", emoji: "🍽️", desc: t("info.tenGod_eatingGod") },
+    { name: "Hurting Officer",  zhName: "傷官", emoji: "🎭", desc: t("info.tenGod_hurtingOfficer") },
+    { name: "Direct Wealth",    zhName: "正財", emoji: "💰", desc: t("info.tenGod_directWealth") },
+    { name: "Indirect Wealth",  zhName: "偏財", emoji: "🎲", desc: t("info.tenGod_indirectWealth") },
+    { name: "Direct Officer",   zhName: "正官", emoji: "🏛️", desc: t("info.tenGod_directOfficer") },
+    { name: "Seven Killings",   zhName: "七殺", emoji: "🗡️", desc: t("info.tenGod_sevenKillings") },
+    { name: "Direct Resource",  zhName: "正印", emoji: "📚", desc: t("info.tenGod_directResource") },
+    { name: "Indirect Resource",zhName: "偏印", emoji: "🔮", desc: t("info.tenGod_indirectResource") },
+  ];
+}
 
 function TenGodSpinner() {
+  const TEN_GODS = React.useMemo(() => getTenGods(), []);
   const [idx, setIdx] = React.useState(0);
   const [animating, setAnimating] = React.useState(false);
 
@@ -216,7 +219,7 @@ function TenGodSpinner() {
             <Text muted style={{ fontSize: "var(--fs-sm)" }}>{god.zhName}</Text>
           </div>
           <Text muted style={{ fontSize: "var(--fs-xs)", textAlign: "center", lineHeight: 1.5 }}>
-            {god.desc.split(":").slice(1).join(":").trim().split(".")[0] + "."}
+            {god.desc ? (god.desc.includes(":") ? god.desc.split(":").slice(1).join(":").trim().split(".")[0] + "." : god.desc.split(".")[0] + ".") : ""}
           </Text>
         </div>
         <button

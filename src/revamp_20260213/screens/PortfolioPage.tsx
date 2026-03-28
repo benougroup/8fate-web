@@ -300,8 +300,8 @@ export function PortfolioPage() {
     return (
       <Page>
         <PageCard>
+          <ContentPageTopBar />
           <PageContent>
-            <ContentPageTopBar />
             <Stack gap="md" align="center" style={{ paddingTop: "var(--s-8)" }}>
               <Text muted>{t("common.loading")}</Text>
             </Stack>
@@ -315,12 +315,9 @@ export function PortfolioPage() {
   return (
     <Page>
       <PageCard>
+        <ContentPageTopBar />
         <PageContent>
           <Stack gap="lg">
-            {/* ── Sticky Top Bar ── */}
-            <div className="revamp-portfolioStickyHeader">
-              <ContentPageTopBar />
-            </div>
 
             {/* ── Profile Card ── */}
             <Card>

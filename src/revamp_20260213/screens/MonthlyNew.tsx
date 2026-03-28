@@ -185,11 +185,9 @@ export const MonthlyNew: React.FC = () => {
   return (
     <Page>
       <PageCard>
+        <ContentPageTopBar />
         <PageContent>
           <Stack gap="lg">
-
-            {/* ── 1. TopBar (mirrors Daily) ── */}
-            <ContentPageTopBar />
 
             {/* ── 2. Month header ── */}
             <div>

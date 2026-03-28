@@ -176,9 +176,9 @@ export function AuspiciousDates() {
   return (
     <Page>
       <PageCard>
+        <ContentPageTopBar />
         <PageContent>
           <Stack gap="lg">
-            <ContentPageTopBar />
 
             <div>
               <h1 style={{ fontSize: "var(--fs-xl)", fontWeight: 800, marginBottom: 4 }}>

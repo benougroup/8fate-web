@@ -372,10 +372,9 @@ export function PortfolioPage() {
             {chart && (
               <PageSection>
                 <SectionTitleRow
-                  zhName="四柱"
-                  zhNameEn="Four Pillars"
-                  title={t("bazi.chart.title")}
-                  infoKey="fourPillars"
+                  titleKey="bazi.chart.title"
+                  zhNameKey="bazi.chart.fourPillars"
+                  help={{ titleKey: "bazi.chart.fourPillars", bodyKey: "info.fourPillars.body" }}
                 />
                 <div style={{
                   display: "grid",
@@ -397,10 +396,9 @@ export function PortfolioPage() {
             {/* ── 5-Element Spider Web Chart ── */}
             <PageSection>
               <SectionTitleRow
-                zhName="五行"
-                zhNameEn="Five Elements"
-                title="Element Balance"
-                infoKey="elementBalance"
+                titleKey="bazi.chart.elementBalance"
+                zhNameKey="bazi.chart.elementBalance"
+                help={{ titleKey: "bazi.chart.elementBalance", bodyKey: "info.elementBalance.body" }}
               />
               <Card>
                 <SpiderChart values={elements} />
@@ -433,10 +431,8 @@ export function PortfolioPage() {
             {/* ── Ten Gods Spinner ── */}
             <PageSection>
               <SectionTitleRow
-                zhName="十神"
-                zhNameEn="Ten Gods"
-                title="Ten Gods"
-                infoKey="tenGods"
+                titleKey="bazi.chart.tenGods"
+                help={{ titleKey: "bazi.chart.tenGods", bodyKey: "info.tenGods.body" }}
               />
               <Card>
                 <TenGodSpinner />
@@ -446,10 +442,7 @@ export function PortfolioPage() {
             {/* ── Quick Actions ── */}
             <PageSection>
               <SectionTitleRow
-                zhName="功能"
-                zhNameEn="Features"
-                title="Explore"
-                infoKey="baziChart"
+                titleKey="portfolio.explore"
               />
               <div style={{
                 display: "grid",

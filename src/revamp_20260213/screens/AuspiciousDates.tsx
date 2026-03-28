@@ -250,14 +250,14 @@ export function AuspiciousDates() {
             {/* Selected Date Detail */}
             {selectedDate && (
               <PageSection>
-                <SectionTitleRow
-                  zhName="日柱"
-                  zhNameEn="Day Pillar"
-                  title={new Date(selectedDate.date + "T00:00:00").toLocaleDateString("en-US", {
-                    weekday: "long", year: "numeric", month: "long", day: "numeric"
-                  })}
-                  infoKey="dayPillar"
-                />
+                <div style={{ marginBottom: "var(--s-2)", display: "flex", alignItems: "center", gap: "var(--s-2)" }}>
+                  <span style={{ fontSize: "var(--fs-xs)", color: "var(--c-text-muted)" }}>日柱</span>
+                  <span style={{ fontWeight: 800, fontSize: "var(--fs-md)", color: "var(--c-ink)" }}>
+                    {new Date(selectedDate.date + "T00:00:00").toLocaleDateString("en-US", {
+                      weekday: "long", year: "numeric", month: "long", day: "numeric"
+                    })}
+                  </span>
+                </div>
 
                 {/* Score */}
                 <Card style={{ marginBottom: "var(--s-3)" }}>

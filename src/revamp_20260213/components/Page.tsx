@@ -1,10 +1,11 @@
 import React from "react";
 import { getBackgroundSrc } from "../assets/assetMap";
 import { usePreferences } from "../stores/preferencesStore";
+import { DesktopSideNav } from "./DesktopSideNav";
 
 type PageProps = React.HTMLAttributes<HTMLElement>;
 
-export function Page({ className, ...props }: PageProps) {
+export function Page({ className, children, ...props }: PageProps) {
   // NOTE:
   // Page owns the global background layer for the revamp theme.
   // Avoid per-page overrides so the background stays consistent.
@@ -19,5 +20,11 @@ export function Page({ className, ...props }: PageProps) {
     ["--revamp-page-bg" as `--${string}`]: `url(${backgroundSrc})`,
   } as React.CSSProperties;
 
-  return <main className={classes} {...props} style={style} />;
+  return (
+    <main className={classes} {...props} style={style}>
+      {/* Desktop sidebar — hidden on mobile via CSS */}
+      <DesktopSideNav />
+      {children}
+    </main>
+  );
 }

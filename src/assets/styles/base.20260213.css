@@ -5157,3 +5157,472 @@ button.revamp-railItem {
   line-height: 1;
   min-width: 32px;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   DESKTOP LAYOUT — Sidebar + main content at ≥900px
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Desktop wrapper — replaces the centered card layout */
+.revamp-desktopWrapper {
+  display: contents; /* mobile: transparent pass-through */
+}
+
+@media (min-width: 900px) {
+  /* The page becomes a flex row: sidebar | main card */
+  .revamp-page {
+    align-items: stretch;
+    justify-content: flex-start;
+    flex-direction: row;
+    padding: 0;
+  }
+
+  /* The main PageCard fills remaining space */
+  .revamp-page > .revamp-container {
+    flex: 1;
+    max-width: none;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    min-height: 100svh;
+    min-height: 100dvh;
+    padding-bottom: 32px;
+  }
+
+  /* Hide floating radial nav on desktop */
+  .revamp-radialNav {
+    display: none !important;
+  }
+
+  /* Reduce top-bar negative margin on desktop since card has no padding offset */
+  .revamp-topBar {
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: 0;
+    padding-left: var(--s-6);
+    padding-right: var(--s-6);
+  }
+}
+
+/* ── Desktop Side Navigation ─────────────────────────────────── */
+.revamp-desktopSideNav {
+  display: none; /* hidden on mobile */
+}
+
+@media (min-width: 900px) {
+  .revamp-desktopSideNav {
+    display: flex;
+    flex-direction: column;
+    width: 220px;
+    min-width: 220px;
+    height: 100svh;
+    height: 100dvh;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    background: var(--c-bg);
+    border-right: 1px solid var(--c-border);
+    padding: var(--s-5) var(--s-4);
+    gap: var(--s-4);
+    overflow-y: auto;
+    flex-shrink: 0;
+  }
+}
+
+.revamp-desktopSideNavBrand {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-3) var(--s-2);
+  margin-bottom: var(--s-2);
+}
+
+.revamp-desktopSideNavBrandText {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--c-accent);
+  line-height: 1;
+}
+
+.revamp-desktopSideNavList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.revamp-desktopSideNavItem {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  width: 100%;
+  padding: 10px var(--s-3);
+  border: none;
+  border-radius: var(--r-md);
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  color: var(--c-text-muted);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.revamp-desktopSideNavItem:hover {
+  background: var(--c-surface-2);
+  color: var(--c-text);
+}
+
+.revamp-desktopSideNavItem.is-active {
+  background: color-mix(in srgb, var(--c-accent), transparent 85%);
+  color: var(--c-accent);
+  font-weight: 700;
+}
+
+.revamp-desktopSideNavIcon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.revamp-desktopSideNavItem.is-active .revamp-desktopSideNavIcon {
+  opacity: 1;
+  filter: none;
+}
+
+.revamp-desktopSideNavLabel {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SETTINGS — Background swatch picker
+   ═══════════════════════════════════════════════════════════════ */
+
+.revamp-bgSwatchGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: var(--s-3);
+  padding: var(--s-2) 0;
+}
+
+.revamp-bgSwatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-2);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+.revamp-bgSwatchThumb {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  max-height: 120px;
+  border-radius: var(--r-md);
+  border: 2px solid var(--c-border);
+  overflow: hidden;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+}
+
+.revamp-bgSwatch:hover .revamp-bgSwatchThumb {
+  border-color: var(--c-accent);
+}
+
+.revamp-bgSwatch[data-active="true"] .revamp-bgSwatchThumb {
+  border-color: var(--c-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--c-accent), transparent 65%);
+}
+
+.revamp-bgSwatchCheckmark {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.revamp-bgSwatch[data-active="true"] .revamp-bgSwatchCheckmark {
+  opacity: 1;
+}
+
+.revamp-bgSwatchLabel {
+  font-size: var(--fs-xs);
+  color: var(--c-text-muted);
+  font-weight: 500;
+  text-align: center;
+}
+
+.revamp-bgSwatch[data-active="true"] .revamp-bgSwatchLabel {
+  color: var(--c-accent);
+  font-weight: 700;
+}
+
+/* Skin swatch row (Yang / Yin) */
+.revamp-skinSwatchRow {
+  display: flex;
+  gap: var(--s-3);
+  padding: var(--s-2) 0;
+}
+
+.revamp-skinSwatch {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-2);
+  cursor: pointer;
+  border: 2px solid var(--c-border);
+  border-radius: var(--r-md);
+  padding: var(--s-3) var(--s-2);
+  background: var(--c-surface);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.revamp-skinSwatch:hover {
+  border-color: var(--c-accent);
+}
+
+.revamp-skinSwatch[data-active="true"] {
+  border-color: var(--c-accent);
+  background: color-mix(in srgb, var(--c-accent), transparent 88%);
+}
+
+.revamp-skinSwatchPreview {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--c-border);
+}
+
+.revamp-skinSwatchLabel {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--c-text-muted);
+}
+
+.revamp-skinSwatch[data-active="true"] .revamp-skinSwatchLabel {
+  color: var(--c-accent);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LUCK PILLARS — Richer expanded panel
+   ═══════════════════════════════════════════════════════════════ */
+
+.revamp-luckPillarExpandPanel {
+  padding: 0 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  border-top: 1px solid var(--c-border);
+  animation: revamp-expandIn 0.2s ease;
+}
+
+@keyframes revamp-expandIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.revamp-luckPillarExpandSectionTitle {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--c-text-muted);
+  margin-bottom: 4px;
+}
+
+.revamp-luckPillarAnalysisText {
+  font-size: var(--fs-sm);
+  color: var(--c-text);
+  line-height: 1.6;
+  background: var(--c-surface);
+  border-radius: var(--r-md);
+  padding: var(--s-3) var(--s-4);
+}
+
+/* Yearly breakdown table */
+.revamp-luckPillarYearTable {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.revamp-luckPillarYearRow {
+  display: grid;
+  grid-template-columns: 52px 1fr 80px;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: var(--c-surface);
+  border-radius: 8px;
+  font-size: var(--fs-xs);
+}
+
+.revamp-luckPillarYearRow[data-current="true"] {
+  background: color-mix(in srgb, var(--c-accent), transparent 88%);
+  border: 1px solid color-mix(in srgb, var(--c-accent), transparent 60%);
+}
+
+.revamp-luckPillarYearNum {
+  font-weight: 700;
+  color: var(--c-text);
+  font-size: 13px;
+}
+
+.revamp-luckPillarYearBar {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--c-border);
+  overflow: hidden;
+}
+
+.revamp-luckPillarYearBarFill {
+  height: 100%;
+  border-radius: 3px;
+  background: var(--c-accent);
+  transition: width 0.4s ease;
+}
+
+.revamp-luckPillarYearScore {
+  font-weight: 600;
+  color: var(--c-text-muted);
+  text-align: right;
+}
+
+/* Domain mini-scores */
+.revamp-luckPillarDomains {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 8px;
+}
+
+.revamp-luckPillarDomainChip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 6px;
+  background: var(--c-surface);
+  border-radius: var(--r-md);
+  border: 1px solid var(--c-border);
+}
+
+.revamp-luckPillarDomainIcon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.revamp-luckPillarDomainName {
+  font-size: 10px;
+  color: var(--c-text-muted);
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.revamp-luckPillarDomainScore {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-text);
+}
+
+/* Fortune themes tags */
+.revamp-luckPillarThemes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.revamp-luckPillarThemeTag {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 99px;
+  background: var(--c-surface-2);
+  color: var(--c-text-muted);
+  border: 1px solid var(--c-border);
+}
+
+.revamp-luckPillarThemeTag--positive {
+  background: rgba(34,197,94,0.1);
+  color: var(--c-success);
+  border-color: rgba(34,197,94,0.25);
+}
+
+.revamp-luckPillarThemeTag--caution {
+  background: rgba(234,179,8,0.1);
+  color: #ca8a04;
+  border-color: rgba(234,179,8,0.25);
+}
+
+/* Element energy mini-ring */
+.revamp-luckPillarElementRing {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  padding: var(--s-3) var(--s-4);
+  background: var(--c-surface);
+  border-radius: var(--r-md);
+}
+
+.revamp-luckPillarElementRingChart {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+}
+
+.revamp-luckPillarElementLegend {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.revamp-luckPillarElementLegendRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+}
+
+.revamp-luckPillarElementDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.revamp-luckPillarElementName {
+  color: var(--c-text-muted);
+  flex: 1;
+}
+
+.revamp-luckPillarElementVal {
+  font-weight: 700;
+  color: var(--c-text);
+}

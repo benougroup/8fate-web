@@ -21,8 +21,11 @@ import { useServices } from "../services";
 import {
   clearAuthUser,
   setTheme,
+  setBackgroundKey,
   usePreferences,
+  type BackgroundKey,
 } from "../stores/preferencesStore";
+import { getBackgroundSrc } from "../assets/assetMap";
 
 /** A row with a label on the left and a toggle switch on the right */
 function ToggleRow({
@@ -94,6 +97,7 @@ export function Settings() {
   const {
     locale,
     theme,
+    backgroundKey,
     setLocale,
     userEmail,
     isPremium,
@@ -102,7 +106,6 @@ export function Settings() {
   const [timezone, setTimezone] = React.useState("UTC+8");
   const [notifications, setNotifications] = React.useState(true);
   const [sounds, setSounds] = React.useState(true);
-  const [background, setBackground] = React.useState("default");
   const countries = React.useMemo(() => extractCountryOptions(timezonesManifest), []);
   const { profile, setProfile } = useProfile();
 
@@ -366,24 +369,64 @@ export function Settings() {
               <option value="zh-Hant">{t("settings.languageOptions.zhHant")}</option>
             </SelectRow>
 
-            <SelectRow
-              label={t("settings.skinLabel")}
-              value={theme}
-              onChange={(v) => setTheme(v as "yin" | "yang")}
-            >
-              <option value="yang">{t("settings.skinOptions.yang")}</option>
-              <option value="yin">{t("settings.skinOptions.yin")}</option>
-            </SelectRow>
+            {/* ── Skin (Yin / Yang) swatch picker ── */}
+            <div className="revamp-settingsSelectRow" style={{ flexDirection: "column", alignItems: "flex-start", gap: "8px" }}>
+              <span className="revamp-settingsFieldLabel">{t("settings.skinLabel")}</span>
+              <div className="revamp-skinSwatchRow">
+                {(["yang", "yin"] as const).map((skin) => (
+                  <button
+                    key={skin}
+                    type="button"
+                    className="revamp-skinSwatch"
+                    data-active={theme === skin ? "true" : "false"}
+                    onClick={() => setTheme(skin)}
+                  >
+                    <div
+                      className="revamp-skinSwatchPreview"
+                      style={{
+                        background: skin === "yang"
+                          ? "linear-gradient(135deg, #f8f0e3 50%, #e8d5b7 100%)"
+                          : "linear-gradient(135deg, #1a1a2e 50%, #16213e 100%)",
+                      }}
+                    />
+                    <span className="revamp-skinSwatchLabel">
+                      {t(`settings.skinOptions.${skin}`)}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
 
-            <SelectRow
-              label={t("settings.backgroundLabel")}
-              value={background}
-              onChange={setBackground}
-            >
-              <option value="default">{t("settings.backgroundOptions.default")}</option>
-              <option value="grey">{t("settings.backgroundOptions.grey")}</option>
-              <option value="purple">{t("settings.backgroundOptions.purple")}</option>
-            </SelectRow>
+            {/* ── Background swatch picker ── */}
+            <div className="revamp-settingsSelectRow" style={{ flexDirection: "column", alignItems: "flex-start", gap: "8px" }}>
+              <span className="revamp-settingsFieldLabel">{t("settings.backgroundLabel")}</span>
+              <div className="revamp-bgSwatchGrid">
+                {([
+                  { key: "background001" as BackgroundKey, label: t("settings.backgroundOptions.default") },
+                  { key: "grey" as BackgroundKey, label: t("settings.backgroundOptions.grey") },
+                  { key: "purple" as BackgroundKey, label: t("settings.backgroundOptions.purple") },
+                ] as { key: BackgroundKey; label: string }[]).map(({ key, label }) => {
+                  const src = getBackgroundSrc(theme, key);
+                  return (
+                    <button
+                      key={key}
+                      type="button"
+                      className="revamp-bgSwatch"
+                      data-active={(backgroundKey ?? "background001") === key ? "true" : "false"}
+                      onClick={() => setBackgroundKey(key)}
+                    >
+                      <div
+                        className="revamp-bgSwatchThumb"
+                        style={{ backgroundImage: `url(${src})` }}
+                      >
+                        <span className="revamp-bgSwatchCheckmark" aria-hidden>✓</span>
+                      </div>
+                      <span className="revamp-bgSwatchLabel">{label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
 
             <SelectRow
               label="Current country of residence"

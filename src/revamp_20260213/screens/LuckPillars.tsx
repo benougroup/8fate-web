@@ -125,10 +125,62 @@ function LifeTimelineBar({ pillars }: { pillars: LuckPillar[] }) {
   );
 }
 
+// ─── Derived data helpers ─────────────────────────────────────────────────────
+/** Generate mock yearly scores for a pillar (deterministic from startAge) */
+function getYearlyScores(pillar: LuckPillar): { year: number; age: number; score: number; isCurrent: boolean }[] {
+  const currentYear = new Date().getFullYear();
+  const rows: { year: number; age: number; score: number; isCurrent: boolean }[] = [];
+  for (let i = 0; i < (pillar.endAge - pillar.startAge); i++) {
+    const age = pillar.startAge + i;
+    // Deterministic pseudo-random score based on pillar + offset
+    const seed = (pillar.startAge * 7 + i * 13) % 100;
+    const score = 45 + Math.round(Math.abs(Math.sin(seed) * 50));
+    const year = currentYear - (pillar.isCurrent ? (new Date().getFullYear() - (currentYear - (pillar.startAge - (new Date().getFullYear() - currentYear)))) : 0) + i;
+    rows.push({ year: pillar.isCurrent ? currentYear - Math.floor((pillar.endAge - pillar.startAge) / 2) + i : 2000 + i, age, score, isCurrent: pillar.isCurrent && i === Math.floor((pillar.endAge - pillar.startAge) / 2) });
+  }
+  return rows;
+}
+
+/** Life domain data for the pillar */
+const DOMAIN_DATA: { icon: string; name: string; scoreKey: number }[] = [
+  { icon: "💼", name: "Career",      scoreKey: 1 },
+  { icon: "💰", name: "Wealth",      scoreKey: 2 },
+  { icon: "❤️", name: "Romance",     scoreKey: 3 },
+  { icon: "🏥", name: "Health",      scoreKey: 4 },
+  { icon: "🎓", name: "Learning",    scoreKey: 5 },
+  { icon: "👨‍👩‍👧", name: "Family",     scoreKey: 6 },
+];
+
+function getDomainScore(pillar: LuckPillar, key: number): number {
+  const seed = (pillar.startAge * 3 + key * 17) % 100;
+  return 40 + Math.round(Math.abs(Math.sin(seed) * 55));
+}
+
+function getFortuneThemes(pillar: LuckPillar): { label: string; type: "positive" | "caution" | "neutral" }[] {
+  const stemGod = pillar.stemTenGod;
+  const branchGod = pillar.branchTenGod;
+  const themes: { label: string; type: "positive" | "caution" | "neutral" }[] = [];
+  if (stemGod) {
+    const info = TEN_GOD_DESCRIPTIONS[stemGod];
+    info.keywords.forEach((kw) => themes.push({ label: kw, type: ["Direct Wealth","Direct Officer","Direct Resource","Eating God","Friend"].includes(stemGod) ? "positive" : "caution" }));
+  }
+  if (branchGod && branchGod !== stemGod) {
+    const info = TEN_GOD_DESCRIPTIONS[branchGod];
+    info.keywords.slice(0, 2).forEach((kw) => themes.push({ label: kw, type: ["Direct Wealth","Direct Officer","Direct Resource","Eating God","Friend"].includes(branchGod) ? "positive" : "caution" }));
+  }
+  themes.push({ label: pillar.elementEn + " Phase", type: "neutral" });
+  return themes;
+}
+
 // ─── Pillar Row (expandable) ──────────────────────────────────────────────────
 function LuckPillarRow({ pillar, theme, index, total }: { pillar: LuckPillar; theme: "yin" | "yang"; index: number; total: number }) {
   const [expanded, setExpanded] = React.useState(pillar.isCurrent);
+  const [activeTab, setActiveTab] = React.useState<"overview" | "yearly" | "domains">("overview");
   const elemColour = ELEMENT_COLOURS[pillar.elementEn] ?? "#94a3b8";
+  const domainScores = DOMAIN_DATA.map((d) => ({ ...d, score: getDomainScore(pillar, d.scoreKey) }));
+  const themes = getFortuneThemes(pillar);
+  const yearlyRows = getYearlyScores(pillar);
+  const maxScore = Math.max(...yearlyRows.map((r) => r.score));
 
   return (
     <div className="revamp-luckPillarRow" data-current={pillar.isCurrent}>
@@ -182,87 +234,192 @@ function LuckPillarRow({ pillar, theme, index, total }: { pillar: LuckPillar; th
 
       {/* ── Expanded Detail Panel ── */}
       {expanded && (
-        <div className="revamp-luckPillarDetail">
-          {/* Element energy bar */}
-          <div className="revamp-luckPillarEnergyBar">
-            <div
-              className="revamp-luckPillarEnergyFill"
-              style={{ width: "70%", background: elemColour }}
-            />
-            <span className="revamp-luckPillarEnergyLabel" style={{ color: elemColour }}>
-              {pillar.elementEn} Energy
-            </span>
+        <div className="revamp-luckPillarExpandPanel">
+
+          {/* Tab bar */}
+          <div style={{ display: "flex", gap: 4, borderBottom: "1px solid var(--c-border)", marginBottom: 12 }}>
+            {(["overview", "yearly", "domains"] as const).map((tab) => (
+              <button
+                key={tab}
+                type="button"
+                onClick={() => setActiveTab(tab)}
+                style={{
+                  flex: 1, padding: "6px 4px", border: "none", background: "transparent",
+                  fontSize: 11, fontWeight: activeTab === tab ? 700 : 500,
+                  color: activeTab === tab ? elemColour : "var(--c-text-muted)",
+                  borderBottom: activeTab === tab ? `2px solid ${elemColour}` : "2px solid transparent",
+                  cursor: "pointer", textTransform: "capitalize",
+                }}
+              >
+                {tab === "overview" ? "Overview" : tab === "yearly" ? "Year by Year" : "Life Domains"}
+              </button>
+            ))}
           </div>
 
-          {/* Analysis text */}
-          <Text muted style={{ fontSize: "var(--fs-sm)", lineHeight: 1.6 }}>
-            {pillar.analysis}
-          </Text>
-
-          {/* Stem + Branch breakdown */}
-          <div className="revamp-luckPillarBreakdown">
-            {pillar.stemTenGod && (
-              <div className="revamp-luckPillarBreakdownItem">
-                <div className="revamp-luckPillarBreakdownHeader">
-                  <span className="revamp-luckPillarBreakdownChar">{pillar.stem}</span>
-                  <div>
-                    <Text style={{ fontSize: "var(--fs-sm)", fontWeight: 700 }}>
-                      Stem · {pillar.stemEn}
-                    </Text>
-                    <Text muted style={{ fontSize: "var(--fs-xs)" }}>
-                      → {pillar.stemTenGod}
-                    </Text>
+          {/* ── Tab: Overview ── */}
+          {activeTab === "overview" && (
+            <>
+              {/* Element energy ring + legend */}
+              <div className="revamp-luckPillarElementRing">
+                <svg className="revamp-luckPillarElementRingChart" viewBox="0 0 64 64">
+                  <circle cx="32" cy="32" r="26" fill="none" stroke="var(--c-border)" strokeWidth="8" />
+                  <circle
+                    cx="32" cy="32" r="26"
+                    fill="none"
+                    stroke={elemColour}
+                    strokeWidth="8"
+                    strokeDasharray={`${2 * Math.PI * 26 * 0.72} ${2 * Math.PI * 26}`}
+                    strokeLinecap="round"
+                    transform="rotate(-90 32 32)"
+                    opacity="0.85"
+                  />
+                  <text x="32" y="36" textAnchor="middle" fontSize="11" fontWeight="800" fill={elemColour}>
+                    {pillar.element}
+                  </text>
+                </svg>
+                <div className="revamp-luckPillarElementLegend">
+                  <div className="revamp-luckPillarElementLegendRow">
+                    <div className="revamp-luckPillarElementDot" style={{ background: elemColour }} />
+                    <span className="revamp-luckPillarElementName">{pillar.elementEn} (Dominant)</span>
+                    <span className="revamp-luckPillarElementVal">72%</span>
                   </div>
+                  {pillar.stemTenGod && (
+                    <div className="revamp-luckPillarElementLegendRow">
+                      <div className="revamp-luckPillarElementDot" style={{ background: TEN_GOD_DESCRIPTIONS[pillar.stemTenGod].colour }} />
+                      <span className="revamp-luckPillarElementName">{pillar.stemTenGod}</span>
+                      <span className="revamp-luckPillarElementVal">Stem</span>
+                    </div>
+                  )}
+                  {pillar.branchTenGod && (
+                    <div className="revamp-luckPillarElementLegendRow">
+                      <div className="revamp-luckPillarElementDot" style={{ background: TEN_GOD_DESCRIPTIONS[pillar.branchTenGod].colour }} />
+                      <span className="revamp-luckPillarElementName">{pillar.branchTenGod}</span>
+                      <span className="revamp-luckPillarElementVal">Branch</span>
+                    </div>
+                  )}
                 </div>
-                <Text muted style={{ fontSize: "var(--fs-xs)", lineHeight: 1.5 }}>
-                  {TEN_GOD_DESCRIPTIONS[pillar.stemTenGod].role} — {TEN_GOD_DESCRIPTIONS[pillar.stemTenGod].nature}
-                </Text>
-                <div style={{ display: "flex", gap: 4, flexWrap: "wrap", marginTop: 4 }}>
-                  {TEN_GOD_DESCRIPTIONS[pillar.stemTenGod].keywords.map((kw) => (
-                    <span key={kw} style={{
-                      background: TEN_GOD_DESCRIPTIONS[pillar.stemTenGod!].colour + "22",
-                      color: TEN_GOD_DESCRIPTIONS[pillar.stemTenGod!].colour,
-                      borderRadius: 20, padding: "1px 8px", fontSize: 10, fontWeight: 600,
-                    }}>{kw}</span>
+              </div>
+
+              {/* Analysis text */}
+              <p className="revamp-luckPillarAnalysisText">{pillar.analysis}</p>
+
+              {/* Fortune themes */}
+              <div>
+                <p className="revamp-luckPillarExpandSectionTitle">Fortune Themes</p>
+                <div className="revamp-luckPillarThemes">
+                  {themes.map((th, i) => (
+                    <span key={i} className={`revamp-luckPillarThemeTag revamp-luckPillarThemeTag--${th.type}`}>
+                      {th.label}
+                    </span>
                   ))}
                 </div>
               </div>
-            )}
-            {pillar.branchTenGod && (
-              <div className="revamp-luckPillarBreakdownItem">
-                <div className="revamp-luckPillarBreakdownHeader">
-                  <span className="revamp-luckPillarBreakdownChar">{pillar.branch}</span>
-                  <div>
-                    <Text style={{ fontSize: "var(--fs-sm)", fontWeight: 700 }}>
-                      Branch · {pillar.branchEn}
-                    </Text>
-                    <Text muted style={{ fontSize: "var(--fs-xs)" }}>
-                      → {pillar.branchTenGod}
-                    </Text>
-                  </div>
-                </div>
-                <Text muted style={{ fontSize: "var(--fs-xs)", lineHeight: 1.5 }}>
-                  {TEN_GOD_DESCRIPTIONS[pillar.branchTenGod].role} — {TEN_GOD_DESCRIPTIONS[pillar.branchTenGod].nature}
-                </Text>
-                <div style={{ display: "flex", gap: 4, flexWrap: "wrap", marginTop: 4 }}>
-                  {TEN_GOD_DESCRIPTIONS[pillar.branchTenGod].keywords.map((kw) => (
-                    <span key={kw} style={{
-                      background: TEN_GOD_DESCRIPTIONS[pillar.branchTenGod!].colour + "22",
-                      color: TEN_GOD_DESCRIPTIONS[pillar.branchTenGod!].colour,
-                      borderRadius: 20, padding: "1px 8px", fontSize: 10, fontWeight: 600,
-                    }}>{kw}</span>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
 
-          {/* Pillar count note for last pillar */}
-          {index === total - 1 && (
-            <Text muted style={{ fontSize: "var(--fs-xs)", fontStyle: "italic", marginTop: 4 }}>
-              Future pillars beyond this point will be calculated as your chart evolves.
-            </Text>
+              {/* Stem + Branch breakdown */}
+              <div className="revamp-luckPillarBreakdown">
+                {pillar.stemTenGod && (
+                  <div className="revamp-luckPillarBreakdownItem">
+                    <div className="revamp-luckPillarBreakdownHeader">
+                      <span className="revamp-luckPillarBreakdownChar">{pillar.stem}</span>
+                      <div>
+                        <Text style={{ fontSize: "var(--fs-sm)", fontWeight: 700 }}>Stem · {pillar.stemEn}</Text>
+                        <Text muted style={{ fontSize: "var(--fs-xs)" }}>→ {pillar.stemTenGod}</Text>
+                      </div>
+                    </div>
+                    <Text muted style={{ fontSize: "var(--fs-xs)", lineHeight: 1.5 }}>
+                      {TEN_GOD_DESCRIPTIONS[pillar.stemTenGod].role} — {TEN_GOD_DESCRIPTIONS[pillar.stemTenGod].nature}
+                    </Text>
+                    <div style={{ display: "flex", gap: 4, flexWrap: "wrap", marginTop: 4 }}>
+                      {TEN_GOD_DESCRIPTIONS[pillar.stemTenGod].keywords.map((kw) => (
+                        <span key={kw} style={{
+                          background: TEN_GOD_DESCRIPTIONS[pillar.stemTenGod!].colour + "22",
+                          color: TEN_GOD_DESCRIPTIONS[pillar.stemTenGod!].colour,
+                          borderRadius: 20, padding: "1px 8px", fontSize: 10, fontWeight: 600,
+                        }}>{kw}</span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {pillar.branchTenGod && (
+                  <div className="revamp-luckPillarBreakdownItem">
+                    <div className="revamp-luckPillarBreakdownHeader">
+                      <span className="revamp-luckPillarBreakdownChar">{pillar.branch}</span>
+                      <div>
+                        <Text style={{ fontSize: "var(--fs-sm)", fontWeight: 700 }}>Branch · {pillar.branchEn}</Text>
+                        <Text muted style={{ fontSize: "var(--fs-xs)" }}>→ {pillar.branchTenGod}</Text>
+                      </div>
+                    </div>
+                    <Text muted style={{ fontSize: "var(--fs-xs)", lineHeight: 1.5 }}>
+                      {TEN_GOD_DESCRIPTIONS[pillar.branchTenGod].role} — {TEN_GOD_DESCRIPTIONS[pillar.branchTenGod].nature}
+                    </Text>
+                    <div style={{ display: "flex", gap: 4, flexWrap: "wrap", marginTop: 4 }}>
+                      {TEN_GOD_DESCRIPTIONS[pillar.branchTenGod].keywords.map((kw) => (
+                        <span key={kw} style={{
+                          background: TEN_GOD_DESCRIPTIONS[pillar.branchTenGod!].colour + "22",
+                          color: TEN_GOD_DESCRIPTIONS[pillar.branchTenGod!].colour,
+                          borderRadius: 20, padding: "1px 8px", fontSize: 10, fontWeight: 600,
+                        }}>{kw}</span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {index === total - 1 && (
+                <Text muted style={{ fontSize: "var(--fs-xs)", fontStyle: "italic", marginTop: 4 }}>
+                  Future pillars beyond this point will be calculated as your chart evolves.
+                </Text>
+              )}
+            </>
           )}
+
+          {/* ── Tab: Year by Year ── */}
+          {activeTab === "yearly" && (
+            <div className="revamp-luckPillarYearTable">
+              <p className="revamp-luckPillarExpandSectionTitle" style={{ marginBottom: 8 }}>
+                Annual Fortune within this Pillar
+              </p>
+              {yearlyRows.map((row) => (
+                <div key={row.age} className="revamp-luckPillarYearRow" data-current={row.isCurrent}>
+                  <span className="revamp-luckPillarYearNum">Age {row.age}</span>
+                  <div className="revamp-luckPillarYearBar">
+                    <div
+                      className="revamp-luckPillarYearBarFill"
+                      style={{ width: `${(row.score / maxScore) * 100}%`, background: elemColour }}
+                    />
+                  </div>
+                  <span className="revamp-luckPillarYearScore">{row.score}/100</span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* ── Tab: Life Domains ── */}
+          {activeTab === "domains" && (
+            <>
+              <p className="revamp-luckPillarExpandSectionTitle" style={{ marginBottom: 8 }}>
+                Domain Outlook for this Pillar
+              </p>
+              <div className="revamp-luckPillarDomains">
+                {domainScores.map((d) => (
+                  <div key={d.name} className="revamp-luckPillarDomainChip">
+                    <span className="revamp-luckPillarDomainIcon">{d.icon}</span>
+                    <span className="revamp-luckPillarDomainName">{d.name}</span>
+                    <span
+                      className="revamp-luckPillarDomainScore"
+                      style={{ color: d.score >= 70 ? "var(--c-success)" : d.score >= 50 ? elemColour : "var(--c-text-muted)" }}
+                    >
+                      {d.score}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <p style={{ fontSize: 10, color: "var(--c-text-muted)", marginTop: 8, lineHeight: 1.5 }}>
+                Scores are relative indicators within this pillar period. Higher = more favourable energy in that domain.
+              </p>
+            </>
+          )}
+
         </div>
       )}
     </div>

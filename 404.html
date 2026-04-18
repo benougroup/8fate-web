@@ -1,19 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <meta name="description" content="8fate - Your destiny, your way" />
   <title>8fate</title>
-  <script>
-    var segmentCount = 1;
-    var l = window.location;
-    l.replace(
-      l.protocol + "//" + l.hostname + (l.port ? ":" + l.port : "") +
-      l.pathname.split("/").slice(0, 1 + segmentCount).join("/") + "?/" +
-      l.pathname.slice(1).split("/").slice(segmentCount).join("/").replace(/&/g, "~and~") +
-      (l.search ? "&" + l.search.slice(1).replace(/&/g, "~and~") : "") +
-      l.hash
-    );
-  </script>
+  <script type="module" crossorigin src="./assets/index-DVX7OMu2.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BFv-X9Rf.css">
 </head>
-<body></body>
+<body>
+  <div id="root"></div>
+</body>
 </html>
